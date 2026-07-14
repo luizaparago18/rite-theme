@@ -1,8 +1,221 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "color_yellow": "#FFC600",
     "color_black": "#2D2A26",
-    "color_white": "#FFFFFF"
+    "color_white": "#FFFFFF",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "message": "FRETE GRÁTIS EM COMPRAS ACIMA DE R$199"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_text": "rite"
+        }
+      },
+      "hero-banner": {
+        "type": "hero-banner",
+        "settings": {
+          "eyebrow": "SEU RITUAL DIÁRIO",
+          "heading": "Com 3 produtos, você tá pronta.",
+          "subheading": "Proteção, tratamento e praticidade num só ritual. Todo dia, sem excesso.",
+          "button_label": "Quero começar",
+          "button_url": ""
+        }
+      },
+      "press-bar": {
+        "type": "press-bar",
+        "settings": {
+          "phrases": "seu ritual diário · beleza que cuida · autocuidado sem excesso · proteção de verdade"
+        }
+      },
+      "community-ugc": {
+        "type": "community-ugc",
+        "blocks": {
+          "item_Dr4Bxn": {
+            "type": "item",
+            "settings": {
+              "handle": "@usuaria",
+              "cta_label": "Ver produto",
+              "link": ""
+            }
+          },
+          "item_NpACY4": {
+            "type": "item",
+            "settings": {
+              "handle": "@usuaria",
+              "cta_label": "Ver produto",
+              "link": ""
+            }
+          },
+          "item_rU8n6X": {
+            "type": "item",
+            "settings": {
+              "handle": "@usuaria",
+              "cta_label": "Ver produto",
+              "link": ""
+            }
+          },
+          "item_zAXE6W": {
+            "type": "item",
+            "settings": {
+              "handle": "@usuaria",
+              "cta_label": "Ver produto",
+              "link": ""
+            }
+          },
+          "item_WtEiK8": {
+            "type": "item",
+            "settings": {
+              "handle": "@usuaria",
+              "cta_label": "Ver produto",
+              "link": ""
+            }
+          },
+          "item_KVcT9h": {
+            "type": "item",
+            "settings": {
+              "handle": "@usuaria",
+              "cta_label": "Ver produto",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "item_Dr4Bxn",
+          "item_NpACY4",
+          "item_rU8n6X",
+          "item_zAXE6W",
+          "item_WtEiK8",
+          "item_KVcT9h"
+        ],
+        "settings": {
+          "heading": "Nossa comunidade"
+        }
+      },
+      "split-banner": {
+        "type": "split-banner",
+        "settings": {
+          "reverse": false,
+          "eyebrow": "",
+          "heading": "Encontre o seu tom",
+          "body": "Responda o quiz e descubra qual protetor combina melhor com você.",
+          "button_label": "Responder quiz",
+          "button_url": ""
+        }
+      },
+      "shop-by-category": {
+        "type": "shop-by-category",
+        "blocks": {
+          "category_R8Et7Y": {
+            "type": "category",
+            "settings": {
+              "label": "SUPLEMENTOS",
+              "link": ""
+            }
+          },
+          "category_6qkYjh": {
+            "type": "category",
+            "settings": {
+              "label": "CABELOS",
+              "link": ""
+            }
+          },
+          "category_9rJDKB": {
+            "type": "category",
+            "settings": {
+              "label": "PELE",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "category_R8Et7Y",
+          "category_6qkYjh",
+          "category_9rJDKB"
+        ],
+        "settings": {
+          "heading": "Compre por categoria"
+        }
+      },
+      "brand-manifest": {
+        "type": "brand-manifest",
+        "settings": {}
+      },
+      "blog-highlights": {
+        "type": "blog-highlights",
+        "blocks": {
+          "placeholder_post_BWky6y": {
+            "type": "placeholder_post",
+            "settings": {
+              "tag": "Rotina",
+              "title": "Título do post",
+              "excerpt": "Resumo curto do post vai aqui.",
+              "link": ""
+            }
+          },
+          "placeholder_post_qQaxP4": {
+            "type": "placeholder_post",
+            "settings": {
+              "tag": "Rotina",
+              "title": "Título do post",
+              "excerpt": "Resumo curto do post vai aqui.",
+              "link": ""
+            }
+          },
+          "placeholder_post_GTfR9a": {
+            "type": "placeholder_post",
+            "settings": {
+              "tag": "Rotina",
+              "title": "Título do post",
+              "excerpt": "Resumo curto do post vai aqui.",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "placeholder_post_BWky6y",
+          "placeholder_post_qQaxP4",
+          "placeholder_post_GTfR9a"
+        ],
+        "settings": {
+          "heading": "Blog da Rite",
+          "blog": "novidades"
+        }
+      },
+      "newsletter": {
+        "type": "newsletter",
+        "settings": {
+          "heading": "Fique por dentro",
+          "subheading": "Novidades, lançamentos e desconto de boas-vindas direto no seu e-mail."
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "description": "",
+          "instagram_url": "",
+          "tiktok_url": "",
+          "support_text": "",
+          "whatsapp": "",
+          "email": "",
+          "cnpj": ""
+        }
+      }
+    },
+    "content_for_index": []
   },
   "presets": {
     "Default": {
