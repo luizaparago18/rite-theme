@@ -1,5 +1,13 @@
 <section style="padding: var(--space-6) 0 var(--space-4); text-align:center; background: var(--color-cream);">
   <div class="container">
+    {% if section.settings.banner_image %}
+      <div style="border-radius: var(--radius-lg); overflow:hidden; max-height:420px; margin-bottom: var(--space-4);">
+        <img src="{{ section.settings.banner_image | image_url: width: 1600 }}" alt="{{ section.settings.banner_image.alt | escape }}" style="width:100%; height:100%; object-fit:cover; max-height:420px;" loading="eager">
+      </div>
+    {% else %}
+      <div class="rite-placeholder" style="max-width:100%; height:280px; border-radius: var(--radius-lg); margin-bottom: var(--space-4);">Banner da coleção<br>em produção</div>
+    {% endif %}
+
     <p class="hero__eyebrow" style="color:var(--color-black);">{{ collection.title }}</p>
     <h1 class="font-heading" style="font-size:clamp(28px,4vw,42px); margin-bottom:8px;">
       {{ section.settings.phrase | default: collection.title }}
@@ -48,6 +56,7 @@
 {
   "name": "Coleção",
   "settings": [
+    { "type": "image_picker", "id": "banner_image", "label": "Imagem do banner (topo da página)" },
     { "type": "text", "id": "phrase", "label": "Frase do banner (opcional — se vazio, usa o nome da coleção)" }
   ]
 }
