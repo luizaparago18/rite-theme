@@ -18,12 +18,12 @@
   </div>
 </section>
 
-<div class="container" style="padding: var(--space-3) 0;">
-  <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
-    <a href="/collections/pele" class="btn {% if collection.handle == 'pele' %}btn--primary{% else %}btn--outline{% endif %}" style="text-transform:lowercase;">pele</a>
-    <a href="/collections/cabelo" class="btn {% if collection.handle == 'cabelo' %}btn--primary{% else %}btn--outline{% endif %}" style="text-transform:lowercase;">cabelo</a>
-    <a href="/pages/gummies" class="btn btn--outline" style="text-transform:lowercase;">suplementos</a>
-    <a href="{{ routes.all_products_collection_url }}" class="btn {% if collection.handle == 'all' %}btn--primary{% else %}btn--outline{% endif %}" style="text-transform:lowercase;">todos</a>
+<div class="container" style="padding: var(--space-2) 0;">
+  <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap;">
+    <a href="/collections/pele" class="tag-pill {% if collection.handle == 'pele' %}tag-pill--active{% endif %}">pele</a>
+    <a href="/collections/cabelo" class="tag-pill {% if collection.handle == 'cabelo' %}tag-pill--active{% endif %}">cabelo</a>
+    <a href="/pages/gummies" class="tag-pill">suplementos</a>
+    <a href="{{ routes.all_products_collection_url }}" class="tag-pill {% if collection.handle == 'all' %}tag-pill--active{% endif %}">todos</a>
   </div>
 </div>
 
