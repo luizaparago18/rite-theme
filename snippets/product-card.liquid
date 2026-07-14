@@ -1,10 +1,10 @@
 {% comment %}
   Snippet: product-card
   Uso: {% render 'product-card', product: product, badge: 'Mais vendido' %}
-  Se "product" não vier (placeholder), mostra card vazio de exemplo.
+  Para versão menor: {% render 'product-card', product: product, compact: true %}
 {% endcomment %}
 
-<div class="product-card">
+<div class="product-card{% if compact %} product-card--compact{% endif %}">
   <div class="product-card__image-wrap">
     {% if badge %}<span class="product-card__badge{% if badge_accent %} product-card__badge--accent{% endif %}">{{ badge }}</span>{% endif %}
 
