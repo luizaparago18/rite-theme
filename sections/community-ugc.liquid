@@ -1,18 +1,17 @@
 <section class="section">
   <div class="container">
-    <h2 class="section__heading">{{ section.settings.heading | default: 'Nossa comunidade' }}</h2>
-
+    <h2 class="section__heading font-heading">{{ section.settings.heading | default: 'Nossa comunidade' }}</h2>
     <div class="community-grid">
       {% for block in section.blocks %}
         <div class="community-item">
           <div class="community-item__media">
-            {% if block.settings.image %}
-              <img src="{{ block.settings.image | image_url: width: 400 }}" alt="" loading="lazy" width="400" height="{{ block.settings.image.height }}">
+            {% if block.settings.video != blank %}
+              <video autoplay muted loop playsinline></video>
+              <script>document.currentScript.previousElementSibling.src="{{ block.settings.video.sources[0].url }}";</script>
+            {% elsif block.settings.image %}
+              <img src="{{ block.settings.image | image_url: width: 400 }}" alt="" loading="lazy">
             {% else %}
-              <div class="product-card__placeholder">Foto/vídeo<br>em produção</div>
-            {% endif %}
-            {% if block.settings.is_video %}
-              <span class="community-item__play">▶</span>
+              <div class="rite-placeholder">Foto/vídeo<br>em produção</div>
             {% endif %}
           </div>
           <span class="community-item__handle">{{ block.settings.handle | default: '@usuaria' }}</span>
@@ -26,30 +25,19 @@
 {% schema %}
 {
   "name": "Comunidade (UGC)",
-  "settings": [
-    { "type": "text", "id": "heading", "label": "Título da seção", "default": "Nossa comunidade" }
-  ],
+  "settings": [ { "type": "text", "id": "heading", "label": "Título", "default": "Nossa comunidade" } ],
   "blocks": [
     {
-      "type": "item",
-      "name": "Item",
+      "type": "item", "name": "Item",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Foto/thumbnail" },
-        { "type": "checkbox", "id": "is_video", "label": "É vídeo?", "default": true },
+        { "type": "image_picker", "id": "image", "label": "Foto (thumbnail/fallback)" },
+        { "type": "video", "id": "video", "label": "Vídeo (opcional — se preenchido, toca em loop)" },
         { "type": "text", "id": "handle", "label": "@ da pessoa", "default": "@usuaria" },
         { "type": "text", "id": "cta_label", "label": "Texto do link", "default": "Ver produto" },
         { "type": "url", "id": "link", "label": "Link" }
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "Comunidade (UGC)",
-      "blocks": [
-        { "type": "item" }, { "type": "item" }, { "type": "item" },
-        { "type": "item" }, { "type": "item" }, { "type": "item" }
-      ]
-    }
-  ]
+  "presets": [ { "name": "Comunidade (UGC)", "blocks": [ {"type":"item"},{"type":"item"},{"type":"item"},{"type":"item"},{"type":"item"},{"type":"item"} ] } ]
 }
 {% endschema %}
