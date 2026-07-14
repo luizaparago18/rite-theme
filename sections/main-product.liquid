@@ -5,12 +5,12 @@
         {% if product.featured_image %}
           <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | escape }}" id="pdp-main-img-tag">
         {% else %}
-          <div class="product-card__placeholder">Foto do produto<br>em produção</div>
+          <div class="rite-placeholder">Foto do produto<br>em produção</div>
         {% endif %}
       </div>
       {% if product.images.size > 1 %}
         <div class="pdp__thumbs">
-          {% for image in product.images limit: 5 %}
+          {% for image in product.images limit: 6 %}
             <button class="pdp__thumb" onclick="document.getElementById('pdp-main-img-tag').src='{{ image | image_url: width: 800 }}'" type="button">
               <img src="{{ image | image_url: width: 150 }}" alt="{{ image.alt | escape }}">
             </button>
@@ -22,29 +22,13 @@
     <div>
       {% if product.vendor != blank %}<p class="pdp__vendor">{{ product.vendor }}</p>{% endif %}
       <h1 class="pdp__title font-heading">{{ product.title | default: 'Nome do produto' }}</h1>
+      {% if product.metafields.custom.subtitulo != blank %}<p style="color:var(--color-gray); margin-bottom:12px;">{{ product.metafields.custom.subtitulo }}</p>{% endif %}
 
       <p class="pdp__price">
-        {% if product.compare_at_price > product.price %}
-          <s>{{ product.compare_at_price | money }}</s>{{ product.price | money }}
-        {% else %}
-          {{ product.price | money | default: 'R$ 00,00' }}
-        {% endif %}
+        {% if product.compare_at_price > product.price %}<s>{{ product.compare_at_price | money }}</s>{{ product.price | money }}{% else %}{{ product.price | money | default: 'R$ 00,00' }}{% endif %}
       </p>
 
       <div class="pdp__description">{{ product.description | default: 'Descrição do produto entra aqui, seguindo o Guia de Voz da Rite.' }}</div>
-
-      {% comment %} Diferenciais — usa metafield custom.diferenciais (lista), com fallback genérico {% endcomment %}
-      <ul class="pdp__diff-list">
-        {% if product.metafields.custom.diferenciais != blank %}
-          {% for item in product.metafields.custom.diferenciais.value %}
-            <li>{{ item }}</li>
-          {% endfor %}
-        {% else %}
-          <li>Diferencial 1 — a preencher</li>
-          <li>Diferencial 2 — a preencher</li>
-          <li>Diferencial 3 — a preencher</li>
-        {% endif %}
-      </ul>
 
       {% form 'product', product %}
         {% if product.has_only_default_variant == false %}
@@ -52,9 +36,7 @@
             <div class="pdp__variant-group">
               <label class="pdp__variant-label">{{ option.name }}</label>
               <select class="pdp__variant-select" name="options[{{ option.name | escape }}]">
-                {% for value in option.values %}
-                  <option value="{{ value | escape }}">{{ value }}</option>
-                {% endfor %}
+                {% for value in option.values %}<option value="{{ value | escape }}">{{ value }}</option>{% endfor %}
               </select>
             </div>
           {% endfor %}
@@ -62,28 +44,86 @@
 
         {% if product.selling_plan_groups.size > 0 %}
           <div class="pdp__purchase-options">
-            <label class="pdp__purchase-option">
-              <input type="radio" name="purchase_option" value="one_time" checked> Comprar uma vez — {{ product.price | money }}
-            </label>
-            <label class="pdp__purchase-option">
-              <input type="radio" name="purchase_option" value="subscription"> Assinar (Rite em Ciclo) — economize na recompra
-            </label>
+            <label class="pdp__purchase-option"><input type="radio" name="purchase_option" value="one_time" checked> Comprar uma vez — {{ product.price | money }}</label>
+            <label class="pdp__purchase-option"><input type="radio" name="purchase_option" value="subscription"> Assinar (Rite em Ciclo) — economize na recompra</label>
           </div>
         {% endif %}
 
-        <div class="pdp__qty-row">
-          <input type="number" class="pdp__qty-input" name="quantity" value="1" min="1">
-        </div>
-
+        <div class="pdp__qty-row"><input type="number" class="pdp__qty-input" name="quantity" value="1" min="1"></div>
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
         <button type="submit" class="btn btn--primary btn--full" {% unless product.available %}disabled{% endunless %}>
           {% if product.available %}Adicionar ao carrinho{% else %}Esgotado{% endif %}
         </button>
       {% endform %}
+    </div>
+  </div>
 
-      <div class="pdp__reviews-anchor" id="judgeme_product_reviews" data-id="{{ product.id }}">
-        {% comment %} Widget do Judge.me se conecta automaticamente aqui via app embed {% endcomment %}
+  <div class="container" style="margin-top: var(--space-6);">
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap: var(--space-3);">
+
+      <div>
+        <h3 class="font-heading" style="font-size:18px; margin-bottom:12px;">benefícios</h3>
+        <ul class="pdp__diff-list">
+          {% if product.metafields.custom.beneficios != blank %}
+            {% for item in product.metafields.custom.beneficios.value %}<li>{{ item }}</li>{% endfor %}
+          {% else %}
+            <li>Benefício 1 — a preencher</li>
+            <li>Benefício 2 — a preencher</li>
+            <li>Benefício 3 — a preencher</li>
+          {% endif %}
+        </ul>
       </div>
+
+      <div>
+        <h3 class="font-heading" style="font-size:18px; margin-bottom:12px;">como usar</h3>
+        <div style="font-size:14px; line-height:1.6;">
+          {{ product.metafields.custom.como_usar | default: 'Modo de uso a preencher — passo a passo simples de aplicação.' }}
+        </div>
+      </div>
+
+      <div>
+        <h3 class="font-heading" style="font-size:18px; margin-bottom:12px;">ingredientes-chave</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          {% if product.metafields.custom.ingredientes != blank %}
+            {% for item in product.metafields.custom.ingredientes.value %}
+              <span style="background:var(--color-cream); padding:6px 12px; border-radius:var(--radius-sm); font-size:12px;">{{ item }}</span>
+            {% endfor %}
+          {% else %}
+            <span style="background:var(--color-cream); padding:6px 12px; border-radius:var(--radius-sm); font-size:12px;">ingrediente 1</span>
+            <span style="background:var(--color-cream); padding:6px 12px; border-radius:var(--radius-sm); font-size:12px;">ingrediente 2</span>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  {% if section.blocks.size > 0 %}
+    <div class="container" style="margin-top: var(--space-6);">
+      <h2 class="section__heading font-heading">veja na prática</h2>
+      <div class="community-grid">
+        {% for block in section.blocks %}
+          <div class="community-item">
+            <div class="community-item__media">
+              {% if block.settings.video != blank %}
+                <video autoplay muted loop playsinline></video>
+                <script>document.currentScript.previousElementSibling.src="{{ block.settings.video.sources[0].url }}";</script>
+              {% elsif block.settings.image %}
+                <img src="{{ block.settings.image | image_url: width: 400 }}" alt="" loading="lazy">
+              {% else %}
+                <div class="rite-placeholder">Foto/vídeo<br>em produção</div>
+              {% endif %}
+            </div>
+            {% if block.settings.handle != blank %}<span class="community-item__handle">{{ block.settings.handle }}</span>{% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="container">
+    <div class="pdp__reviews-anchor" id="judgeme_product_reviews" data-id="{{ product.id }}">
+      {% comment %} Widget do Judge.me se conecta automaticamente aqui via app embed {% endcomment %}
     </div>
   </div>
 </section>
@@ -91,6 +131,17 @@
 {% schema %}
 {
   "name": "Produto",
-  "settings": []
+  "settings": [],
+  "blocks": [
+    {
+      "type": "lifestyle_media",
+      "name": "Foto/vídeo (modelo ou UGC)",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagem (fallback)" },
+        { "type": "video", "id": "video", "label": "Vídeo (opcional)" },
+        { "type": "text", "id": "handle", "label": "@ do criador (opcional)" }
+      ]
+    }
+  ]
 }
 {% endschema %}
