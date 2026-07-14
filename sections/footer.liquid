@@ -2,36 +2,46 @@
   <div class="container">
     <div class="site-footer__grid">
       <div class="site-footer__col">
-        <h4>A Rite</h4>
-        <ul>
-          <li><a href="/pages/quem-somos">Quem somos</a></li>
-          <li><a href="/pages/rite-clube">Rite Clube</a></li>
-          <li><a href="{{ blog.url | default: '/blogs/news' }}">Blog</a></li>
-        </ul>
-      </div>
-      <div class="site-footer__col">
-        <h4>Ajuda</h4>
-        <ul>
-          <li><a href="/pages/perguntas-frequentes">Perguntas frequentes</a></li>
-          <li><a href="/pages/trocas-e-devolucao">Trocas e devolução</a></li>
-          <li><a href="/policies/shipping-policy">Políticas de frete</a></li>
-        </ul>
-      </div>
-      <div class="site-footer__col">
-        <h4>Siga a gente</h4>
+        <p class="site-footer__brand font-heading">rite</p>
+        <p>{{ section.settings.description | default: 'Beleza como ritual. Proteção, tratamento e praticidade em cada gesto.' }}</p>
         <div class="site-footer__social">
           {% if section.settings.instagram_url != blank %}<a href="{{ section.settings.instagram_url }}" aria-label="Instagram">IG</a>{% endif %}
           {% if section.settings.tiktok_url != blank %}<a href="{{ section.settings.tiktok_url }}" aria-label="TikTok">TT</a>{% endif %}
         </div>
       </div>
+
       <div class="site-footer__col">
-        <h4>Suporte ao cliente</h4>
+        <h4>a rite</h4>
+        <ul>
+          <li><a href="/pages/quem-somos">quem somos</a></li>
+          <li><a href="/pages/rite-clube">rite clube</a></li>
+          <li><a href="{{ blog.url | default: '/blogs/news' }}">blog</a></li>
+          <li><a href="/pages/trabalhe-conosco">trabalhe com a gente</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h4>ajuda</h4>
+        <ul>
+          <li><a href="/pages/perguntas-frequentes">perguntas frequentes</a></li>
+          <li><a href="/pages/trocas-e-devolucao">trocas e devolução</a></li>
+          <li><a href="/policies/shipping-policy">políticas de frete</a></li>
+          <li><a href="/policies/privacy-policy">privacidade</a></li>
+          <li><a href="/policies/terms-of-service">termos de uso</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h4>suporte ao cliente</h4>
         <p>{{ section.settings.support_text | default: 'Atendimento de segunda a sexta, 9h às 17h.' }}</p>
+        {% if section.settings.whatsapp != blank %}<p>WhatsApp: {{ section.settings.whatsapp }}</p>{% endif %}
+        {% if section.settings.email != blank %}<p>{{ section.settings.email }}</p>{% endif %}
       </div>
     </div>
 
     <div class="site-footer__bottom">
-      {{ shop.name }} · {{ 'now' | date: '%Y' }} · Todos os direitos reservados
+      <span>{{ shop.name }} · {{ 'now' | date: '%Y' }} · Todos os direitos reservados</span>
+      {% if section.settings.cnpj != blank %}<span>CNPJ {{ section.settings.cnpj }}</span>{% endif %}
     </div>
   </div>
 </footer>
@@ -40,9 +50,13 @@
 {
   "name": "Rodapé",
   "settings": [
-    { "type": "url", "id": "instagram_url", "label": "Link do Instagram" },
-    { "type": "url", "id": "tiktok_url", "label": "Link do TikTok" },
-    { "type": "textarea", "id": "support_text", "label": "Texto de suporte", "default": "Atendimento de segunda a sexta, 9h às 17h." }
+    { "type": "textarea", "id": "description", "label": "Descrição curta da marca" },
+    { "type": "url", "id": "instagram_url", "label": "Instagram" },
+    { "type": "url", "id": "tiktok_url", "label": "TikTok" },
+    { "type": "textarea", "id": "support_text", "label": "Texto de suporte" },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp" },
+    { "type": "text", "id": "email", "label": "E-mail de contato" },
+    { "type": "text", "id": "cnpj", "label": "CNPJ" }
   ]
 }
 {% endschema %}
