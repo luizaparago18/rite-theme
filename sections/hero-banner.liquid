@@ -1,23 +1,25 @@
 <section class="hero">
+  {% if section.settings.video != blank %}
+    <video class="hero__media" autoplay muted loop playsinline poster="{{ section.settings.image | image_url: width: 1600 }}">
+      <source src="{{ section.settings.video.sources[1].url | default: section.settings.video.sources[0].url }}" type="video/mp4">
+    </video>
+  {% elsif section.settings.image %}
+    <img class="hero__media" src="{{ section.settings.image | image_url: width: 1600 }}" alt="{{ section.settings.image.alt | escape }}" loading="eager">
+  {% endif %}
+
+  <div class="hero__overlay"></div>
   <div class="hero__circle" aria-hidden="true"></div>
+
   <div class="container">
     <div class="hero__content">
-      {% if section.settings.eyebrow != blank %}
-        <p class="hero__eyebrow">{{ section.settings.eyebrow }}</p>
-      {% endif %}
-      <h1 class="hero__heading font-heading">{{ section.settings.heading }}</h1>
-      {% if section.settings.subheading != blank %}
-        <p class="hero__subheading">{{ section.settings.subheading }}</p>
-      {% endif %}
+      {% if section.settings.eyebrow != blank %}<p class="hero__eyebrow">{{ section.settings.eyebrow }}</p>{% endif %}
+      <h1 class="hero__heading font-heading">{{ section.settings.heading | default: 'Com 3 produtos, você tá pronta.' }}</h1>
+      {% if section.settings.subheading != blank %}<p class="hero__subheading">{{ section.settings.subheading }}</p>{% endif %}
       {% if section.settings.button_label != blank %}
-        <a href="{{ section.settings.button_url | default: '#' }}" class="btn btn--primary">{{ section.settings.button_label }}</a>
+        <a href="{{ section.settings.button_url | default: '/collections/all' }}" class="btn btn--accent">{{ section.settings.button_label }}</a>
       {% endif %}
     </div>
   </div>
-
-  {% if section.settings.image %}
-    <img class="hero__image" src="{{ section.settings.image | image_url: width: 900 }}" alt="{{ section.settings.image.alt | escape }}" width="900" height="{{ section.settings.image.height }}" loading="eager">
-  {% endif %}
 </section>
 
 {% schema %}
@@ -29,10 +31,9 @@
     { "type": "textarea", "id": "subheading", "label": "Subtítulo", "default": "Proteção, tratamento e praticidade num só ritual. Todo dia, sem excesso." },
     { "type": "text", "id": "button_label", "label": "Texto do botão", "default": "Quero começar" },
     { "type": "url", "id": "button_url", "label": "Link do botão" },
-    { "type": "image_picker", "id": "image", "label": "Imagem (opcional — deixe vazio para usar só o fundo amarelo)" }
+    { "type": "image_picker", "id": "image", "label": "Imagem de fundo (ou poster do vídeo)" },
+    { "type": "video", "id": "video", "label": "Vídeo de fundo (opcional — se preenchido, substitui a imagem)" }
   ],
-  "presets": [
-    { "name": "Hero" }
-  ]
+  "presets": [ { "name": "Hero" } ]
 }
 {% endschema %}
