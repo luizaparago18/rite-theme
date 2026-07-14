@@ -123,6 +123,13 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .product-card__title { font-size: 14px; font-weight: 600; margin-top: 2px; }
 .product-card__price s { color: var(--color-gray); margin-right: 6px; }
 
+/* ---------- Grid/card compacto (ex: "você também vai gostar") ---------- */
+.product-grid--compact { grid-template-columns: repeat(5, 1fr); gap: var(--space-2); max-width: 900px; margin: 0 auto; }
+@media (max-width: 900px) { .product-grid--compact { grid-template-columns: repeat(3, 1fr); } }
+.product-card--compact .product-card__title { font-size: 12px; }
+.product-card--compact .product-card__price { font-size: 12px; }
+.product-card--compact .btn { padding: 8px 10px; font-size: 11px; border-radius: 10px; }
+
 /* ---------- UGC / Comunidade (com suporte a vídeo) ---------- */
 .community-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--space-2); }
 @media (max-width: 900px) { .community-grid { grid-template-columns: repeat(3, 1fr); } }
