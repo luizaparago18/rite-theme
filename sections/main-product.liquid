@@ -51,8 +51,8 @@
 
         <div class="pdp__qty-row"><input type="number" class="pdp__qty-input" name="quantity" value="1" min="1"></div>
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        <button type="submit" class="btn btn--primary btn--full" {% unless product.available %}disabled{% endunless %}>
-          {% if product.available %}Adicionar ao carrinho{% else %}Esgotado{% endif %}
+        <button type="submit" class="btn btn--primary btn--full" style="text-transform:lowercase;" {% unless product.available %}disabled{% endunless %}>
+          {% if product.available %}adicionar ao carrinho{% else %}esgotado{% endif %}
         </button>
       {% endform %}
     </div>
