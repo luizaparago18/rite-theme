@@ -1,24 +1,15 @@
 <div class="announcement-bar">
-  <div class="container announcement-bar__inner">
-    <span class="announcement-bar__arrow">←</span>
-    <span>{{ section.settings.message | default: 'FRETE GRÁTIS EM COMPRAS ACIMA DE R$199' }}</span>
-    <span class="announcement-bar__arrow">→</span>
+  <div class="announcement-bar__track">
+    {% assign msg = section.settings.message | default: 'FRETE GRÁTIS EM COMPRAS ACIMA DE R$199' %}
+    <span>{{ msg }}</span><span>{{ msg }}</span><span>{{ msg }}</span><span>{{ msg }}</span>
+    <span>{{ msg }}</span><span>{{ msg }}</span><span>{{ msg }}</span><span>{{ msg }}</span>
   </div>
 </div>
 
 {% schema %}
 {
   "name": "Barra de aviso",
-  "settings": [
-    {
-      "type": "text",
-      "id": "message",
-      "label": "Mensagem",
-      "default": "FRETE GRÁTIS EM COMPRAS ACIMA DE R$199"
-    }
-  ],
-  "presets": [
-    { "name": "Barra de aviso" }
-  ]
+  "settings": [ { "type": "text", "id": "message", "label": "Mensagem", "default": "FRETE GRÁTIS EM COMPRAS ACIMA DE R$199" } ],
+  "presets": [ { "name": "Barra de aviso" } ]
 }
 {% endschema %}
