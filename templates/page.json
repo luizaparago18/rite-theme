@@ -1,6 +1,31 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "main": { "type": "page-generic" }
+    "main": {
+      "type": "page-generic",
+      "settings": {}
+    },
+    "brand_manifesto_zbzc3b": {
+      "type": "brand-manifesto",
+      "name": "Manifesto (teaser)",
+      "settings": {
+        "heading": "Beleza como ritual é Rite",
+        "body": "Unimos tratamento e proteção em produtos multifuncionais e práticos. Fáceis de usar quanto de levar com você.",
+        "button_label": "Conheça a Rite",
+        "button_url": ""
+      }
+    }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "brand_manifesto_zbzc3b"
+  ]
 }
