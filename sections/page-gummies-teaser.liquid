@@ -1,17 +1,61 @@
-<section class="simple-page">
-  <div class="teaser-hero">
-    <span class="teaser-badge">Chegando fim de agosto</span>
-    <h1 class="font-heading" style="font-size:clamp(28px,4vw,40px); color:#fff; margin-bottom:12px;">Beleza de dentro pra fora.</h1>
-    <p style="max-width:480px; margin:0 auto; color:#fff;">Cabelo, pele e unha — em um gummy que não fica pronto antes do tempo. Constância, não milagre.</p>
+
+<section style="position:relative; overflow:hidden; background:var(--color-black); padding: var(--space-6) var(--space-3); text-align:center;">
+  <div class="hero__circle" style="right:-140px; top:20%; background:rgba(255,198,0,0.12);" aria-hidden="true"></div>
+  <div class="hero__circle" style="left:-160px; bottom:-100px; top:auto; transform:none; width:320px; height:320px; background:rgba(255,198,0,0.08);" aria-hidden="true"></div>
+
+  <div class="container" style="position:relative; z-index:2; max-width:640px; margin:0 auto;">
+    <span class="teaser-badge">{{ section.settings.badge | default: 'chegando fim de agosto' }}</span>
+
+    <h1 class="font-heading" style="font-size:clamp(48px,9vw,96px); color:var(--color-white); margin:16px 0 8px; line-height:0.95;">
+      {{ section.settings.heading | default: 'gummies' }}
+    </h1>
+
+    <p style="font-size:18px; color:var(--color-yellow); font-weight:600; margin-bottom:20px;">
+      {{ section.settings.subheading | default: 'beleza de dentro pra fora.' }}
+    </p>
+
+    <p style="font-size:15px; color:rgba(255,255,255,0.85); max-width:440px; margin:0 auto 32px;">
+      {{ section.settings.body | default: 'Cabelo, pele e unha — em um gummy que não fica pronto antes do tempo. Constância, não milagre. Do jeito Rite de cuidar.' }}
+    </p>
 
     {% form 'customer', class: 'teaser-form' %}
       <input type="hidden" name="contact[tags]" value="gummies-waitlist">
-      <input type="email" name="contact[email]" placeholder="Digite seu e-mail" required aria-label="E-mail">
-      <button type="submit">Avise-me</button>
+      <input type="email" name="contact[email]" placeholder="digite seu e-mail" required aria-label="E-mail">
+      <button type="submit" style="text-transform:lowercase;">avise-me</button>
     {% endform %}
   </div>
 </section>
 
+<section class="section">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap: var(--space-3); max-width:900px; margin:0 auto;">
+      <div style="text-align:center;">
+        <div style="width:56px; height:56px; border-radius:50%; background:var(--color-yellow); margin:0 auto 12px;"></div>
+        <p style="font-family:var(--font-heading); font-size:18px; margin-bottom:6px;">cabelo</p>
+        <p style="font-size:13px; color:var(--color-gray);">força e brilho que vêm de dentro.</p>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:56px; height:56px; border-radius:50%; background:var(--color-yellow); margin:0 auto 12px;"></div>
+        <p style="font-family:var(--font-heading); font-size:18px; margin-bottom:6px;">pele</p>
+        <p style="font-size:13px; color:var(--color-gray);">hidratação que não é só de fora pra dentro.</p>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:56px; height:56px; border-radius:50%; background:var(--color-yellow); margin:0 auto 12px;"></div>
+        <p style="font-family:var(--font-heading); font-size:18px; margin-bottom:6px;">unha</p>
+        <p style="font-size:13px; color:var(--color-gray);">firmeza que se constrói com constância.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% schema %}
-{ "name": "Gummies (em breve)", "settings": [] }
+{
+  "name": "Gummies (em breve)",
+  "settings": [
+    { "type": "text", "id": "badge", "label": "Selo", "default": "chegando fim de agosto" },
+    { "type": "text", "id": "heading", "label": "Título grande", "default": "gummies" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo (destaque amarelo)", "default": "beleza de dentro pra fora." },
+    { "type": "textarea", "id": "body", "label": "Texto", "default": "Cabelo, pele e unha — em um gummy que não fica pronto antes do tempo. Constância, não milagre. Do jeito Rite de cuidar." }
+  ]
+}
 {% endschema %}
