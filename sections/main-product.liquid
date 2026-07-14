@@ -122,8 +122,11 @@
   {% endif %}
 
   <div class="container">
-    <div class="pdp__reviews-anchor" id="judgeme_product_reviews" data-id="{{ product.id }}">
-      {% comment %} Widget do Judge.me se conecta automaticamente aqui via app embed {% endcomment %}
+    <div class="pdp__reviews-anchor">
+      <h2 class="section__heading font-heading">avaliações</h2>
+      <div id="judgeme_product_reviews" data-id="{{ product.id }}">
+        {% comment %} Widget do Judge.me se conecta automaticamente aqui via app embed {% endcomment %}
+      </div>
     </div>
   </div>
 </section>
