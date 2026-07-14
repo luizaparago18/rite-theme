@@ -1,0 +1,96 @@
+<section class="pdp">
+  <div class="container pdp__grid">
+    <div>
+      <div class="pdp__gallery-main" id="pdp-main-image">
+        {% if product.featured_image %}
+          <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | escape }}" id="pdp-main-img-tag">
+        {% else %}
+          <div class="product-card__placeholder">Foto do produto<br>em produção</div>
+        {% endif %}
+      </div>
+      {% if product.images.size > 1 %}
+        <div class="pdp__thumbs">
+          {% for image in product.images limit: 5 %}
+            <button class="pdp__thumb" onclick="document.getElementById('pdp-main-img-tag').src='{{ image | image_url: width: 800 }}'" type="button">
+              <img src="{{ image | image_url: width: 150 }}" alt="{{ image.alt | escape }}">
+            </button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div>
+      {% if product.vendor != blank %}<p class="pdp__vendor">{{ product.vendor }}</p>{% endif %}
+      <h1 class="pdp__title font-heading">{{ product.title | default: 'Nome do produto' }}</h1>
+
+      <p class="pdp__price">
+        {% if product.compare_at_price > product.price %}
+          <s>{{ product.compare_at_price | money }}</s>{{ product.price | money }}
+        {% else %}
+          {{ product.price | money | default: 'R$ 00,00' }}
+        {% endif %}
+      </p>
+
+      <div class="pdp__description">{{ product.description | default: 'Descrição do produto entra aqui, seguindo o Guia de Voz da Rite.' }}</div>
+
+      {% comment %} Diferenciais — usa metafield custom.diferenciais (lista), com fallback genérico {% endcomment %}
+      <ul class="pdp__diff-list">
+        {% if product.metafields.custom.diferenciais != blank %}
+          {% for item in product.metafields.custom.diferenciais.value %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        {% else %}
+          <li>Diferencial 1 — a preencher</li>
+          <li>Diferencial 2 — a preencher</li>
+          <li>Diferencial 3 — a preencher</li>
+        {% endif %}
+      </ul>
+
+      {% form 'product', product %}
+        {% if product.has_only_default_variant == false %}
+          {% for option in product.options_with_values %}
+            <div class="pdp__variant-group">
+              <label class="pdp__variant-label">{{ option.name }}</label>
+              <select class="pdp__variant-select" name="options[{{ option.name | escape }}]">
+                {% for value in option.values %}
+                  <option value="{{ value | escape }}">{{ value }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        {% if product.selling_plan_groups.size > 0 %}
+          <div class="pdp__purchase-options">
+            <label class="pdp__purchase-option">
+              <input type="radio" name="purchase_option" value="one_time" checked> Comprar uma vez — {{ product.price | money }}
+            </label>
+            <label class="pdp__purchase-option">
+              <input type="radio" name="purchase_option" value="subscription"> Assinar (Rite em Ciclo) — economize na recompra
+            </label>
+          </div>
+        {% endif %}
+
+        <div class="pdp__qty-row">
+          <input type="number" class="pdp__qty-input" name="quantity" value="1" min="1">
+        </div>
+
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="btn btn--primary btn--full" {% unless product.available %}disabled{% endunless %}>
+          {% if product.available %}Adicionar ao carrinho{% else %}Esgotado{% endif %}
+        </button>
+      {% endform %}
+
+      <div class="pdp__reviews-anchor" id="judgeme_product_reviews" data-id="{{ product.id }}">
+        {% comment %} Widget do Judge.me se conecta automaticamente aqui via app embed {% endcomment %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Produto",
+  "settings": []
+}
+{% endschema %}

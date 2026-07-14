@@ -1,0 +1,49 @@
+<section class="cart-page">
+  <div class="container">
+    <h1 class="section__heading font-heading" style="text-align:left; margin-bottom: var(--space-3);">Seu carrinho</h1>
+
+    {% if cart.item_count > 0 %}
+      {% form 'cart' %}
+        <div class="cart-page__grid">
+          <div>
+            {% for item in cart.items %}
+              <div class="cart-item">
+                <div class="cart-item__image">
+                  {% if item.image %}
+                    <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}">
+                  {% endif %}
+                </div>
+                <div>
+                  <p class="cart-item__title">{{ item.product.title }}</p>
+                  <p style="font-size:13px; color:var(--color-gray);">{{ item.variant.title }}</p>
+                  <p style="font-size:14px; margin-top:4px;">{{ item.final_price | money }} × 
+                    <input type="number" name="updates[{{ forloop.index0 }}]" value="{{ item.quantity }}" min="0" style="width:50px;">
+                  </p>
+                </div>
+                <button type="submit" name="remove" class="cart-item__remove" formaction="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0">Remover</button>
+              </div>
+            {% endfor %}
+          </div>
+
+          <div class="cart-summary">
+            <div class="cart-summary__row">
+              <span>Subtotal</span>
+              <strong>{{ cart.total_price | money }}</strong>
+            </div>
+            <p style="font-size:12px; color:var(--color-gray); margin-bottom: var(--space-2);">Frete e descontos calculados no checkout.</p>
+            <button type="submit" name="checkout" class="btn btn--primary btn--full">Finalizar compra</button>
+          </div>
+        </div>
+      {% endform %}
+    {% else %}
+      <div class="cart-empty">
+        <p style="font-size:18px; margin-bottom: var(--space-2);">Ainda sem nada aqui. Bora começar o ritual?</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">Ver produtos</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Carrinho", "settings": [] }
+{% endschema %}

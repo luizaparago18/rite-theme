@@ -1,0 +1,42 @@
+<section class="blog-listing">
+  <div class="container">
+    <h1 class="section__heading font-heading">{{ blog.title | default: 'Blog da Rite' }}</h1>
+
+    {% paginate blog.articles by 9 %}
+      {% if blog.articles.size > 0 %}
+        <div class="blog-grid">
+          {% for article in blog.articles %}
+            <a href="{{ article.url }}">
+              <div class="blog-card__image">
+                {% if article.image %}
+                  <img src="{{ article.image | image_url: width: 500 }}" alt="{{ article.image.alt | escape }}" loading="lazy">
+                {% else %}
+                  <div class="product-card__placeholder">Imagem do post</div>
+                {% endif %}
+                {% if article.tags.size > 0 %}<span class="blog-card__tag">{{ article.tags.first }}</span>{% endif %}
+              </div>
+              <p class="blog-card__title font-heading">{{ article.title }}</p>
+              <p class="blog-card__excerpt">{{ article.excerpt_or_content | strip_html | truncate: 90 }}</p>
+            </a>
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          <div class="pagination">
+            {% if paginate.previous %}<a href="{{ paginate.previous.url }}">← Anterior</a>{% endif %}
+            {% for part in paginate.parts %}
+              {% if part.is_link %}<a href="{{ part.url }}">{{ part.title }}</a>{% else %}<span class="current">{{ part.title }}</span>{% endif %}
+            {% endfor %}
+            {% if paginate.next %}<a href="{{ paginate.next.url }}">Próxima →</a>{% endif %}
+          </div>
+        {% endif %}
+      {% else %}
+        <p class="collection-empty">Nenhum post publicado ainda.</p>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

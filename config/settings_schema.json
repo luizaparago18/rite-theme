@@ -1,0 +1,33 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Rite",
+    "theme_version": "0.1.0",
+    "theme_author": "Julia de Sá Comunicação",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Cores",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_yellow",
+        "label": "Amarelo Rite",
+        "default": "#FFC600"
+      },
+      {
+        "type": "color",
+        "id": "color_black",
+        "label": "Preto/tinta Rite",
+        "default": "#2D2A26"
+      },
+      {
+        "type": "color",
+        "id": "color_white",
+        "label": "Branco",
+        "default": "#FFFFFF"
+      }
+    ]
+  }
+]

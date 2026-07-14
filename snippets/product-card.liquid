@@ -1,0 +1,30 @@
+{% comment %}
+  Snippet: product-card
+  Uso: {% render 'product-card', product: product, badge: 'Mais vendido' %}
+  Se "product" não vier (placeholder), mostra card vazio de exemplo.
+{% endcomment %}
+
+<div class="product-card">
+  <div class="product-card__image-wrap">
+    {% if badge %}<span class="product-card__badge{% if badge_accent %} product-card__badge--accent{% endif %}">{{ badge }}</span>{% endif %}
+
+    {% if product.featured_image %}
+      <img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="500" height="{{ product.featured_image.height }}">
+    {% else %}
+      <div class="product-card__placeholder">Foto do produto<br>em produção</div>
+    {% endif %}
+  </div>
+
+  <p class="product-card__title">{{ product.title | default: 'Nome do produto' }}</p>
+
+  <p class="product-card__price">
+    {% if product.compare_at_price > product.price %}
+      <s>{{ product.compare_at_price | money }}</s>
+      <span class="price--sale">{{ product.price | money }}</span>
+    {% else %}
+      <span>{{ product.price | money | default: 'R$ 00,00' }}</span>
+    {% endif %}
+  </p>
+
+  <a href="{{ product.url | default: '#' }}" class="btn btn--primary btn--full">Adicionar</a>
+</div>

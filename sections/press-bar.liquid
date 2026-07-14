@@ -1,0 +1,29 @@
+<div class="press-bar">
+  <div class="press-bar__track">
+    {% for i in (1..2) %}
+      {% for block in section.blocks %}
+        <span>{{ block.settings.text }}</span>
+      {% else %}
+        <span>[LOGO 1]</span><span>[LOGO 2]</span><span>[LOGO 3]</span><span>[LOGO 4]</span><span>[LOGO 5]</span>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Barra de imprensa",
+  "blocks": [
+    {
+      "type": "logo_text",
+      "name": "Texto/logo",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Nome (placeholder até ter os logos)", "default": "[LOGO]" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Barra de imprensa" }
+  ]
+}
+{% endschema %}

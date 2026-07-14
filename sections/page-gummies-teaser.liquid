@@ -1,0 +1,17 @@
+<section class="simple-page">
+  <div class="teaser-hero">
+    <span class="teaser-badge">Chegando fim de agosto</span>
+    <h1 class="font-heading" style="font-size:clamp(28px,4vw,40px); color:#fff; margin-bottom:12px;">Beleza de dentro pra fora.</h1>
+    <p style="max-width:480px; margin:0 auto; color:#fff;">Cabelo, pele e unha — em um gummy que não fica pronto antes do tempo. Constância, não milagre.</p>
+
+    {% form 'customer', class: 'teaser-form' %}
+      <input type="hidden" name="contact[tags]" value="gummies-waitlist">
+      <input type="email" name="contact[email]" placeholder="Digite seu e-mail" required aria-label="E-mail">
+      <button type="submit">Avise-me</button>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Gummies (em breve)", "settings": [] }
+{% endschema %}

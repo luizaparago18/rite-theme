@@ -1,0 +1,75 @@
+<section class="section">
+  <div class="container">
+    <h2 class="section__heading">{{ section.settings.heading | default: 'Blog da Rite' }}</h2>
+
+    <div class="blog-grid">
+      {% assign blog_handle = section.settings.blog.handle | default: 'news' %}
+      {% assign the_blog = blogs[blog_handle] %}
+
+      {% if the_blog.articles.size > 0 %}
+        {% for article in the_blog.articles limit: 3 %}
+          <a href="{{ article.url }}">
+            <div class="blog-card__image">
+              {% if article.image %}
+                <img src="{{ article.image | image_url: width: 500 }}" alt="{{ article.image.alt | escape }}" loading="lazy" width="500" height="{{ article.image.height }}">
+              {% else %}
+                <div class="product-card__placeholder">Imagem do post</div>
+              {% endif %}
+              {% if article.tags.size > 0 %}<span class="blog-card__tag">{{ article.tags.first }}</span>{% endif %}
+            </div>
+            <p class="blog-card__title font-heading">{{ article.title }}</p>
+            <p class="blog-card__excerpt">{{ article.excerpt_or_content | strip_html | truncate: 90 }}</p>
+          </a>
+        {% endfor %}
+      {% else %}
+        {% comment %} Placeholder até existirem posts publicados {% endcomment %}
+        {% for block in section.blocks %}
+          <a href="{{ block.settings.link | default: '#' }}">
+            <div class="blog-card__image">
+              <div class="product-card__placeholder">Imagem do post</div>
+              {% if block.settings.tag != blank %}<span class="blog-card__tag">{{ block.settings.tag }}</span>{% endif %}
+            </div>
+            <p class="blog-card__title font-heading">{{ block.settings.title }}</p>
+            <p class="blog-card__excerpt">{{ block.settings.excerpt }}</p>
+          </a>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <div style="text-align:center; margin-top: var(--space-4);">
+      <a href="{{ section.settings.blog.url | default: '/blogs/news' }}" class="btn btn--outline">Ver todos os posts</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Destaques do blog",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título da seção", "default": "Blog da Rite" },
+    { "type": "blog", "id": "blog", "label": "Blog (usa posts reais quando publicados)" }
+  ],
+  "blocks": [
+    {
+      "type": "placeholder_post",
+      "name": "Post placeholder",
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Categoria", "default": "Rotina" },
+        { "type": "text", "id": "title", "label": "Título", "default": "Título do post" },
+        { "type": "textarea", "id": "excerpt", "label": "Resumo", "default": "Resumo curto do post vai aqui." },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Destaques do blog",
+      "blocks": [
+        { "type": "placeholder_post", "settings": { "tag": "Rotina", "title": "Óleo antes ou depois do treino?", "excerpt": "A diferença que ninguém te conta sobre tratamento capilar." } },
+        { "type": "placeholder_post", "settings": { "tag": "Ingredientes", "title": "O que é ácido hialurônico", "excerpt": "E por que sua pele agradece." } },
+        { "type": "placeholder_post", "settings": { "tag": "Bastidores", "title": "Por que criamos um protetor diferente", "excerpt": "A história por trás do stick da Rite." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

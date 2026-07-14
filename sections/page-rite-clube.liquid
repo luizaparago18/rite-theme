@@ -1,0 +1,61 @@
+<section class="simple-page">
+  <div class="club-hero">
+    <p class="hero__eyebrow">RITE CLUBE</p>
+    <h1 class="font-heading" style="font-size:clamp(28px,4vw,42px);">Cada gesto vira Brilho.</h1>
+    <p style="max-width:480px; margin:16px auto 0;">Compre, avalie, poste — e transforme isso em desconto de verdade.</p>
+  </div>
+
+  <div class="club-steps">
+    <div class="club-step">
+      <p class="club-step__number">1</p>
+      <p style="font-weight:600; margin-bottom:6px;">Ganhe Brilhos</p>
+      <p>Em cada compra, review ou foto que você compartilhar.</p>
+    </div>
+    <div class="club-step">
+      <p class="club-step__number">2</p>
+      <p style="font-weight:600; margin-bottom:6px;">Acumule</p>
+      <p>Seus Brilhos ficam guardados na sua conta Rite.</p>
+    </div>
+    <div class="club-step">
+      <p class="club-step__number">3</p>
+      <p style="font-weight:600; margin-bottom:6px;">Troque por desconto</p>
+      <p>A partir de 500 Brilhos (R$5), é só resgatar.</p>
+    </div>
+  </div>
+
+  <table class="club-table">
+    <thead>
+      <tr><th>Ação</th><th>Brilhos</th><th>Valor real</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A cada R$1 gasto</td><td>5 Brilhos</td><td>5% cashback</td></tr>
+      <tr><td>Deixar um review</td><td>100 Brilhos</td><td>R$ 1</td></tr>
+      <tr><td>Postar foto usando produto Rite</td><td>200 Brilhos</td><td>R$ 2</td></tr>
+      <tr><td>Indicar uma amiga</td><td>500 Brilhos</td><td>R$ 5</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px; color:var(--color-gray); margin-top:-32px; margin-bottom:var(--space-4);">Resgate mínimo: 500 Brilhos (R$5).</p>
+
+  <div class="club-faq">
+    <details>
+      <summary>Como eu resgato meus Brilhos?</summary>
+      <p style="margin-top:8px;">No checkout, seus Brilhos disponíveis aparecem automaticamente como opção de desconto.</p>
+    </details>
+    <details>
+      <summary>Os Brilhos expiram?</summary>
+      <p style="margin-top:8px;">[A definir — preencher conforme configuração no Smile.io]</p>
+    </details>
+    <details>
+      <summary>Dá pra combinar com a assinatura Rite em Ciclo?</summary>
+      <p style="margin-top:8px;">Sim! Você ganha Brilhos em toda cobrança recorrente também.</p>
+    </details>
+  </div>
+
+  <div style="text-align:center; margin-top:var(--space-4);">
+    <a href="{{ routes.account_url }}" class="btn btn--primary">Entrar no Clube</a>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Rite Clube", "settings": [] }
+{% endschema %}

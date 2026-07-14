@@ -1,0 +1,14 @@
+{
+  "current": {
+    "color_yellow": "#FFC600",
+    "color_black": "#2D2A26",
+    "color_white": "#FFFFFF"
+  },
+  "presets": {
+    "Default": {
+      "color_yellow": "#FFC600",
+      "color_black": "#2D2A26",
+      "color_white": "#FFFFFF"
+    }
+  }
+}

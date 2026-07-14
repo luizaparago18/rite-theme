@@ -1,0 +1,48 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__col">
+        <h4>A Rite</h4>
+        <ul>
+          <li><a href="/pages/quem-somos">Quem somos</a></li>
+          <li><a href="/pages/rite-clube">Rite Clube</a></li>
+          <li><a href="{{ blog.url | default: '/blogs/news' }}">Blog</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <h4>Ajuda</h4>
+        <ul>
+          <li><a href="/pages/perguntas-frequentes">Perguntas frequentes</a></li>
+          <li><a href="/pages/trocas-e-devolucao">Trocas e devolução</a></li>
+          <li><a href="/policies/shipping-policy">Políticas de frete</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <h4>Siga a gente</h4>
+        <div class="site-footer__social">
+          {% if section.settings.instagram_url != blank %}<a href="{{ section.settings.instagram_url }}" aria-label="Instagram">IG</a>{% endif %}
+          {% if section.settings.tiktok_url != blank %}<a href="{{ section.settings.tiktok_url }}" aria-label="TikTok">TT</a>{% endif %}
+        </div>
+      </div>
+      <div class="site-footer__col">
+        <h4>Suporte ao cliente</h4>
+        <p>{{ section.settings.support_text | default: 'Atendimento de segunda a sexta, 9h às 17h.' }}</p>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      {{ shop.name }} · {{ 'now' | date: '%Y' }} · Todos os direitos reservados
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Rodapé",
+  "settings": [
+    { "type": "url", "id": "instagram_url", "label": "Link do Instagram" },
+    { "type": "url", "id": "tiktok_url", "label": "Link do TikTok" },
+    { "type": "textarea", "id": "support_text", "label": "Texto de suporte", "default": "Atendimento de segunda a sexta, 9h às 17h." }
+  ]
+}
+{% endschema %}

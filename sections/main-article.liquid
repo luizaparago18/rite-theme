@@ -1,0 +1,18 @@
+<article class="article">
+  {% if article.tags.size > 0 %}<span class="article__tag">{{ article.tags.first }}</span>{% endif %}
+  <h1 class="article__title font-heading">{{ article.title }}</h1>
+
+  {% if article.image %}
+    <div class="article__image">
+      <img src="{{ article.image | image_url: width: 1000 }}" alt="{{ article.image.alt | escape }}" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+  {% endif %}
+
+  <div class="article__body">{{ article.content }}</div>
+
+  <a href="{{ blog.url }}" class="article__back">← Voltar pro blog</a>
+</article>
+
+{% schema %}
+{ "name": "Artigo", "settings": [] }
+{% endschema %}
