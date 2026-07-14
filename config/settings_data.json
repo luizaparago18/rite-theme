@@ -112,7 +112,7 @@
           "eyebrow": "",
           "heading": "Encontre o seu tom",
           "body": "Responda o quiz e descubra qual protetor combina melhor com você.",
-          "button_label": "Responder quiz",
+          "button_label": "responder quiz",
           "button_url": ""
         }
       },
@@ -149,10 +149,6 @@
         "settings": {
           "heading": "Compre por categoria"
         }
-      },
-      "brand-manifest": {
-        "type": "brand-manifest",
-        "settings": {}
       },
       "blog-highlights": {
         "type": "blog-highlights",
