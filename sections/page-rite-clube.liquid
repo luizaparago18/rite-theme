@@ -1,61 +1,141 @@
-<section class="simple-page">
-  <div class="club-hero">
-    <p class="hero__eyebrow">RITE CLUBE</p>
-    <h1 class="font-heading" style="font-size:clamp(28px,4vw,42px);">Cada gesto vira Brilho.</h1>
-    <p style="max-width:480px; margin:16px auto 0;">Compre, avalie, poste — e transforme isso em desconto de verdade.</p>
-  </div>
+<section class="hero" style="min-height:420px;">
+  {% if section.settings.video != blank %}
+    <video class="hero__media" autoplay muted loop playsinline poster="{{ section.settings.image | image_url: width: 1600 }}">
+      <source src="{{ section.settings.video.sources[0].url }}" type="video/mp4">
+    </video>
+  {% elsif section.settings.image %}
+    <img class="hero__media" src="{{ section.settings.image | image_url: width: 1600 }}" alt="" loading="eager">
+  {% else %}
+    <div style="position:absolute; inset:0; background:var(--color-yellow);"></div>
+  {% endif %}
+  <div class="hero__overlay"></div>
+  <div class="hero__circle" aria-hidden="true"></div>
 
-  <div class="club-steps">
-    <div class="club-step">
-      <p class="club-step__number">1</p>
-      <p style="font-weight:600; margin-bottom:6px;">Ganhe Brilhos</p>
-      <p>Em cada compra, review ou foto que você compartilhar.</p>
-    </div>
-    <div class="club-step">
-      <p class="club-step__number">2</p>
-      <p style="font-weight:600; margin-bottom:6px;">Acumule</p>
-      <p>Seus Brilhos ficam guardados na sua conta Rite.</p>
-    </div>
-    <div class="club-step">
-      <p class="club-step__number">3</p>
-      <p style="font-weight:600; margin-bottom:6px;">Troque por desconto</p>
-      <p>A partir de 500 Brilhos (R$5), é só resgatar.</p>
+  <div class="container">
+    <div class="hero__content">
+      <p class="hero__eyebrow">rite clube</p>
+      <h1 class="hero__heading font-heading">cada gesto vira brilho.</h1>
+      <p class="hero__subheading">cadastre-se, compre, avalie, poste — e transforme isso em desconto de verdade.</p>
+      <a href="{{ routes.account_register_url }}" class="btn btn--accent" style="text-transform:lowercase;">criar minha conta</a>
     </div>
   </div>
+</section>
 
-  <table class="club-table">
-    <thead>
-      <tr><th>Ação</th><th>Brilhos</th><th>Valor real</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>A cada R$1 gasto</td><td>5 Brilhos</td><td>5% cashback</td></tr>
-      <tr><td>Deixar um review</td><td>100 Brilhos</td><td>R$ 1</td></tr>
-      <tr><td>Postar foto usando produto Rite</td><td>200 Brilhos</td><td>R$ 2</td></tr>
-      <tr><td>Indicar uma amiga</td><td>500 Brilhos</td><td>R$ 5</td></tr>
-    </tbody>
-  </table>
-  <p style="font-size:13px; color:var(--color-gray); margin-top:-32px; margin-bottom:var(--space-4);">Resgate mínimo: 500 Brilhos (R$5).</p>
-
-  <div class="club-faq">
-    <details>
-      <summary>Como eu resgato meus Brilhos?</summary>
-      <p style="margin-top:8px;">No checkout, seus Brilhos disponíveis aparecem automaticamente como opção de desconto.</p>
-    </details>
-    <details>
-      <summary>Os Brilhos expiram?</summary>
-      <p style="margin-top:8px;">[A definir — preencher conforme configuração no Smile.io]</p>
-    </details>
-    <details>
-      <summary>Dá pra combinar com a assinatura Rite em Ciclo?</summary>
-      <p style="margin-top:8px;">Sim! Você ganha Brilhos em toda cobrança recorrente também.</p>
-    </details>
+<section class="section">
+  <div class="container">
+    <h2 class="section__heading font-heading">como funciona</h2>
+    <div class="club-steps">
+      <div class="club-step">
+        <p class="club-step__number">1</p>
+        <p style="font-weight:600; margin-bottom:6px;">crie sua conta</p>
+        <p style="font-size:14px; color:var(--color-gray);">cadastro rápido, é só isso pra começar a acumular.</p>
+      </div>
+      <div class="club-step">
+        <p class="club-step__number">2</p>
+        <p style="font-weight:600; margin-bottom:6px;">ganhe brilhos</p>
+        <p style="font-size:14px; color:var(--color-gray);">em cada compra, review ou foto que você compartilhar.</p>
+      </div>
+      <div class="club-step">
+        <p class="club-step__number">3</p>
+        <p style="font-weight:600; margin-bottom:6px;">troque por desconto</p>
+        <p style="font-size:14px; color:var(--color-gray);">a partir de 500 brilhos (r$5), é só resgatar no checkout.</p>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div style="text-align:center; margin-top:var(--space-4);">
-    <a href="{{ routes.account_url }}" class="btn btn--primary">Entrar no Clube</a>
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div style="background:var(--color-cream); border-radius:var(--radius-lg); padding:var(--space-4);">
+      <h3 class="font-heading" style="font-size:20px; margin-bottom:20px; text-align:center;">quanto cada gesto vale</h3>
+      <table class="club-table" style="margin-bottom:0;">
+        <thead><tr><th>ação</th><th>brilhos</th><th>valor real</th></tr></thead>
+        <tbody>
+          <tr><td>a cada r$1 gasto</td><td>5 brilhos</td><td>5% cashback</td></tr>
+          <tr><td>deixar um review</td><td>100 brilhos</td><td>r$ 1</td></tr>
+          <tr><td>postar foto usando produto rite</td><td>200 brilhos</td><td>r$ 2</td></tr>
+          <tr><td>indicar uma amiga</td><td>500 brilhos</td><td>r$ 5</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px; color:var(--color-gray); text-align:center; margin-top:12px;">resgate mínimo: 500 brilhos (r$5)</p>
+    </div>
+  </div>
+</section>
+
+{% if section.blocks.size > 0 %}
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <h2 class="section__heading font-heading">quem já vive o clube</h2>
+    <div class="community-grid">
+      {% for block in section.blocks %}
+        <div class="community-item">
+          <div class="community-item__media">
+            {% if block.settings.video != blank %}
+              <video autoplay muted loop playsinline></video>
+              <script>document.currentScript.previousElementSibling.src="{{ block.settings.video.sources[0].url }}";</script>
+            {% elsif block.settings.image %}
+              <img src="{{ block.settings.image | image_url: width: 400 }}" alt="" loading="lazy">
+            {% else %}
+              <div class="rite-placeholder">Foto/vídeo<br>em produção</div>
+            {% endif %}
+          </div>
+          {% if block.settings.handle != blank %}<span class="community-item__handle">{{ block.settings.handle }}</span>{% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div style="max-width:640px; margin:0 auto;">
+      <h2 class="section__heading font-heading">dúvidas</h2>
+      <div class="club-faq">
+        <details>
+          <summary>preciso criar uma conta pra participar?</summary>
+          <p style="margin-top:8px; font-size:14px;">sim — o cadastro é grátis e rápido, e é o que guarda seus brilhos acumulados.</p>
+        </details>
+        <details>
+          <summary>como eu resgato meus brilhos?</summary>
+          <p style="margin-top:8px; font-size:14px;">no checkout, seus brilhos disponíveis aparecem automaticamente como opção de desconto.</p>
+        </details>
+        <details>
+          <summary>os brilhos expiram?</summary>
+          <p style="margin-top:8px; font-size:14px;">[a definir — preencher conforme configuração no smile.io]</p>
+        </details>
+        <details>
+          <summary>dá pra combinar com a assinatura rite em ciclo?</summary>
+          <p style="margin-top:8px; font-size:14px;">sim! você ganha brilhos em toda cobrança recorrente também.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container" style="text-align:center;">
+    <a href="{{ routes.account_register_url }}" class="btn btn--primary" style="text-transform:lowercase;">entrar no clube agora</a>
   </div>
 </section>
 
 {% schema %}
-{ "name": "Rite Clube", "settings": [] }
+{
+  "name": "Rite Clube",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagem do hero (ou poster do vídeo)" },
+    { "type": "video", "id": "video", "label": "Vídeo do hero (opcional)" }
+  ],
+  "blocks": [
+    {
+      "type": "member_media",
+      "name": "Foto/vídeo de membro",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagem (fallback)" },
+        { "type": "video", "id": "video", "label": "Vídeo (opcional)" },
+        { "type": "text", "id": "handle", "label": "@ da pessoa (opcional)" }
+      ]
+    }
+  ]
+}
 {% endschema %}
