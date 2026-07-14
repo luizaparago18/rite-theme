@@ -29,9 +29,9 @@
         "type": "hero-banner",
         "settings": {
           "eyebrow": "SEU RITUAL DIÁRIO",
-          "heading": "Com 3 produtos, você tá pronta.",
+          "heading": "com 3 produtos, você tá pronta.",
           "subheading": "Proteção, tratamento e praticidade num só ritual. Todo dia, sem excesso.",
-          "button_label": "Quero começar",
+          "button_label": "quero começar",
           "button_url": ""
         }
       },
@@ -102,7 +102,7 @@
           "item_KVcT9h"
         ],
         "settings": {
-          "heading": "Nossa comunidade"
+          "heading": "nossa comunidade"
         }
       },
       "split-banner": {
@@ -110,7 +110,7 @@
         "settings": {
           "reverse": false,
           "eyebrow": "",
-          "heading": "Encontre o seu tom",
+          "heading": "encontre o seu tom",
           "body": "Responda o quiz e descubra qual protetor combina melhor com você.",
           "button_label": "responder quiz",
           "button_url": ""
@@ -147,7 +147,7 @@
           "category_9rJDKB"
         ],
         "settings": {
-          "heading": "Compre por categoria"
+          "heading": "compre por categoria"
         }
       },
       "blog-highlights": {
@@ -187,14 +187,14 @@
           "placeholder_post_GTfR9a"
         ],
         "settings": {
-          "heading": "Blog da Rite",
+          "heading": "blog da rite",
           "blog": "novidades"
         }
       },
       "newsletter": {
         "type": "newsletter",
         "settings": {
-          "heading": "Fique por dentro",
+          "heading": "fique por dentro",
           "subheading": "Novidades, lançamentos e desconto de boas-vindas direto no seu e-mail."
         }
       },
@@ -208,6 +208,15 @@
           "whatsapp": "",
           "email": "",
           "cnpj": ""
+        }
+      },
+      "brand-manifesto": {
+        "type": "brand-manifesto",
+        "settings": {
+          "heading": "beleza como ritual é rite",
+          "body": "Unimos tratamento e proteção em produtos multifuncionais e práticos. Fáceis de usar quanto de levar com você.",
+          "button_label": "Conheça a Rite",
+          "button_url": ""
         }
       }
     },
