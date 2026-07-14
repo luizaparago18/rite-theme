@@ -1,6 +1,8 @@
 {
   "sections": {
-    "main": { "type": "main-product" }
+    "main": { "type": "main-product" },
+    "press": { "type": "press-bar" },
+    "related": { "type": "related-products" }
   },
-  "order": ["main"]
+  "order": ["main", "press", "related"]
 }
