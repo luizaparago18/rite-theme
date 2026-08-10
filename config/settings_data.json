@@ -47,6 +47,7 @@
           "item_Dr4Bxn": {
             "type": "item",
             "settings": {
+              "video": "shopify://files/videos/IMG_0436.MOV",
               "handle": "@luizacpedrosa",
               "cta_label": "Ver produto",
               "link": "shopify://products/stick-multifuncional-bronze-mocha-mousse"
@@ -55,6 +56,7 @@
           "item_NpACY4": {
             "type": "item",
             "settings": {
+              "video": "shopify://files/videos/daily routine ( protetor + óleo) .mov",
               "handle": "@gabipreiraa",
               "cta_label": "Ver produto",
               "link": "shopify://products/bastao-multifuncional-rite-fps-30"
@@ -72,7 +74,7 @@
           "item_zAXE6W": {
             "type": "item",
             "settings": {
-              "handle": "@usuaria",
+              "handle": "@ninacalladonutri",
               "cta_label": "Ver produto",
               "link": ""
             }
