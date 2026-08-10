@@ -10,7 +10,50 @@
       "type": "liquid",
       "id": "custom_liquid",
       "label": "Liquid personalizado",
-      "info": "Cole aqui HTML, CSS (dentro de <style>) e Liquid básico. Funciona sem precisar editar arquivos do tema."
+      "info": "<style>
+.cl-featured { padding: 56px 24px; max-width: 1280px; margin: 0 auto; }
+.cl-featured__heading { text-align:center; font-family:'Gloock',Georgia,serif; font-size:22px; text-transform:lowercase; margin-bottom:32px; color:#2D2A26; }
+.cl-featured__grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+@media (max-width:900px) { .cl-featured__grid { grid-template-columns:repeat(2,1fr); } }
+.cl-featured__image-wrap { position:relative; background:#FBFAF8; border-radius:16px; aspect-ratio:1; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.cl-featured__image-wrap img { width:100%; height:100%; object-fit:cover; }
+.cl-featured__badge { position:absolute; top:10px; left:10px; background:#2D2A26; color:#fff; font-size:10px; font-weight:700; text-transform:lowercase; padding:4px 9px; border-radius:10px; }
+.cl-featured__title { font-family:'Poppins',sans-serif; font-size:14px; font-weight:600; margin:8px 0 2px; color:#2D2A26; }
+.cl-featured__price { font-family:'Poppins',sans-serif; font-size:14px; color:#2D2A26; margin-bottom:10px; }
+.cl-featured__btn { display:block; text-align:center; background:#2D2A26; color:#fff; font-family:'Poppins',sans-serif; font-weight:600; font-size:13px; padding:12px; border-radius:14px; text-decoration:none; text-transform:lowercase; }
+.cl-featured__cta-wrap { text-align:center; margin-top:32px; }
+.cl-featured__cta { display:inline-block; border:1.5px solid #2D2A26; color:#2D2A26; font-family:'Poppins',sans-serif; font-weight:600; font-size:13px; padding:12px 24px; border-radius:14px; text-decoration:none; text-transform:lowercase; }
+</style>
+
+<div class="cl-featured">
+  <h2 class="cl-featured__heading">mais vendidos</h2>
+  <div class="cl-featured__grid">
+    {% assign shown = 0 %}
+    {% for product in collections.all.products limit: 4 %}
+      <div>
+        <a href="{{ product.url }}" class="cl-featured__image-wrap">
+          {% if forloop.first %}<span class="cl-featured__badge">mais vendido</span>{% endif %}
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy">
+          {% endif %}
+        </a>
+        <p class="cl-featured__title">{{ product.title }}</p>
+        <p class="cl-featured__price">{{ product.price | money }}</p>
+        <a href="{{ product.url }}" class="cl-featured__btn">adicionar ao carrinho</a>
+      </div>
+      {% assign shown = shown | plus: 1 %}
+    {% endfor %}
+  </div>
+
+  {% if shown == 0 %}
+    <p style="text-align:center; color:#706C66; font-size:14px;">nenhum produto cadastrado ainda.</p>
+  {% endif %}
+
+  <div class="cl-featured__cta-wrap">
+    <a href="/collections/all" class="cl-featured__cta">ver todos os produtos</a>
+  </div>
+</div>
+"
     }
   ],
   "presets": [ { "name": "Liquid personalizado" } ]
