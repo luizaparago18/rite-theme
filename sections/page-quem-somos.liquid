@@ -1,53 +1,82 @@
+<style>
+  .qs-justify { text-align: justify; }
+  .qs-highlight { color: #FFC600; font-weight: 700; }
+  .qs-lifestyle-img { border-radius: var(--radius-lg); overflow: hidden; margin: var(--space-4) 0; aspect-ratio: 16/9; background: var(--color-cream); }
+  .qs-lifestyle-img img { width:100%; height:100%; object-fit:cover; }
+  .qs-quote {
+    text-align: center; margin: var(--space-5) 0; padding: 0 var(--space-3);
+  }
+  .qs-quote__mark { font-family: var(--font-heading); font-size: 60px; color: #FFC600; line-height: 0.5; display:block; }
+  .qs-quote__text { font-family: var(--font-heading); font-size: clamp(22px, 3vw, 32px); line-height: 1.25; color: var(--color-black); }
+</style>
+
 <section class="simple-page">
+
+  {% if section.settings.header_image %}
+    <div class="qs-lifestyle-img" style="aspect-ratio:21/9; margin-top:0; margin-bottom: var(--space-4);">
+      <img src="{{ section.settings.header_image | image_url: width: 1600 }}" alt="{{ section.settings.header_image.alt | escape }}" loading="eager">
+    </div>
+  {% else %}
+    <div class="qs-lifestyle-img rite-placeholder" style="aspect-ratio:21/9; margin-top:0; margin-bottom: var(--space-4);">Foto de header — em produção</div>
+  {% endif %}
+
   <div class="about-hero">
-    <p class="hero__eyebrow" style="color:var(--color-black);">nossa história</p>
+    <p class="hero__eyebrow">nossa história</p>
     <h1 class="font-heading" style="font-size:clamp(28px,4vw,42px);">Um ritual que acompanha o seu ritmo.</h1>
   </div>
 
-  <div class="simple-page__body" style="max-width:680px; margin:0 auto;">
-    <p style="margin-bottom:20px;">A Rite nasceu de uma pergunta que parecia simples: por que cuidar de si precisava ser tão complicado?</p>
+  <div class="simple-page__body qs-justify">
+    <p style="margin-bottom:20px;">A Rite nasceu de uma pergunta que parecia simples: <span class="qs-highlight">por que cuidar de si precisava ser tão complicado?</span></p>
 
-    <p style="margin-bottom:20px;">Durante anos, Márcia, farmacêutica e mãe, estudou fórmulas, ativos e tecnologias capazes de transformar a pele e os cabelos. Mas, entre tantas possibilidades, percebeu que o maior desafio não era encontrar ingredientes mais eficazes. Era criar produtos que as pessoas realmente conseguissem usar todos os dias.</p>
+    <p style="margin-bottom:20px;">Durante anos, Márcia, farmacêutica e mãe, estudou fórmulas, ativos e tecnologias capazes de transformar a pele e os cabelos. Mas, entre tantas possibilidades, percebeu que o maior desafio não era encontrar ingredientes mais eficazes. Era <span class="qs-highlight">criar produtos que as pessoas realmente conseguissem usar todos os dias.</span></p>
 
-    <p style="margin-bottom:20px;">Foi durante um ano sabático, quando finalmente desacelerou o próprio ritmo, que ela enxergou isso com clareza. O cuidado nunca tinha sido sobre quantos passos existiam em uma rotina. Era sobre criar um momento que coubesse na vida real.</p>
+    <p style="margin-bottom:20px;">Foi durante um ano sabático, quando finalmente desacelerou o próprio ritmo, que ela enxergou isso com clareza. O cuidado nunca tinha sido sobre quantos passos existiam em uma rotina. Era sobre <span class="qs-highlight">criar um momento que coubesse na vida real.</span></p>
 
-    <p style="margin-bottom:20px;">Ao lado do marido, também farmacêutico, ela começou a desenvolver as primeiras fórmulas. A ideia nunca foi lançar mais um cosmético. Era criar produtos que tratassem enquanto protegem, simplificassem sem perder performance e acompanhassem a todos que vivem dias cheios, mas que não abrem mão de reservar alguns minutos para si.</p>
+    {% if section.settings.photo_1 %}
+      <div class="qs-lifestyle-img"><img src="{{ section.settings.photo_1 | image_url: width: 1200 }}" alt="{{ section.settings.photo_1.alt | escape }}" loading="lazy"></div>
+    {% else %}
+      <div class="qs-lifestyle-img rite-placeholder">Foto do produto no dia a dia — em produção</div>
+    {% endif %}
 
-    <p style="margin-bottom:20px;">O primeiro deles foi um óleo capilar pensado para proteger os fios antes do treino, da escova ou da exposição ao calor. Um cuidado preventivo que nasceu de uma necessidade pouco observada pela indústria e acabou revelando algo maior: muitas pessoas procuravam exatamente a mesma coisa. Produtos inteligentes, multifuncionais e fáceis de incorporar à rotina.</p>
+    <p style="margin-bottom:20px;">Ao lado do marido, também farmacêutico, ela começou a desenvolver as primeiras fórmulas. A ideia nunca foi lançar mais um cosmético. Era criar produtos que <span class="qs-highlight">tratassem enquanto protegem, simplificassem sem perder performance</span> e acompanhassem a todos que vivem dias cheios, mas que não abrem mão de reservar alguns minutos para si.</p>
 
-    <p style="margin-bottom:20px;">Vieram então anos de pesquisa no Brasil, uma temporada de atualização tecnológica nos Estados Unidos e centenas de testes até chegar às fórmulas que hoje fazem parte da Rite. Produtos veganos, desenvolvidos para unir tratamento, proteção e beleza em um só gesto, sempre guiados pela mesma ideia: a tecnologia só faz sentido quando torna o cuidado mais simples.</p>
+    <p style="margin-bottom:20px;">O primeiro deles foi um óleo capilar pensado para proteger os fios antes do treino, da escova ou da exposição ao calor. Um cuidado preventivo que nasceu de uma necessidade pouco observada pela indústria e acabou revelando algo maior: muitas pessoas procuravam exatamente a mesma coisa. <span class="qs-highlight">Produtos inteligentes, multifuncionais e fáceis de incorporar à rotina.</span></p>
+
+    <p style="margin-bottom:20px;">Vieram então anos de pesquisa no Brasil, uma temporada de atualização tecnológica nos Estados Unidos e centenas de testes até chegar às fórmulas que hoje fazem parte da Rite. Produtos veganos, desenvolvidos para unir tratamento, proteção e beleza em um só gesto, sempre guiados pela mesma ideia: <span class="qs-highlight">a tecnologia só faz sentido quando torna o cuidado mais simples.</span></p>
+
+    {% if section.settings.photo_2 %}
+      <div class="qs-lifestyle-img"><img src="{{ section.settings.photo_2 | image_url: width: 1200 }}" alt="{{ section.settings.photo_2.alt | escape }}" loading="lazy"></div>
+    {% else %}
+      <div class="qs-lifestyle-img rite-placeholder">Foto do produto no dia a dia — em produção</div>
+    {% endif %}
 
     <p style="margin-bottom:20px;">Foi assim que o ritual ganhou um novo significado.</p>
 
-    <p style="margin-bottom:20px;">Não como um momento longo, cheio de etapas ou reservado apenas para quando sobra tempo. Mas como um cuidado possível, que cabe na bolsa, acompanha uma viagem, atravessa um dia de trabalho e continua fazendo sentido mesmo quando a rotina muda de planos.</p>
+    <p style="margin-bottom:20px;">Não como um momento longo, cheio de etapas ou reservado apenas para quando sobra tempo. Mas como <span class="qs-highlight">um cuidado possível, que cabe na bolsa, acompanha uma viagem, atravessa um dia de trabalho</span> e continua fazendo sentido mesmo quando a rotina muda de planos.</p>
 
-    <p style="margin-bottom:20px;">Hoje, dos óleos capilares aos produtos faciais, cada lançamento nasce da mesma pergunta que deu origem à marca: isso realmente facilita a vida de quem vai usar?</p>
+    <p style="margin-bottom:20px;">Hoje, dos óleos capilares aos produtos faciais, cada lançamento nasce da mesma pergunta que deu origem à marca: <span class="qs-highlight">isso realmente facilita a vida de quem vai usar?</span></p>
 
-    <p style="margin-bottom:20px;">Se a resposta não for sim, voltamos ao começo.</p>
-
-    <p style="font-family: var(--font-heading); font-size:22px; margin-top:32px;">Porque acreditamos que a beleza não existe para desacelerar a vida.<br>Ela existe para acompanhar o seu ritmo.</p>
+    <p>Se a resposta não for sim, voltamos ao começo.</p>
   </div>
 
-  <div class="about-values">
-    <div class="about-value">
-      <p class="about-value__title font-heading">autocuidado</p>
-      <p>Um gesto diário de conexão consigo mesma, não só estética.</p>
-    </div>
-    <div class="about-value">
-      <p class="about-value__title font-heading">brilho</p>
-      <p>A Rite tem uma coisinha especial — em cada fórmula, em cada detalhe.</p>
-    </div>
-    <div class="about-value">
-      <p class="about-value__title font-heading">praticidade</p>
-      <p>Multifuncionalidade real. Com 3 produtos, você tá pronta.</p>
-    </div>
+  <div class="qs-quote">
+    <span class="qs-quote__mark">"</span>
+    <p class="qs-quote__text">Porque acreditamos que a beleza não existe para desacelerar a vida.<br>Ela existe para acompanhar o seu ritmo.</p>
+    <span class="qs-quote__mark" style="transform:rotate(180deg);">"</span>
   </div>
 
-  <div style="text-align:center;">
+  <div style="text-align:center; margin-top: var(--space-5);">
     <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary" style="text-transform:lowercase;">comece seu ritual</a>
   </div>
 </section>
 
 {% schema %}
-{ "name": "Quem Somos", "settings": [] }
+{
+  "name": "Quem Somos",
+  "settings": [
+    { "type": "image_picker", "id": "header_image", "label": "Foto de header (topo da página)" },
+    { "type": "image_picker", "id": "photo_1", "label": "Foto de produto no dia a dia — 1" },
+    { "type": "image_picker", "id": "photo_2", "label": "Foto de produto no dia a dia — 2" }
+  ]
+}
 {% endschema %}
