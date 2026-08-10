@@ -4,10 +4,10 @@
   .qs-lifestyle-img { border-radius: var(--radius-lg); overflow: hidden; margin: var(--space-4) 0; aspect-ratio: 16/9; background: var(--color-cream); }
   .qs-lifestyle-img img { width:100%; height:100%; object-fit:cover; }
   .qs-quote {
-    text-align: center; margin: var(--space-5) 0; padding: 0 var(--space-3);
+    text-align: left; max-width: 700px; margin: var(--space-5) auto; padding: 0 var(--space-3);
   }
-  .qs-quote__mark { font-family: var(--font-heading); font-size: 60px; color: #FFC600; line-height: 0.5; display:block; }
-  .qs-quote__text { font-family: var(--font-heading); font-size: clamp(22px, 3vw, 32px); line-height: 1.25; color: var(--color-black); }
+  .qs-quote__mark { font-family: Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 1.5em; color: #FFC600; line-height: 0; }
+  .qs-quote__text { font-family: var(--font-heading); font-size: clamp(22px, 3vw, 32px); line-height: 1.25; color: var(--color-black); display:inline; }
 </style>
 
 <section class="simple-page">
@@ -60,14 +60,9 @@
   </div>
 
   <div class="qs-quote">
-    <span class="qs-quote__mark">"</span>
-    <p class="qs-quote__text">Porque acreditamos que a beleza não existe para desacelerar a vida.<br>Ela existe para acompanhar o seu ritmo.</p>
-    <span class="qs-quote__mark" style="transform:rotate(180deg);">"</span>
+    <span class="qs-quote__mark">"</span><span class="qs-quote__text">Porque acreditamos que a beleza não existe para desacelerar a vida. Ela existe para acompanhar o seu ritmo.</span><span class="qs-quote__mark">"</span>
   </div>
 
-  <div style="text-align:center; margin-top: var(--space-5);">
-    <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary" style="text-transform:lowercase;">comece seu ritual</a>
-  </div>
 </section>
 
 {% schema %}
