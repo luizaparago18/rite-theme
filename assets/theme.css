@@ -100,8 +100,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .hero__circle { position: absolute; right: -100px; top: 50%; transform: translateY(-50%); width: 420px; height: 420px; border-radius: 50%; background: rgba(255,198,0,0.18); z-index: 2; pointer-events: none; }
 .hero__content { position: relative; z-index: 3; max-width: 640px; padding: var(--space-5) clamp(40px, 7vw, 110px); color: var(--color-white); }
 .hero__eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; margin-bottom: var(--space-1); }
-.hero__heading { font-size: clamp(28px, 4vw, 44px); margin-bottom: var(--space-2); }
-.hero__subheading { font-size: 14px; margin-bottom: var(--space-3); max-width: 380px; opacity: 0.92; }
+.hero__heading { font-size: clamp(28px, 4vw, 44px); line-height: 0.98; margin-bottom: var(--space-2); }
+.hero__subheading { font-size: 13px; margin-bottom: var(--space-3); max-width: 380px; opacity: 0.92; }
 @media (max-width: 700px) { .hero { min-height: 480px; } .hero__circle { display: none; } }
 
 /* ---------- Faixa rolante de dizeres ---------- */
@@ -168,8 +168,9 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 
 /* ---------- Newsletter ---------- */
 .newsletter { background: var(--color-yellow); border-radius: var(--radius-lg); margin: 0 var(--space-3); padding: var(--space-5) var(--space-3); text-align: center; }
-.newsletter__heading { font-size: clamp(22px, 3vw, 28px); margin-bottom: 6px; }
-.newsletter__form { display: flex; max-width: 400px; margin: 0 auto; gap: 8px; }
+.newsletter__heading { font-size: clamp(22px, 3vw, 28px); margin-bottom: 14px; }
+.newsletter__subheading { font-size: 14px; opacity: 0.9; max-width: 420px; margin: 0 auto 24px; }
+.newsletter__form { display: flex; max-width: 400px; margin: var(--space-2) auto 0; gap: 8px; }
 .newsletter__form input { flex: 1; padding: 13px 16px; border-radius: var(--radius-button); border: 1.5px solid var(--color-black); font-family: var(--font-body); font-size: 14px; }
 .newsletter__form button { width: 46px; height: 46px; border-radius: var(--radius-button); border: 1.5px solid var(--color-black); background: var(--color-black); color: var(--color-white); cursor: pointer; flex-shrink: 0; }
 
