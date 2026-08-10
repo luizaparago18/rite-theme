@@ -1,0 +1,18 @@
+<div class="custom-liquid-section">
+  {{ section.settings.custom_liquid }}
+</div>
+
+{% schema %}
+{
+  "name": "Liquid personalizado",
+  "settings": [
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "Liquid personalizado",
+      "info": "Cole aqui HTML, CSS (dentro de <style>) e Liquid básico. Funciona sem precisar editar arquivos do tema."
+    }
+  ],
+  "presets": [ { "name": "Liquid personalizado" } ]
+}
+{% endschema %}
