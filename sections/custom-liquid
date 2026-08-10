@@ -1,16 +1,4 @@
-<div class="custom-liquid-section">
-  {{ section.settings.custom_liquid }}
-</div>
-
-{% schema %}
-{
-  "name": "Liquid personalizado",
-  "settings": [
-    {
-      "type": "liquid",
-      "id": "custom_liquid",
-      "label": "Liquid personalizado",
-      "info": "<style>
+<style>
 .cl-featured { padding: 56px 24px; max-width: 1280px; margin: 0 auto; }
 .cl-featured__heading { text-align:center; font-family:'Gloock',Georgia,serif; font-size:22px; text-transform:lowercase; margin-bottom:32px; color:#2D2A26; }
 .cl-featured__grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
@@ -53,9 +41,3 @@
     <a href="/collections/all" class="cl-featured__cta">ver todos os produtos</a>
   </div>
 </div>
-"
-    }
-  ],
-  "presets": [ { "name": "Liquid personalizado" } ]
-}
-{% endschema %}
