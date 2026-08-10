@@ -35,3 +35,12 @@
 
 {% schema %}
 {
+  "name": "Destaques",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título da seção", "default": "mais vendidos" },
+    { "type": "collection", "id": "collection", "label": "Coleção (opcional — se vazio, mostra os produtos mais recentes da loja)" },
+    { "type": "number", "id": "product_limit", "label": "Quantos produtos mostrar", "default": 4 }
+  ],
+  "presets": [ { "name": "Destaques" } ]
+}
+{% endschema %}
