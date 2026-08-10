@@ -98,7 +98,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 @keyframes rite-kenburns { from { transform: scale(1); } to { transform: scale(1.08); } }
 .hero__overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(45,42,38,0.55), rgba(45,42,38,0.15)); z-index: 2; }
 .hero__circle { position: absolute; right: -100px; top: 50%; transform: translateY(-50%); width: 420px; height: 420px; border-radius: 50%; background: rgba(255,198,0,0.18); z-index: 2; pointer-events: none; }
-.hero__content { position: relative; z-index: 3; max-width: 480px; padding: var(--space-5) clamp(24px, 6vw, 90px); color: var(--color-white); }
+.hero__content { position: relative; z-index: 3; max-width: 480px; padding: var(--space-5) clamp(40px, 7vw, 110px); color: var(--color-white); }
 .hero__eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; margin-bottom: var(--space-1); }
 .hero__heading { font-size: clamp(28px, 4vw, 44px); margin-bottom: var(--space-2); }
 .hero__subheading { font-size: 14px; margin-bottom: var(--space-3); max-width: 380px; opacity: 0.92; }
