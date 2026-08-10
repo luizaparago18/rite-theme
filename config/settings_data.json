@@ -121,6 +121,7 @@
         "blocks": {
           "category_R8Et7Y": {
             "type": "category",
+            "name": "Categoria-Suplementos",
             "settings": {
               "label": "SUPLEMENTOS",
               "link": ""
@@ -129,15 +130,18 @@
           "category_6qkYjh": {
             "type": "category",
             "settings": {
+              "image": "shopify://shop_images/cabelo-categoria-2.jpg",
               "label": "CABELOS",
-              "link": ""
+              "link": "shopify://collections/cabelo"
             }
           },
           "category_9rJDKB": {
             "type": "category",
+            "name": "Categoria-Pele",
             "settings": {
+              "image": "shopify://shop_images/pele-categoria-3.jpg",
               "label": "PELE",
-              "link": ""
+              "link": "shopify://collections/pele"
             }
           }
         },
