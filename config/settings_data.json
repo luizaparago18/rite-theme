@@ -194,15 +194,15 @@
       "newsletter": {
         "type": "newsletter",
         "settings": {
-          "heading": "fique por dentro",
-          "subheading": "Novidades, lançamentos e desconto de boas-vindas direto no seu e-mail."
+          "heading": "seu ritual começa aqui!",
+          "subheading": "cadastre seu e-mail, acompanhe as novidades da Rite e receba 10% off na sua primeira compra."
         }
       },
       "footer": {
         "type": "footer",
         "settings": {
-          "description": "kmkm",
-          "instagram_url": "",
+          "description": "Um ritual que acompanha o seu ritmo.",
+          "instagram_url": "https://www.instagram.com/ritecosmetics",
           "tiktok_url": "",
           "support_text": "",
           "whatsapp": "",
@@ -213,7 +213,7 @@
       "brand-manifesto": {
         "type": "brand-manifesto",
         "settings": {
-          "heading": "A rite acompanha o seu ritmo.",
+          "heading": "a rite acompanha o seu ritmo.",
           "body": "Acreditamos que cuidar de si pode ser simples. Por isso criamos produtos que tratam, protegem e acompanham você ao longo do dia, sem excessos e sem complicar a rotina.",
           "button_label": "conheça a nossa história",
           "button_url": ""
