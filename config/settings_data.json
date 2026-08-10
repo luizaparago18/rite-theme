@@ -47,25 +47,26 @@
           "item_Dr4Bxn": {
             "type": "item",
             "settings": {
-              "handle": "@usuaria",
+              "handle": "@luizacpedrosa",
               "cta_label": "Ver produto",
-              "link": ""
+              "link": "shopify://products/stick-multifuncional-bronze-mocha-mousse"
             }
           },
           "item_NpACY4": {
             "type": "item",
             "settings": {
-              "handle": "@usuaria",
+              "handle": "@gabipreiraa",
               "cta_label": "Ver produto",
-              "link": ""
+              "link": "shopify://products/bastao-multifuncional-rite-fps-30"
             }
           },
           "item_rU8n6X": {
             "type": "item",
             "settings": {
-              "handle": "@usuaria",
+              "video": "shopify://files/videos/daniel-fps.mov",
+              "handle": "@pdaniel",
               "cta_label": "Ver produto",
-              "link": ""
+              "link": "shopify://products/bastao-multifuncional-rite-fps-30"
             }
           },
           "item_zAXE6W": {
@@ -79,7 +80,8 @@
           "item_WtEiK8": {
             "type": "item",
             "settings": {
-              "handle": "@usuaria",
+              "video": "shopify://files/videos/izabela-stick.mov",
+              "handle": "@bella_lessa",
               "cta_label": "Ver produto",
               "link": ""
             }
