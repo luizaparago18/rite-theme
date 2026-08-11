@@ -9,7 +9,6 @@
     <div style="position:absolute; inset:0; background:var(--color-yellow);"></div>
   {% endif %}
   <div class="hero__overlay"></div>
-  <div class="hero__circle" aria-hidden="true"></div>
 
   <div class="container">
     <div class="hero__content">
@@ -25,20 +24,20 @@
   <div class="container">
     <h2 class="section__heading font-heading">como funciona</h2>
     <div class="club-steps">
-      <div class="club-step">
+      <div class="club-step" style="text-align:left;">
         <p class="club-step__number">1</p>
-        <p style="font-weight:600; margin-bottom:6px;">crie sua conta</p>
-        <p style="font-size:14px; color:var(--color-gray);">O cadastro é gratuito e leva menos de um minuto. É só isso para começar a acumular Brilhos.</p>
+        <p style="font-family:var(--font-heading); font-size:18px; margin-bottom:8px;">Crie sua conta</p>
+        <p style="font-size:14px; color:var(--color-gray); line-height:1.6;">O cadastro é gratuito e leva menos de um minuto. É só isso para começar a acumular Brilhos.</p>
       </div>
-      <div class="club-step">
+      <div class="club-step" style="text-align:left;">
         <p class="club-step__number">2</p>
-        <p style="font-weight:600; margin-bottom:6px;">ganhe brilhos</p>
-        <p style="font-size:14px; color:var(--color-gray);">Compre, avalie seus produtos ou compartilhe sua experiência. Cada interação rende novos Brilhos para a sua conta.</p>
+        <p style="font-family:var(--font-heading); font-size:18px; margin-bottom:8px;">Ganhe Brilhos</p>
+        <p style="font-size:14px; color:var(--color-gray); line-height:1.6;">Compre, avalie seus produtos ou compartilhe sua experiência. Cada interação rende novos Brilhos para a sua conta.</p>
       </div>
-      <div class="club-step">
+      <div class="club-step" style="text-align:left;">
         <p class="club-step__number">3</p>
-        <p style="font-weight:600; margin-bottom:6px;">use quando quiser</p>
-        <p style="font-size:14px; color:var(--color-gray);">A partir de 500 Brilhos (R$ 5), o desconto fica disponível automaticamente no checkout.</p>
+        <p style="font-family:var(--font-heading); font-size:18px; margin-bottom:8px;">Use quando quiser</p>
+        <p style="font-size:14px; color:var(--color-gray); line-height:1.6;">A partir de 500 Brilhos (R$ 5), o desconto fica disponível automaticamente no checkout.</p>
       </div>
     </div>
   </div>
@@ -46,10 +45,12 @@
 
 <section class="section" style="padding-top:0;">
   <div class="container">
-    <div style="background:var(--color-cream); border-radius:var(--radius-lg); padding:var(--space-4);">
-      <h3 class="font-heading" style="font-size:20px; margin-bottom:20px; text-align:center;">quanto cada gesto vale</h3>
-      <table class="club-table" style="margin-bottom:0;">
-        <thead><tr><th>ação</th><th>brilhos</th><th>valor real</th></tr></thead>
+    <div class="club-table-wrap">
+      <h3 class="font-heading" style="font-size:22px; margin-bottom: var(--space-3); text-align:center;">quanto cada gesto vale</h3>
+      <table class="club-table">
+        <thead>
+          <tr><th>ação</th><th>brilhos</th><th>valor real</th></tr>
+        </thead>
         <tbody>
           <tr><td>a cada r$1 gasto</td><td>5 brilhos</td><td>5% cashback</td></tr>
           <tr><td>deixar um review</td><td>100 brilhos</td><td>r$ 1</td></tr>
@@ -57,13 +58,13 @@
           <tr><td>indicar uma amiga</td><td>500 brilhos</td><td>r$ 5</td></tr>
         </tbody>
       </table>
-      <p style="font-size:12px; color:var(--color-gray); text-align:center; margin-top:12px;">resgate mínimo: 500 brilhos (r$5)</p>
+      <p style="font-size:12px; color:var(--color-gray); text-align:center; margin-top:16px;">resgate mínimo: 500 brilhos (r$5)</p>
     </div>
   </div>
 </section>
 
 {% if section.blocks.size > 0 %}
-<section class="section" style="padding-top:0;">
+<section class="section">
   <div class="container">
     <h2 class="section__heading font-heading">quem já vive o clube</h2>
     <div class="community-grid">
@@ -93,20 +94,20 @@
       <h2 class="section__heading font-heading">dúvidas</h2>
       <div class="club-faq">
         <details>
-          <summary>preciso criar uma conta para participar?</summary>
-          <p style="margin-top:8px; font-size:14px;">Sim. O Rite Clube é gratuito e basta criar uma conta para começar a acumular Brilhos e acompanhar seu saldo.</p>
+          <summary>Preciso criar uma conta para participar?</summary>
+          <p>Sim. O Rite Clube é gratuito e basta criar uma conta para começar a acumular Brilhos e acompanhar seu saldo.</p>
         </details>
         <details>
-          <summary>como uso meus brilhos?</summary>
-          <p style="margin-top:8px; font-size:14px;">Assim que você atingir 500 Brilhos (R$ 5), a opção de desconto aparece automaticamente no checkout. É só selecionar e finalizar sua compra.</p>
+          <summary>Como uso meus Brilhos?</summary>
+          <p>Assim que você atingir 500 Brilhos (R$ 5), a opção de desconto aparece automaticamente no checkout. É só selecionar e finalizar sua compra.</p>
         </details>
         <details>
-          <summary>os brilhos expiram?</summary>
-          <p style="margin-top:8px; font-size:14px;">Sim. Eles permanecem válidos por 12 meses a partir da data em que forem conquistados.</p>
+          <summary>Os Brilhos expiram?</summary>
+          <p>Sim. Eles permanecem válidos por 12 meses a partir da data em que forem conquistados.</p>
         </details>
         <details>
-          <summary>posso usar junto com a assinatura rite em ciclo?</summary>
-          <p style="margin-top:8px; font-size:14px;">Pode. As compras feitas pela assinatura também acumulam Brilhos, para que você aproveite os benefícios da recorrência e continue somando pontos a cada novo pedido.</p>
+          <summary>Posso usar junto com a assinatura Rite em Ciclo?</summary>
+          <p>Pode. As compras feitas pela assinatura também acumulam Brilhos, para que você aproveite os benefícios da recorrência e continue somando pontos a cada novo pedido.</p>
         </details>
       </div>
     </div>
