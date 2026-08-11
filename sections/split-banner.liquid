@@ -5,9 +5,9 @@
         {% if section.settings.eyebrow != blank %}
           <p class="hero__eyebrow">{{ section.settings.eyebrow }}</p>
         {% endif %}
-        <h2 class="font-heading" style="font-size: clamp(24px,3vw,34px);">{{ section.settings.heading }}</h2>
+        <h2 class="font-heading split-banner__heading">{{ section.settings.heading }}</h2>
         {% if section.settings.body != blank %}
-          <p>{{ section.settings.body }}</p>
+          <p class="split-banner__body">{{ section.settings.body }}</p>
         {% endif %}
         {% if section.settings.button_label != blank %}
           <div><a href="{{ section.settings.button_url | default: '#' }}" class="btn btn--accent">{{ section.settings.button_label }}</a></div>
