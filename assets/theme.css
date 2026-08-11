@@ -90,7 +90,32 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .site-header__icons button, .site-header__icons a { background: none; border: none; cursor: pointer; position: relative; color: var(--color-black); display: flex; }
 .cart-count { position: absolute; top: -6px; right: -8px; background: var(--color-yellow); color: var(--color-black); font-size: 10px; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 .site-header__mobile-toggle { display: none; background: none; border: none; cursor: pointer; }
-@media (max-width: 900px) { .site-header__nav { display: none; } .site-header__mobile-toggle { display: block; } }
+@media (max-width: 900px) {
+  .site-header__nav { display: none; }
+  .site-header__mobile-toggle { display: block; }
+  .site-header__nav.is-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    gap: 0;
+    background: var(--color-white);
+    border-top: 1px solid rgba(45,42,38,0.08);
+    border-bottom: 1px solid rgba(45,42,38,0.08);
+    padding: 8px 0;
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
+  }
+  .site-header__nav.is-open li { width: 100%; }
+  .site-header__nav.is-open a {
+    display: block;
+    padding: 16px 24px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(45,42,38,0.06);
+  }
+}
 
 /* ---------- Hero — imagem OU vídeo, com movimento sutil ---------- */
 .hero { position: relative; overflow: hidden; min-height: 560px; display: flex; align-items: center; background: var(--color-black); }
