@@ -1,49 +1,73 @@
-<section class="hero" style="min-height:420px;">
-  {% if section.settings.video != blank %}
-    <video class="hero__media" autoplay muted loop playsinline poster="{{ section.settings.image | image_url: width: 1600 }}">
-      <source src="{{ section.settings.video.sources[0].url }}" type="video/mp4">
-    </video>
-  {% elsif section.settings.image %}
-    <img class="hero__media" src="{{ section.settings.image | image_url: width: 1600 }}" alt="" loading="eager">
-  {% else %}
-    <div style="position:absolute; inset:0; background:var(--color-yellow);"></div>
-  {% endif %}
-  <div class="hero__overlay"></div>
-
-  <div class="container">
-    <div class="hero__content">
-      <p class="hero__eyebrow">rite clube</p>
-      <h1 class="hero__heading font-heading">Quanto mais a Rite faz parte da sua rotina, mais ela retribui.</h1>
-      <p class="hero__subheading">O Rite Clube foi criado para agradecer quem escolhe viver esse ritual com a gente. A cada compra, avaliação ou foto compartilhada, você acumula Brilhos, que podem ser usados como desconto nas próximas compras. Simples, automático e do jeito que a gente acredita que as coisas devem ser.</p>
-      <a href="{{ routes.account_register_url }}" class="btn btn--accent" style="text-transform:lowercase;">criar minha conta</a>
-    </div>
+<section class="club-dot-pattern club-hero-wrap">
+  <div class="club-hero-card">
+    <span class="club-hero-card__badge">programa de fidelidade rite</span>
+    <h1 class="font-heading club-hero-card__heading">cada gesto vira brilho.</h1>
+    <p class="club-hero-card__body">O Rite Clube foi criado para agradecer quem escolhe viver esse ritual com a gente. A cada compra, avaliação ou foto compartilhada, você acumula Brilhos, que podem ser usados como desconto nas próximas compras. Simples, automático e do jeito que a gente acredita que as coisas devem ser.</p>
+    <a href="{{ routes.account_register_url }}" class="btn btn--accent" style="text-transform:lowercase;">criar minha conta</a>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <h2 class="section__heading font-heading">como funciona</h2>
-    <div class="club-steps">
-      <div class="club-step" style="text-align:left;">
-        <p class="club-step__number">1</p>
-        <p style="font-family:var(--font-heading); font-size:18px; margin-bottom:8px;">Crie sua conta</p>
-        <p style="font-size:14px; color:var(--color-gray); line-height:1.6;">O cadastro é gratuito e leva menos de um minuto. É só isso para começar a acumular Brilhos.</p>
+    <div class="club-benefits">
+      <div class="club-benefit">
+        <div class="club-benefit__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <p class="club-benefit__title">crie sua conta</p>
+        <p class="club-benefit__text">O cadastro é gratuito e leva menos de um minuto. É só isso para começar a acumular Brilhos.</p>
       </div>
-      <div class="club-step" style="text-align:left;">
-        <p class="club-step__number">2</p>
-        <p style="font-family:var(--font-heading); font-size:18px; margin-bottom:8px;">Ganhe Brilhos</p>
-        <p style="font-size:14px; color:var(--color-gray); line-height:1.6;">Compre, avalie seus produtos ou compartilhe sua experiência. Cada interação rende novos Brilhos para a sua conta.</p>
+      <div class="club-benefit">
+        <div class="club-benefit__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-0.5L12 2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="club-benefit__title">ganhe brilhos</p>
+        <p class="club-benefit__text">Compre, avalie seus produtos ou compartilhe sua experiência. Cada interação rende novos Brilhos.</p>
       </div>
-      <div class="club-step" style="text-align:left;">
-        <p class="club-step__number">3</p>
-        <p style="font-family:var(--font-heading); font-size:18px; margin-bottom:8px;">Use quando quiser</p>
-        <p style="font-size:14px; color:var(--color-gray); line-height:1.6;">A partir de 500 Brilhos (R$ 5), o desconto fica disponível automaticamente no checkout.</p>
+      <div class="club-benefit">
+        <div class="club-benefit__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3 8 4-16 3 8h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="club-benefit__title">use quando quiser</p>
+        <p class="club-benefit__text">A partir de 500 Brilhos (R$5), o desconto fica disponível automaticamente no checkout.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section" style="padding-top:0;">
+<section class="club-polaroid-section">
+  <div class="club-polaroid-grid">
+    <div class="club-polaroid-col">
+      <div class="club-polaroid">
+        <div class="club-polaroid__img">{% if section.settings.polaroid_1 %}<img src="{{ section.settings.polaroid_1 | image_url: width: 400 }}" alt="">{% endif %}</div>
+        <p class="club-polaroid__caption">seu ritual, todo mês</p>
+      </div>
+      <div class="club-polaroid">
+        <div class="club-polaroid__img">{% if section.settings.polaroid_2 %}<img src="{{ section.settings.polaroid_2 | image_url: width: 400 }}" alt="">{% endif %}</div>
+        <p class="club-polaroid__caption">de gesto em gesto</p>
+      </div>
+    </div>
+
+    <div class="club-polaroid-center">
+      <p class="club-polaroid-center__eyebrow">o que você ganha</p>
+      <h2 class="club-polaroid-center__heading">Brilhos a cada compra, review ou foto — trocados por desconto de verdade.</h2>
+      <a href="{{ routes.account_register_url }}" class="btn btn--primary" style="text-transform:lowercase;">quero começar</a>
+    </div>
+
+    <div class="club-polaroid-col">
+      <div class="club-polaroid">
+        <div class="club-polaroid__img">{% if section.settings.polaroid_3 %}<img src="{{ section.settings.polaroid_3 | image_url: width: 400 }}" alt="">{% endif %}</div>
+        <p class="club-polaroid__caption">brilho de verdade</p>
+      </div>
+      <div class="club-polaroid">
+        <div class="club-polaroid__img">{% if section.settings.polaroid_4 %}<img src="{{ section.settings.polaroid_4 | image_url: width: 400 }}" alt="">{% endif %}</div>
+        <p class="club-polaroid__caption">rotina que retribui</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom:0;">
   <div class="container">
     <div class="club-table-wrap">
       <h3 class="font-heading" style="font-size:22px; margin-bottom: var(--space-3); text-align:center;">quanto cada gesto vale</h3>
@@ -114,9 +138,11 @@
   </div>
 </section>
 
-<section class="section" style="padding-top:0;">
-  <div class="container" style="text-align:center;">
-    <a href="{{ routes.account_register_url }}" class="btn btn--primary" style="text-transform:lowercase;">entrar no clube agora</a>
+<section class="club-dot-pattern" style="padding: var(--space-6) var(--space-3);">
+  <div class="club-final-card">
+    <h2 class="font-heading" style="font-size:clamp(22px,3vw,28px); margin-bottom:10px;">bora entrar no clube?</h2>
+    <p style="font-size:13px; color:var(--color-gray); margin-bottom:20px;">Cadastro grátis. Seus primeiros Brilhos começam na primeira compra.</p>
+    <a href="{{ routes.account_register_url }}" class="btn btn--accent" style="text-transform:lowercase;">criar minha conta</a>
   </div>
 </section>
 
@@ -124,8 +150,10 @@
 {
   "name": "Rite Clube",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Imagem do hero (ou poster do vídeo)" },
-    { "type": "video", "id": "video", "label": "Vídeo do hero (opcional)" }
+    { "type": "image_picker", "id": "polaroid_1", "label": "Foto polaroid 1" },
+    { "type": "image_picker", "id": "polaroid_2", "label": "Foto polaroid 2" },
+    { "type": "image_picker", "id": "polaroid_3", "label": "Foto polaroid 3" },
+    { "type": "image_picker", "id": "polaroid_4", "label": "Foto polaroid 4" }
   ],
   "blocks": [
     {
