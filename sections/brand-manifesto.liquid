@@ -1,9 +1,18 @@
-<section class="section">
+section class="section manifesto-section">
   <div class="container">
-    <div class="manifesto">
-      <h2 class="manifesto__heading font-heading">{{ section.settings.heading | default: 'Beleza como ritual é Rite' }}</h2>
-      <p class="manifesto__body">{{ section.settings.body | default: 'Unimos tratamento e proteção em produtos multifuncionais e práticos. Fáceis de usar quanto de levar com você.' }}</p>
-      <a href="{{ section.settings.button_url | default: '/pages/quem-somos' }}" class="btn btn--accent">{{ section.settings.button_label | default: 'Conheça a Rite' }}</a>
+    <div class="split-banner manifesto-split{% unless section.settings.image_on_right %} split-banner--reverse{% endunless %}">
+      <div class="manifesto-split__media">
+        {% if section.settings.image %}
+          <img src="{{ section.settings.image | image_url: width: 900 }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy">
+        {% else %}
+          <div class="rite-placeholder">Imagem em produção</div>
+        {% endif %}
+      </div>
+      <div class="manifesto-split__text">
+        <h2 class="manifesto__heading font-heading">{{ section.settings.heading | default: 'Beleza como ritual é Rite' }}</h2>
+        <p class="manifesto__body">{{ section.settings.body | default: 'Unimos tratamento e proteção em produtos multifuncionais e práticos. Fáceis de usar quanto de levar com você.' }}</p>
+        <a href="{{ section.settings.button_url | default: '/pages/quem-somos' }}" class="btn btn--accent">{{ section.settings.button_label | default: 'Conheça a Rite' }}</a>
+      </div>
     </div>
   </div>
 </section>
@@ -12,6 +21,8 @@
 {
   "name": "Manifesto (teaser)",
   "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagem" },
+    { "type": "checkbox", "id": "image_on_right", "label": "Imagem à direita (desmarcado = imagem à esquerda)", "default": false },
     { "type": "text", "id": "heading", "label": "Título", "default": "Beleza como ritual é Rite" },
     { "type": "textarea", "id": "body", "label": "Texto", "default": "Unimos tratamento e proteção em produtos multifuncionais e práticos. Fáceis de usar quanto de levar com você." },
     { "type": "text", "id": "button_label", "label": "Texto do botão", "default": "Conheça a Rite" },
