@@ -47,10 +47,10 @@
           "item_Dr4Bxn": {
             "type": "item",
             "settings": {
-              "video": "shopify://files/videos/IMG_0436.MOV",
+              "video": "shopify://files/videos/luiza-maquiagem.mov",
               "handle": "@luizacpedrosa",
               "cta_label": "Ver produto",
-              "link": "shopify://products/stick-multifuncional-bronze-mocha-mousse"
+              "link": "shopify://products/bastao-multifuncional-rite-fps-30"
             }
           },
           "item_NpACY4": {
@@ -91,9 +91,10 @@
           "item_KVcT9h": {
             "type": "item",
             "settings": {
+              "video": "shopify://files/videos/bruna-óleo.mov",
               "handle": "@brunaboscarino",
               "cta_label": "Ver produto",
-              "link": ""
+              "link": "shopify://products/oleo-capilar-rite-oil-vitality-60ml"
             }
           }
         },
