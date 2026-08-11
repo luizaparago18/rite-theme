@@ -30,31 +30,33 @@
 
       <div class="pdp__description">{{ product.description | default: 'Descrição do produto entra aqui, seguindo o Guia de Voz da Rite.' }}</div>
 
-      {% form 'product', product %}
-        {% if product.has_only_default_variant == false %}
-          {% for option in product.options_with_values %}
-            <div class="pdp__variant-group">
-              <label class="pdp__variant-label">{{ option.name }}</label>
-              <select class="pdp__variant-select" name="options[{{ option.name | escape }}]">
-                {% for value in option.values %}<option value="{{ value | escape }}">{{ value }}</option>{% endfor %}
-              </select>
+      <div class="pdp__purchase-card">
+        {% form 'product', product %}
+          {% if product.has_only_default_variant == false %}
+            {% for option in product.options_with_values %}
+              <div class="pdp__variant-group">
+                <label class="pdp__variant-label">{{ option.name }}</label>
+                <select class="pdp__variant-select" name="options[{{ option.name | escape }}]">
+                  {% for value in option.values %}<option value="{{ value | escape }}">{{ value }}</option>{% endfor %}
+                </select>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          {% if product.selling_plan_groups.size > 0 %}
+            <div class="pdp__purchase-options">
+              <label class="pdp__purchase-option"><input type="radio" name="purchase_option" value="one_time" checked> Comprar uma vez — {{ product.price | money }}</label>
+              <label class="pdp__purchase-option"><input type="radio" name="purchase_option" value="subscription"> Assinar (Rite em Ciclo) — economize na recompra</label>
             </div>
-          {% endfor %}
-        {% endif %}
+          {% endif %}
 
-        {% if product.selling_plan_groups.size > 0 %}
-          <div class="pdp__purchase-options">
-            <label class="pdp__purchase-option"><input type="radio" name="purchase_option" value="one_time" checked> Comprar uma vez — {{ product.price | money }}</label>
-            <label class="pdp__purchase-option"><input type="radio" name="purchase_option" value="subscription"> Assinar (Rite em Ciclo) — economize na recompra</label>
-          </div>
-        {% endif %}
-
-        <div class="pdp__qty-row"><input type="number" class="pdp__qty-input" name="quantity" value="1" min="1"></div>
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-        <button type="submit" class="btn btn--primary btn--full" style="text-transform:lowercase;" {% unless product.available %}disabled{% endunless %}>
-          {% if product.available %}adicionar ao carrinho{% else %}esgotado{% endif %}
-        </button>
-      {% endform %}
+          <div class="pdp__qty-row"><input type="number" class="pdp__qty-input" name="quantity" value="1" min="1"></div>
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <button type="submit" class="btn btn--primary btn--full" style="text-transform:lowercase;" {% unless product.available %}disabled{% endunless %}>
+            {% if product.available %}adicionar ao carrinho{% else %}esgotado{% endif %}
+          </button>
+        {% endform %}
+      </div>
     </div>
   </div>
 
