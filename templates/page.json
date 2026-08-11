@@ -12,20 +12,9 @@
     "main": {
       "type": "page-generic",
       "settings": {}
-    },
-    "brand_manifesto_zbzc3b": {
-      "type": "brand-manifesto",
-      "name": "Manifesto (teaser)",
-      "settings": {
-        "heading": "Beleza como ritual é Rite",
-        "body": "Unimos tratamento e proteção em produtos multifuncionais e práticos. Fáceis de usar quanto de levar com você.",
-        "button_label": "Conheça a Rite",
-        "button_url": ""
-      }
     }
   },
   "order": [
-    "main",
-    "brand_manifesto_zbzc3b"
+    "main"
   ]
 }
