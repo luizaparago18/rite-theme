@@ -28,11 +28,12 @@
       "hero-banner": {
         "type": "hero-banner",
         "settings": {
-          "eyebrow": "SEU RITUAL DIÁRIO",
-          "heading": "um ritual que acompanha o seu ritmo",
-          "subheading": "Fórmulas inteligentes, desenvolvidas para simplificar a rotina sem abrir mão da performance.",
+          "eyebrow": "bem-vindo à rite",
+          "heading": "beleza que acompanha o seu ritmo",
+          "subheading": "Tratamento, proteção e praticidade em fórmulas que fazem mais, para você precisar de menos.",
           "button_label": "conheça a rite",
-          "button_url": ""
+          "button_url": "",
+          "image": "shopify://shop_images/header-rite.png"
         }
       },
       "press-bar": {
