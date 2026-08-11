@@ -1,13 +1,13 @@
 <header class="site-header">
   <div class="site-header__inner">
-    <button class="site-header__mobile-toggle" aria-label="Abrir menu" data-mobile-nav-toggle>
+    <button class="site-header__mobile-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-nav" data-mobile-nav-toggle>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
 
     <a href="{{ routes.root_url }}" class="site-header__logo font-heading">{{ section.settings.logo_text | default: 'rite' }}</a>
 
-    <nav aria-label="Navegação principal">
-      <ul class="site-header__nav">
+    <nav aria-label="Navegação principal" id="site-nav">
+      <ul class="site-header__nav" data-mobile-nav>
         <li><a href="{{ routes.root_url }}">início</a></li>
         <li><a href="/collections/pele">pele</a></li>
         <li><a href="/collections/cabelo">cabelo</a></li>
