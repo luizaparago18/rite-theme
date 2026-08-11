@@ -38,7 +38,7 @@
       "press-bar": {
         "type": "press-bar",
         "settings": {
-          "phrases": "acompanha o seu ritmo ㅤㅤ  ★  ㅤㅤ  multifuncional ㅤ ㅤ ★ ㅤㅤ  alta proteção ㅤㅤ  ★ ㅤㅤ  vegano ㅤㅤ  ★ ㅤㅤ  testado dermatologicamente ㅤㅤ  ★"
+          "phrases": "acompanha o seu ritmo · multifuncional · alta proteção · vegano  · testado dermatologicamente"
         }
       },
       "community-ugc": {
@@ -222,6 +222,7 @@
       "brand-manifesto": {
         "type": "brand-manifesto",
         "settings": {
+          "image_on_right": false,
           "heading": "a rite acompanha o seu ritmo.",
           "body": "Acreditamos que cuidar de si pode ser simples. Por isso criamos produtos que tratam, protegem e acompanham você ao longo do dia, sem excessos e sem complicar a rotina.",
           "button_label": "conheça a nossa história",
