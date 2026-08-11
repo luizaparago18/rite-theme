@@ -183,6 +183,16 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .product-card--compact .product-card__price { font-size: 12px; }
 .product-card--compact .btn { padding: 8px 10px; font-size: 11px; border-radius: 10px; }
 
+/* ---------- Seção "você também vai gostar" — escura e menor ---------- */
+.related-products-section { background: #2e2a27; padding: var(--space-4) 0; }
+.related-products-section .section__heading { color: var(--color-white); font-size: clamp(18px, 2.4vw, 24px); margin-bottom: var(--space-3); }
+.related-products-section .product-grid--compact { grid-template-columns: repeat(6, 1fr); gap: 14px; max-width: 760px; }
+@media (max-width: 900px) { .related-products-section .product-grid--compact { grid-template-columns: repeat(3, 1fr); } }
+.related-products-section .product-card__title { color: var(--color-white); font-size: 11px; }
+.related-products-section .product-card__price { color: rgba(255,255,255,0.75); font-size: 11px; }
+.related-products-section .product-card__image-wrap { background: #3a3632; }
+.related-products-section .btn { background: var(--color-yellow); color: var(--color-black); border-color: var(--color-yellow); padding: 7px 8px; font-size: 10px; }
+
 /* ---------- UGC / Comunidade (com suporte a vídeo) ---------- */
 .community-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--space-2); }
 @media (max-width: 900px) { .community-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -347,16 +357,28 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .about-value { text-align: center; }
 .about-value__title { font-size: 18px; margin-bottom: 8px; }
 
-.club-hero { background: var(--color-yellow); border-radius: var(--radius-lg); padding: var(--space-5); text-align: center; margin-bottom: var(--space-5); }
-.club-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-bottom: var(--space-5); }
+.club-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-bottom: var(--space-3); }
 @media (max-width: 900px) { .club-steps { grid-template-columns: 1fr; } }
-.club-step { text-align: center; }
-.club-step__number { font-family: var(--font-heading); font-size: 32px; color: var(--color-yellow); -webkit-text-stroke: 1.5px var(--color-black); margin-bottom: 8px; }
-.club-table { width: 100%; border-collapse: collapse; margin-bottom: var(--space-5); }
-.club-table th, .club-table td { text-align: left; padding: 12px; border-bottom: 1px solid rgba(45,42,38,0.1); font-size: 14px; }
-.club-table th { font-weight: 700; }
+.club-step__number { font-family: var(--font-heading); font-size: 36px; color: var(--color-yellow); -webkit-text-stroke: 1.5px var(--color-black); margin-bottom: 10px; }
+
+.club-table-wrap { max-width: 680px; margin: 0 auto; background: var(--color-cream); border-radius: var(--radius-lg); padding: var(--space-4); }
+.club-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+.club-table thead th {
+  text-align: left; padding: 12px 14px; font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.04em; color: var(--color-black); background: var(--color-yellow);
+}
+.club-table thead th:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.club-table thead th:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.club-table tbody td { padding: 14px; font-size: 13px; border-bottom: 1px solid rgba(45,42,38,0.08); }
+.club-table tbody tr:last-child td { border-bottom: none; }
+.club-table tbody tr:nth-child(even) td { background: rgba(255,255,255,0.5); }
+
 .club-faq details { border-bottom: 1px solid rgba(45,42,38,0.1); padding: var(--space-2) 0; }
-.club-faq summary { cursor: pointer; font-weight: 600; }
+.club-faq summary { cursor: pointer; font-weight: 600; font-size: 14px; list-style: none; }
+.club-faq summary::-webkit-details-marker { display: none; }
+.club-faq summary::after { content: "+"; float: right; font-family: var(--font-heading); font-size: 18px; color: var(--color-yellow); -webkit-text-stroke: 1px var(--color-black); }
+.club-faq details[open] summary::after { content: "–"; }
+.club-faq p { font-size: 13px; color: var(--color-gray); line-height: 1.6; margin-top: 10px; }
 
 .teaser-hero { background: var(--color-black); color: var(--color-white); border-radius: var(--radius-lg); padding: var(--space-6) var(--space-4); text-align: center; }
 .teaser-badge { display: inline-block; background: var(--color-yellow); color: var(--color-black); font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: var(--radius-sm); margin-bottom: var(--space-2); }
