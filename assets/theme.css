@@ -185,7 +185,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .site-footer { padding: var(--space-6) 0 var(--space-3); background: var(--color-cream); }
 .site-footer__grid { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: var(--space-3); margin-bottom: var(--space-4); }
 @media (max-width: 900px) { .site-footer__grid { grid-template-columns: repeat(2, 1fr); } }
-.site-footer__brand { font-family: var(--font-heading); font-size: 24px; text-transform: lowercase; margin-bottom: 8px; }
+.site-footer__brand { font-family: var(--font-heading); font-size: 26px; color: #2e2a27; text-transform: lowercase; margin-bottom: 8px; }
 .site-footer__col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: var(--space-2); }
 .site-footer__col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .site-footer__col a, .site-footer__col p { font-size: 13px; color: var(--color-gray); }
