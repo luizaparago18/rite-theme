@@ -1,4 +1,4 @@
-<section class="section">
+<section class="section split-banner-section">
   <div class="container">
     <div class="split-banner{% if section.settings.reverse %} split-banner--reverse{% endif %}">
       <div class="split-banner__text">
@@ -17,7 +17,7 @@
         {% if section.settings.image %}
           <img src="{{ section.settings.image | image_url: width: 800 }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy" width="800" height="{{ section.settings.image.height }}">
         {% else %}
-          <div class="product-card__placeholder">Imagem em produção</div>
+          <div class="rite-placeholder">Imagem em produção</div>
         {% endif %}
       </div>
     </div>
