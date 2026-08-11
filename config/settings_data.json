@@ -120,7 +120,7 @@
           "body": "Proteção leve contra suor, calor e sol, com jojoba para preservar a hidratação e o brilho dos fios.",
           "button_label": "conheça o pré-treino capilar",
           "button_url": "shopify://products/oleo-capilar-rite-oil-vitality-60ml",
-          "image": "shopify://shop_images/cabelos-header.jpg"
+          "image": "shopify://shop_images/pre-treino-banner.jpg"
         }
       },
       "shop-by-category": {
@@ -224,8 +224,9 @@
       "brand-manifesto": {
         "type": "brand-manifesto",
         "settings": {
+          "image": "shopify://shop_images/ritmo-rite-banner-2.jpg",
           "image_on_right": false,
-          "heading": "a rite acompanha o seu ritmo.",
+          "heading": "a rite acompanha o seu ritmo",
           "body": "Acreditamos que cuidar de si pode ser simples. Por isso criamos produtos que tratam, protegem e acompanham você ao longo do dia, sem excessos e sem complicar a rotina.",
           "button_label": "conheça a nossa história",
           "button_url": "shopify://pages/quem-somos"
