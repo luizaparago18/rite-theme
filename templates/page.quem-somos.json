@@ -13,8 +13,8 @@
       "type": "page-quem-somos",
       "settings": {
         "header_image": "shopify://shop_images/quem-somos-header.jpg",
-        "photo_1": "shopify://shop_images/quem-somos-header.jpg",
-        "photo_2": "shopify://shop_images/quem-somos-banner2.png"
+        "photo_1": "shopify://shop_images/quem-somos-banner2.png",
+        "photo_2": "shopify://shop_images/Woman_pulling_product_from_bag_202608081310.jpg"
       }
     }
   },
