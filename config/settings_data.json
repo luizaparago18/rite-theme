@@ -129,7 +129,7 @@
         "blocks": {
           "category_R8Et7Y": {
             "type": "category",
-            "name": "Categoria-Suplementos",
+            "name": "PELE",
             "settings": {
               "image": "shopify://shop_images/pele-categoria-3.jpg",
               "label": "PELE",
@@ -138,6 +138,7 @@
           },
           "category_6qkYjh": {
             "type": "category",
+            "name": "CABELOS",
             "settings": {
               "image": "shopify://shop_images/cabelo-categoria-2.jpg",
               "label": "CABELOS",
@@ -146,7 +147,7 @@
           },
           "category_9rJDKB": {
             "type": "category",
-            "name": "Categoria-Pele",
+            "name": "SUPLEMENTOS",
             "settings": {
               "image": "shopify://shop_images/gummies-categoria-1.png",
               "label": "SUPLEMENTOS",
