@@ -121,7 +121,7 @@
           "body": "Proteção leve contra suor, calor e sol, com jojoba para preservar a hidratação e o brilho dos fios.",
           "button_label": "conheça o pré-treino capilar",
           "button_url": "shopify://products/oleo-capilar-rite-oil-vitality-60ml",
-          "image": "shopify://shop_images/Woman_holding_bottle_of_oil_202608072036_1.png"
+          "image": "shopify://shop_images/produtos-rite-quem-somos.jpg"
         }
       },
       "shop-by-category": {
@@ -131,8 +131,9 @@
             "type": "category",
             "name": "Categoria-Suplementos",
             "settings": {
-              "label": "SUPLEMENTOS",
-              "link": ""
+              "image": "shopify://shop_images/pele-categoria-3.jpg",
+              "label": "PELE",
+              "link": "shopify://collections/pele"
             }
           },
           "category_6qkYjh": {
@@ -147,9 +148,9 @@
             "type": "category",
             "name": "Categoria-Pele",
             "settings": {
-              "image": "shopify://shop_images/pele-categoria-3.jpg",
-              "label": "PELE",
-              "link": "shopify://collections/pele"
+              "image": "shopify://shop_images/gummies-categoria-1.png",
+              "label": "SUPLEMENTOS",
+              "link": "shopify://collections/suplementos"
             }
           }
         },
