@@ -61,20 +61,7 @@
   </div>
 
   <div class="container" style="margin-top: var(--space-6);">
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap: var(--space-3);">
-
-      <div>
-        <h3 class="font-heading" style="font-size:18px; margin-bottom:12px;">benefícios</h3>
-        <ul class="pdp__diff-list">
-          {% if product.metafields.custom.beneficios != blank %}
-            {% for item in product.metafields.custom.beneficios.value %}<li>{{ item }}</li>{% endfor %}
-          {% else %}
-            <li>Benefício 1 — a preencher</li>
-            <li>Benefício 2 — a preencher</li>
-            <li>Benefício 3 — a preencher</li>
-          {% endif %}
-        </ul>
-      </div>
+    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap: var(--space-3);">
 
       <div>
         <h3 class="font-heading" style="font-size:18px; margin-bottom:12px;">como usar</h3>
@@ -108,7 +95,7 @@
           <div class="community-item">
             <div class="community-item__media">
               {% if block.settings.video != blank %}
-                <video autoplay muted loop playsinline preload="none" poster="{{ block.settings.image | image_url: width: 400 }}">
+                <video autoplay muted loop playsinline preload="metadata"{% if block.settings.image %} poster="{{ block.settings.image | image_url: width: 400 }}"{% endif %}>
                 <source src="{{ block.settings.video.sources[0].url }}" type="video/mp4">
               </video>
               {% elsif block.settings.image %}
