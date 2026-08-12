@@ -188,14 +188,19 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .product-card--compact .btn { padding: 8px 10px; font-size: 11px; border-radius: 10px; }
 
 /* ---------- Seção "você também vai gostar" — escura e menor ---------- */
-.related-products-section { background: #2e2a27; padding: var(--space-4) 0; }
-.related-products-section .section__heading { color: var(--color-white); font-size: clamp(18px, 2.4vw, 24px); margin-bottom: var(--space-3); }
+.related-products-section {
+  background-color: var(--color-cream);
+  background-image: radial-gradient(var(--color-yellow) 3.5px, transparent 3.5px);
+  background-size: 26px 26px;
+  padding: var(--space-4) 0;
+}
+.related-products-section .section__heading { color: var(--color-black); font-size: clamp(18px, 2.4vw, 24px); margin-bottom: var(--space-3); }
 .related-products-section .product-grid--compact { grid-template-columns: repeat(6, 1fr); gap: 14px; max-width: 760px; }
 @media (max-width: 900px) { .related-products-section .product-grid--compact { grid-template-columns: repeat(3, 1fr); } }
-.related-products-section .product-card__title { color: var(--color-white); font-size: 11px; }
-.related-products-section .product-card__price { color: rgba(255,255,255,0.75); font-size: 11px; }
-.related-products-section .product-card__image-wrap { background: #3a3632; }
-.related-products-section .btn { background: var(--color-yellow); color: var(--color-black); border-color: var(--color-yellow); padding: 7px 8px; font-size: 10px; }
+.related-products-section .product-card__title { color: var(--color-black); font-size: 11px; }
+.related-products-section .product-card__price { color: var(--color-gray); font-size: 11px; }
+.related-products-section .product-card__image-wrap { background: var(--color-white); }
+.related-products-section .btn { background: var(--color-black); color: var(--color-white); border-color: var(--color-black); padding: 7px 8px; font-size: 10px; }
 
 /* ---------- UGC / Comunidade (com suporte a vídeo) ---------- */
 .community-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--space-2); }
