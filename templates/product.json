@@ -9,8 +9,19 @@
  */
 {
   "sections": {
-    "main": { "type": "main-product" },
-    "related": { "type": "related-products" }
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "related": {
+      "type": "related-products",
+      "settings": {
+        "heading": "outras indicações da rite:"
+      }
+    }
   },
-  "order": ["main", "related"]
+  "order": [
+    "main",
+    "related"
+  ]
 }

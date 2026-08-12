@@ -1,9 +1,35 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "main": { "type": "main-product" },
-    "highlight": { "type": "product-highlight" },
-    "press": { "type": "press-bar" },
-    "related": { "type": "related-products" }
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "highlight": {
+      "type": "product-highlight",
+      "settings": {}
+    },
+    "press": {
+      "type": "press-bar",
+      "settings": {}
+    },
+    "related": {
+      "type": "related-products",
+      "settings": {}
+    }
   },
-  "order": ["main", "highlight", "press", "related"]
+  "order": [
+    "main",
+    "highlight",
+    "press",
+    "related"
+  ]
 }
