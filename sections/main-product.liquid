@@ -60,33 +60,6 @@
     </div>
   </div>
 
-  <div class="container" style="margin-top: var(--space-6);">
-    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap: var(--space-3);">
-
-      <div>
-        <h3 class="font-heading" style="font-size:18px; margin-bottom:12px;">como usar</h3>
-        <div style="font-size:14px; line-height:1.6;">
-          {{ product.metafields.custom.como_usar | default: 'Modo de uso a preencher — passo a passo simples de aplicação.' }}
-        </div>
-      </div>
-
-      <div>
-        <h3 class="font-heading" style="font-size:18px; margin-bottom:12px;">ingredientes-chave</h3>
-        <div style="display:flex; flex-wrap:wrap; gap:8px;">
-          {% if product.metafields.custom.ingredientes != blank %}
-            {% for item in product.metafields.custom.ingredientes.value %}
-              <span style="background:var(--color-cream); padding:6px 12px; border-radius:var(--radius-sm); font-size:12px;">{{ item }}</span>
-            {% endfor %}
-          {% else %}
-            <span style="background:var(--color-cream); padding:6px 12px; border-radius:var(--radius-sm); font-size:12px;">ingrediente 1</span>
-            <span style="background:var(--color-cream); padding:6px 12px; border-radius:var(--radius-sm); font-size:12px;">ingrediente 2</span>
-          {% endif %}
-        </div>
-      </div>
-
-    </div>
-  </div>
-
   {% if section.blocks.size > 0 %}
     <div class="container" style="margin-top: var(--space-6);">
       <h2 class="section__heading font-heading">veja na prática</h2>
