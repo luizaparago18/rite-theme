@@ -3,7 +3,7 @@
     <div>
       <div class="pdp__gallery-main" id="pdp-main-image">
         {% if product.featured_image %}
-          <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | escape }}" id="pdp-main-img-tag">
+          <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | escape }}" id="pdp-main-img-tag" loading="eager">
         {% else %}
           <div class="rite-placeholder">Foto do produto<br>em produção</div>
         {% endif %}
@@ -12,7 +12,7 @@
         <div class="pdp__thumbs">
           {% for image in product.images limit: 6 %}
             <button class="pdp__thumb" onclick="document.getElementById('pdp-main-img-tag').src='{{ image | image_url: width: 800 }}'" type="button">
-              <img src="{{ image | image_url: width: 150 }}" alt="{{ image.alt | escape }}">
+              <img src="{{ image | image_url: width: 150 }}" alt="{{ image.alt | escape }}" loading="lazy">
             </button>
           {% endfor %}
         </div>
@@ -108,8 +108,9 @@
           <div class="community-item">
             <div class="community-item__media">
               {% if block.settings.video != blank %}
-                <video autoplay muted loop playsinline></video>
-                <script>document.currentScript.previousElementSibling.src="{{ block.settings.video.sources[0].url }}";</script>
+                <video autoplay muted loop playsinline preload="none" poster="{{ block.settings.image | image_url: width: 400 }}">
+                <source src="{{ block.settings.video.sources[0].url }}" type="video/mp4">
+              </video>
               {% elsif block.settings.image %}
                 <img src="{{ block.settings.image | image_url: width: 400 }}" alt="" loading="lazy">
               {% else %}
