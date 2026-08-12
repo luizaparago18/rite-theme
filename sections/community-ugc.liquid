@@ -6,8 +6,9 @@
         <div class="community-item">
           <div class="community-item__media">
             {% if block.settings.video != blank %}
-              <video autoplay muted loop playsinline></video>
-              <script>document.currentScript.previousElementSibling.src="{{ block.settings.video.sources[0].url }}";</script>
+              <video autoplay muted loop playsinline preload="none" poster="{{ block.settings.image | image_url: width: 400 }}">
+                <source src="{{ block.settings.video.sources[0].url }}" type="video/mp4">
+              </video>
             {% elsif block.settings.image %}
               <img src="{{ block.settings.image | image_url: width: 400 }}" alt="" loading="lazy">
             {% else %}
