@@ -12,7 +12,7 @@
     "main": {
       "type": "main-collection",
       "settings": {
-        "banner_image": "shopify://shop_images/header-colecoes.jpg",
+        "banner_image": "shopify://shop_images/teste-header-colecao.png",
         "phrase": ""
       }
     }
