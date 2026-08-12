@@ -13,7 +13,7 @@
               <div class="cart-item">
                 <div class="cart-item__image">
                   {% if item.image %}
-                    <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}">
+                    <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" loading="lazy">
                   {% endif %}
                 </div>
                 <div>
