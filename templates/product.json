@@ -7,24 +7,13 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
+
 {
   "sections": {
-    "main": {
-      "type": "main-product",
-      "settings": {}
-    },
-    "press": {
-      "type": "press-bar",
-      "settings": {}
-    },
-    "related": {
-      "type": "related-products",
-      "settings": {}
-    }
+    "main": { "type": "main-product" },
+    "highlight": { "type": "product-highlight" },
+    "press": { "type": "press-bar" },
+    "related": { "type": "related-products" }
   },
-  "order": [
-    "main",
-    "press",
-    "related"
-  ]
+  "order": ["main", "highlight", "press", "related"]
 }
