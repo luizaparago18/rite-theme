@@ -13,6 +13,7 @@
       "type": "page-quem-somos",
       "settings": {
         "header_image": "shopify://shop_images/topo.jpg",
+        "photo_1": "shopify://shop_images/produtos-rite-quem-somos.jpg",
         "photo_2": "shopify://shop_images/quem-somos-banner2.png"
       }
     }
