@@ -7,13 +7,36 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-
 {
   "sections": {
-    "main": { "type": "main-product" },
-    "highlight": { "type": "product-highlight" },
-    "press": { "type": "press-bar" },
-    "related": { "type": "related-products" }
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "highlight": {
+      "type": "product-highlight",
+      "settings": {
+        "bg_color": "#f3dfc0",
+        "heading": "xxx"
+      }
+    },
+    "press": {
+      "type": "press-bar",
+      "settings": {
+        "phrases": "seu ritual diário · beleza que cuida · autocuidado sem excesso · proteção de verdade"
+      }
+    },
+    "related": {
+      "type": "related-products",
+      "settings": {
+        "heading": "você também vai gostar"
+      }
+    }
   },
-  "order": ["main", "highlight", "press", "related"]
+  "order": [
+    "main",
+    "highlight",
+    "press",
+    "related"
+  ]
 }
