@@ -4,7 +4,15 @@
       <source src="{{ section.settings.video.sources[1].url | default: section.settings.video.sources[0].url }}" type="video/mp4">
     </video>
   {% elsif section.settings.image %}
-    <img class="hero__media" src="{{ section.settings.image | image_url: width: 1600 }}" alt="{{ section.settings.image.alt | escape }}" loading="eager">
+    <img class="hero__media"
+         src="{{ section.settings.image | image_url: width: 1600 }}"
+         srcset="{{ section.settings.image | image_url: width: 750 }} 750w,
+                 {{ section.settings.image | image_url: width: 1100 }} 1100w,
+                 {{ section.settings.image | image_url: width: 1600 }} 1600w,
+                 {{ section.settings.image | image_url: width: 2000 }} 2000w"
+         sizes="100vw"
+         alt="{{ section.settings.image.alt | escape }}"
+         loading="eager">
   {% endif %}
 
   <div class="hero__overlay"></div>
@@ -34,3 +42,4 @@
   "presets": [ { "name": "Hero" } ]
 }
 {% endschema %}
+
