@@ -1,33 +1,40 @@
-<section class="blog-listing">
-  <div class="container">
-    <h1 class="section__heading font-heading">{{ blog.title | default: 'Blog da Rite' }}</h1>
+<section class="club-dot-pattern blog-hero-wrap">
+  <div class="blog-hero-card">
+    <h1 class="font-heading blog-hero-card__heading">beleza para a vida real</h1>
+    <p class="blog-hero-card__body">Um espaço para conversar sobre pele, cabelo, proteção e aqueles pequenos cuidados que fazem diferença no dia a dia. Sem excesso, sem complicar: informação para ajudar você a entender melhor o que usa e encontrar um ritual que acompanhe o seu ritmo.</p>
+  </div>
+</section>
 
+<section class="section">
+  <div class="container">
     {% paginate blog.articles by 9 %}
       {% if blog.articles.size > 0 %}
-        <div class="blog-grid">
+        <div class="blog-polaroid-grid">
           {% for article in blog.articles %}
             <a href="{{ article.url }}">
-              <div class="blog-card__image">
-                {% if article.image %}
-                  <img src="{{ article.image | image_url: width: 500 }}" alt="{{ article.image.alt | escape }}" loading="lazy">
-                {% else %}
-                  <div class="product-card__placeholder">Imagem do post</div>
-                {% endif %}
-                {% if article.tags.size > 0 %}<span class="blog-card__tag">{{ article.tags.first }}</span>{% endif %}
+              <div class="blog-polaroid">
+                <div class="blog-polaroid__img">
+                  {% if article.tags.size > 0 %}<span class="blog-polaroid__tag">{{ article.tags.first }}</span>{% endif %}
+                  {% if article.image %}
+                    <img src="{{ article.image | image_url: width: 500 }}" alt="{{ article.image.alt | escape }}" loading="lazy">
+                  {% else %}
+                    <div class="rite-placeholder">Imagem do post<br>em produção</div>
+                  {% endif %}
+                </div>
+                <p class="blog-polaroid__title">{{ article.title }}</p>
+                <p class="blog-polaroid__excerpt">{{ article.excerpt_or_content | strip_html | truncate: 80 }}</p>
               </div>
-              <p class="blog-card__title font-heading">{{ article.title }}</p>
-              <p class="blog-card__excerpt">{{ article.excerpt_or_content | strip_html | truncate: 90 }}</p>
             </a>
           {% endfor %}
         </div>
 
         {% if paginate.pages > 1 %}
           <div class="pagination">
-            {% if paginate.previous %}<a href="{{ paginate.previous.url }}">← Anterior</a>{% endif %}
+            {% if paginate.previous %}<a href="{{ paginate.previous.url }}">← anterior</a>{% endif %}
             {% for part in paginate.parts %}
               {% if part.is_link %}<a href="{{ part.url }}">{{ part.title }}</a>{% else %}<span class="current">{{ part.title }}</span>{% endif %}
             {% endfor %}
-            {% if paginate.next %}<a href="{{ paginate.next.url }}">Próxima →</a>{% endif %}
+            {% if paginate.next %}<a href="{{ paginate.next.url }}">próxima →</a>{% endif %}
           </div>
         {% endif %}
       {% else %}
