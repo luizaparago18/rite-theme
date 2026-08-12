@@ -30,6 +30,12 @@
 
       <div class="pdp__description">{{ product.description | default: 'Descrição do produto entra aqui, seguindo o Guia de Voz da Rite.' }}</div>
 
+      {% if product.metafields.custom.beneficios != blank %}
+        <ul class="pdp__diff-list">
+          {% for item in product.metafields.custom.beneficios.value %}<li>{{ item }}</li>{% endfor %}
+        </ul>
+      {% endif %}
+
       <div class="pdp__purchase-card">
         {% form 'product', product %}
           {% if product.has_only_default_variant == false %}
