@@ -14,7 +14,12 @@
 
   {% if section.settings.header_image %}
     <div class="qs-lifestyle-img" style="aspect-ratio:21/9; margin-top:0; margin-bottom: var(--space-4);">
-      <img src="{{ section.settings.header_image | image_url: width: 1600 }}" alt="{{ section.settings.header_image.alt | escape }}" loading="eager">
+      <img src="{{ section.settings.header_image | image_url: width: 1600 }}"
+           srcset="{{ section.settings.header_image | image_url: width: 750 }} 750w,
+                   {{ section.settings.header_image | image_url: width: 1100 }} 1100w,
+                   {{ section.settings.header_image | image_url: width: 1600 }} 1600w"
+           sizes="100vw"
+           alt="{{ section.settings.header_image.alt | escape }}" loading="eager">
     </div>
   {% else %}
     <div class="qs-lifestyle-img rite-placeholder" style="aspect-ratio:21/9; margin-top:0; margin-bottom: var(--space-4);">Foto de header — em produção</div>
