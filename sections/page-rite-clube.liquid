@@ -39,11 +39,11 @@
   <div class="club-polaroid-grid">
     <div class="club-polaroid-col">
       <div class="club-polaroid">
-        <div class="club-polaroid__img">{% if section.settings.polaroid_1 %}<img src="{{ section.settings.polaroid_1 | image_url: width: 400 }}" alt="">{% endif %}</div>
+        <div class="club-polaroid__img">{% if section.settings.polaroid_1 %}<img src="{{ section.settings.polaroid_1 | image_url: width: 400 }}" alt="" loading="lazy">{% endif %}</div>
         <p class="club-polaroid__caption">pronta em poucos passos</p>
       </div>
       <div class="club-polaroid">
-        <div class="club-polaroid__img">{% if section.settings.polaroid_2 %}<img src="{{ section.settings.polaroid_2 | image_url: width: 400 }}" alt="">{% endif %}</div>
+        <div class="club-polaroid__img">{% if section.settings.polaroid_2 %}<img src="{{ section.settings.polaroid_2 | image_url: width: 400 }}" alt="" loading="lazy">{% endif %}</div>
         <p class="club-polaroid__caption">brilho que te acompanha</p>
       </div>
     </div>
@@ -57,11 +57,11 @@
 
     <div class="club-polaroid-col">
       <div class="club-polaroid">
-        <div class="club-polaroid__img">{% if section.settings.polaroid_3 %}<img src="{{ section.settings.polaroid_3 | image_url: width: 400 }}" alt="">{% endif %}</div>
+        <div class="club-polaroid__img">{% if section.settings.polaroid_3 %}<img src="{{ section.settings.polaroid_3 | image_url: width: 400 }}" alt="" loading="lazy">{% endif %}</div>
         <p class="club-polaroid__caption">beleza que acompanha a sua rotina</p>
       </div>
       <div class="club-polaroid">
-        <div class="club-polaroid__img">{% if section.settings.polaroid_4 %}<img src="{{ section.settings.polaroid_4 | image_url: width: 400 }}" alt="">{% endif %}</div>
+        <div class="club-polaroid__img">{% if section.settings.polaroid_4 %}<img src="{{ section.settings.polaroid_4 | image_url: width: 400 }}" alt="" loading="lazy">{% endif %}</div>
         <p class="club-polaroid__caption">um ritual prático</p>
       </div>
     </div>
@@ -97,8 +97,9 @@
         <div class="community-item">
           <div class="community-item__media">
             {% if block.settings.video != blank %}
-              <video autoplay muted loop playsinline></video>
-              <script>document.currentScript.previousElementSibling.src="{{ block.settings.video.sources[0].url }}";</script>
+              <video autoplay muted loop playsinline preload="none" poster="{{ block.settings.image | image_url: width: 400 }}">
+                <source src="{{ block.settings.video.sources[0].url }}" type="video/mp4">
+              </video>
             {% elsif block.settings.image %}
               <img src="{{ block.settings.image | image_url: width: 400 }}" alt="" loading="lazy">
             {% else %}
