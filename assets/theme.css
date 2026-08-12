@@ -336,9 +336,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .pdp__purchase-option { display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer; }
 .pdp__qty-row { display: flex; gap: 12px; margin-bottom: var(--space-2); }
 .pdp__qty-input { width: 80px; padding: 12px; border-radius: var(--radius-sm); border: 1.5px solid rgba(45,42,38,0.2); background: var(--color-white); font-family: var(--font-body); }
-.pdp__diff-list { list-style: none; margin: var(--space-3) 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-.pdp__diff-list li { display: flex; gap: 10px; font-size: 14px; align-items: flex-start; }
-.pdp__diff-list li::before { content: "●"; color: var(--color-yellow); flex-shrink: 0; }
 .pdp__reviews-anchor { margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid rgba(45,42,38,0.1); }
 
 .collection-banner { background: var(--color-cream); padding: var(--space-4) 0; text-align: center; margin-bottom: var(--space-4); }
@@ -597,4 +594,3 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .gummies-final-card__body { font-size: 14px; opacity: 0.85; max-width: 420px; margin: 0 auto var(--space-3); line-height: 1.6; }
 .gummies-final-card .newsletter__form { max-width: 380px; }
 .gummies-final-card .newsletter__form input { border-color: rgba(255,255,255,0.3); }
-
