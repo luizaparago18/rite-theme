@@ -1,9 +1,9 @@
 <section class="club-dot-pattern club-hero-wrap">
   <div class="club-hero-card">
-    <span class="club-hero-card__badge">programa de fidelidade rite</span>
-    <h1 class="font-heading club-hero-card__heading">cada gesto vira brilho.</h1>
-    <p class="club-hero-card__body">O Rite Clube foi criado para agradecer quem escolhe viver esse ritual com a gente. A cada compra, avaliação ou foto compartilhada, você acumula Brilhos, que podem ser usados como desconto nas próximas compras. Simples, automático e do jeito que a gente acredita que as coisas devem ser.</p>
-    <a href="{{ routes.account_register_url }}" class="btn btn--accent" style="text-transform:lowercase;">criar minha conta</a>
+    <span class="club-hero-card__badge">programa de benefícios Rite</span>
+    <h1 class="font-heading club-hero-card__heading">Cada compra vira um pouco mais de Rite.</h1>
+    <p class="club-hero-card__body">No Rite Clube, suas compras e experiências com a marca viram Brilhos para usar nas próximas compras. Um jeito simples de retribuir quem escolhe viver o nosso ritual com a gente.</p>
+    <a href="{{ routes.account_register_url }}" class="btn btn--accent" style="text-transform:lowercase;">quero fazer parte</a>
   </div>
 </section>
 
@@ -15,21 +15,21 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         </div>
         <p class="club-benefit__title">crie sua conta</p>
-        <p class="club-benefit__text">O cadastro é gratuito e leva menos de um minuto. É só isso para começar a acumular Brilhos.</p>
+        <p class="club-benefit__text">O cadastro é gratuito e leva menos de um minuto. É só criar sua conta para começar a fazer parte do Rite Clube e acumular Brilhos.</p>
       </div>
       <div class="club-benefit">
         <div class="club-benefit__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-0.5L12 2z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
         </div>
         <p class="club-benefit__title">ganhe brilhos</p>
-        <p class="club-benefit__text">Compre, avalie seus produtos ou compartilhe sua experiência. Cada interação rende novos Brilhos.</p>
+        <p class="club-benefit__text">Compre, avalie seus produtos ou compartilhe sua experiência com a Rite. Cada gesto rende novos Brilhos para você.</p>
       </div>
       <div class="club-benefit">
         <div class="club-benefit__icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3 8 4-16 3 8h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
         <p class="club-benefit__title">use quando quiser</p>
-        <p class="club-benefit__text">A partir de 500 Brilhos (R$5), o desconto fica disponível automaticamente no checkout.</p>
+        <p class="club-benefit__text">A partir de 500 Brilhos (R$5), você já pode resgatar seu saldo como desconto nas próximas compras. Simples assim.</p>
       </div>
     </div>
   </div>
@@ -40,28 +40,29 @@
     <div class="club-polaroid-col">
       <div class="club-polaroid">
         <div class="club-polaroid__img">{% if section.settings.polaroid_1 %}<img src="{{ section.settings.polaroid_1 | image_url: width: 400 }}" alt="">{% endif %}</div>
-        <p class="club-polaroid__caption">seu ritual, todo mês</p>
+        <p class="club-polaroid__caption">pronta em poucos passos</p>
       </div>
       <div class="club-polaroid">
         <div class="club-polaroid__img">{% if section.settings.polaroid_2 %}<img src="{{ section.settings.polaroid_2 | image_url: width: 400 }}" alt="">{% endif %}</div>
-        <p class="club-polaroid__caption">de gesto em gesto</p>
+        <p class="club-polaroid__caption">brilho que te acompanha</p>
       </div>
     </div>
 
     <div class="club-polaroid-center">
-      <p class="club-polaroid-center__eyebrow">o que você ganha</p>
-      <h2 class="club-polaroid-center__heading">Brilhos a cada compra, review ou foto — trocados por desconto de verdade.</h2>
+      <p class="club-polaroid-center__eyebrow">O QUE VOCÊ GANHA</p>
+      <h2 class="club-polaroid-center__heading">Seu ritual, de volta para você.</h2>
+      <p style="font-size:13px; color:var(--color-gray); margin-bottom:20px;">Cada compra, review ou foto compartilhada vira Brilho para usar nas próximas compras.</p>
       <a href="{{ routes.account_register_url }}" class="btn btn--primary" style="text-transform:lowercase;">quero começar</a>
     </div>
 
     <div class="club-polaroid-col">
       <div class="club-polaroid">
         <div class="club-polaroid__img">{% if section.settings.polaroid_3 %}<img src="{{ section.settings.polaroid_3 | image_url: width: 400 }}" alt="">{% endif %}</div>
-        <p class="club-polaroid__caption">brilho de verdade</p>
+        <p class="club-polaroid__caption">beleza que acompanha a sua rotina</p>
       </div>
       <div class="club-polaroid">
         <div class="club-polaroid__img">{% if section.settings.polaroid_4 %}<img src="{{ section.settings.polaroid_4 | image_url: width: 400 }}" alt="">{% endif %}</div>
-        <p class="club-polaroid__caption">rotina que retribui</p>
+        <p class="club-polaroid__caption">um ritual prático</p>
       </div>
     </div>
   </div>
@@ -140,9 +141,9 @@
 
 <section class="club-dot-pattern" style="padding: var(--space-6) var(--space-3);">
   <div class="club-final-card">
-    <h2 class="font-heading" style="font-size:clamp(22px,3vw,28px); margin-bottom:10px;">bora entrar no clube?</h2>
-    <p style="font-size:13px; color:var(--color-gray); margin-bottom:20px;">Cadastro grátis. Seus primeiros Brilhos começam na primeira compra.</p>
-    <a href="{{ routes.account_register_url }}" class="btn btn--accent" style="text-transform:lowercase;">criar minha conta</a>
+    <h2 class="font-heading" style="font-size:clamp(22px,3vw,28px); margin-bottom:10px;">vem fazer parte desse ritual ✨</h2>
+    <p style="font-size:13px; color:var(--color-gray); margin-bottom:20px;">Cadastre-se gratuitamente e comece a ganhar Brilhos na sua primeira compra.</p>
+    <a href="{{ routes.account_register_url }}" class="btn btn--accent" style="text-transform:lowercase;">quero fazer parte</a>
   </div>
 </section>
 
