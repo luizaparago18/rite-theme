@@ -75,9 +75,10 @@
           "item_zAXE6W": {
             "type": "item",
             "settings": {
-              "handle": "@ninacalladonutri",
+              "video": "shopify://files/videos/videougc.mp4",
+              "handle": "@arianyhermogenes",
               "cta_label": "Ver produto",
-              "link": ""
+              "link": "shopify://collections/pele"
             }
           },
           "item_WtEiK8": {
