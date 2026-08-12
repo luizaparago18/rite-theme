@@ -1,11 +1,14 @@
 <section class="cart-page">
-  <div class="container">
-    <h1 class="section__heading font-heading" style="text-align:left; margin-bottom: var(--space-3);">Seu carrinho</h1>
+  {% if cart.item_count > 0 %}
+    <div class="cart-page__header">
+      <p class="cart-page__eyebrow">seu carrinho</p>
+      <h1 class="font-heading cart-page__title">revise antes de seguir</h1>
+    </div>
 
-    {% if cart.item_count > 0 %}
+    <div class="container">
       {% form 'cart' %}
         <div class="cart-page__grid">
-          <div>
+          <div class="cart-items-card">
             {% for item in cart.items %}
               <div class="cart-item">
                 <div class="cart-item__image">
@@ -15,33 +18,43 @@
                 </div>
                 <div>
                   <p class="cart-item__title">{{ item.product.title }}</p>
-                  <p style="font-size:13px; color:var(--color-gray);">{{ item.variant.title }}</p>
-                  <p style="font-size:14px; margin-top:4px;">{{ item.final_price | money }} × 
-                    <input type="number" name="updates[{{ forloop.index0 }}]" value="{{ item.quantity }}" min="0" style="width:50px;">
-                  </p>
+                  {% if item.variant.title != 'Default Title' %}<p class="cart-item__variant">{{ item.variant.title }}</p>{% endif %}
+                  <div class="cart-item__price-row">
+                    <span>{{ item.final_price | money }}</span>
+                    <span>×</span>
+                    <input type="number" class="cart-item__qty-input" name="updates[{{ forloop.index0 }}]" value="{{ item.quantity }}" min="0">
+                  </div>
                 </div>
-                <button type="submit" name="remove" class="cart-item__remove" formaction="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0">Remover</button>
+                <button type="submit" name="remove" class="cart-item__remove" formaction="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0">remover</button>
               </div>
             {% endfor %}
           </div>
 
           <div class="cart-summary">
+            <p class="cart-summary__title">resumo</p>
             <div class="cart-summary__row">
-              <span>Subtotal</span>
+              <span>subtotal</span>
               <strong>{{ cart.total_price | money }}</strong>
             </div>
-            <p style="font-size:12px; color:var(--color-gray); margin-bottom: var(--space-2);">Frete e descontos calculados no checkout.</p>
-            <button type="submit" name="checkout" class="btn btn--primary btn--full">Finalizar compra</button>
+            <p class="cart-summary__note">Frete e descontos calculados no checkout.</p>
+            <div class="cart-summary__brilhos">
+              <span>✨</span>
+              <span>essa compra também rende Brilhos pro seu Rite Clube</span>
+            </div>
+            <button type="submit" name="checkout" class="btn btn--primary btn--full" style="text-transform:lowercase;">finalizar compra</button>
           </div>
         </div>
       {% endform %}
-    {% else %}
-      <div class="cart-empty">
-        <p style="font-size:18px; margin-bottom: var(--space-2);">Ainda sem nada aqui. Bora começar o ritual?</p>
-        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">Ver produtos</a>
+    </div>
+  {% else %}
+    <div class="cart-empty">
+      <div class="cart-empty-card">
+        <p class="cart-empty-card__heading font-heading">ainda sem nada aqui.</p>
+        <p class="cart-empty-card__body">Bora começar o ritual? Seus produtos favoritos estão a um clique de distância.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary" style="text-transform:lowercase;">ver produtos</a>
       </div>
-    {% endif %}
-  </div>
+    </div>
+  {% endif %}
 </section>
 
 {% schema %}
