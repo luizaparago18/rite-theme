@@ -1,17 +1,54 @@
-<article class="article">
-  {% if article.tags.size > 0 %}<span class="article__tag">{{ article.tags.first }}</span>{% endif %}
-  <h1 class="article__title font-heading">{{ article.title }}</h1>
+<section class="club-dot-pattern article-hero-wrap">
+  <div class="article-hero-card">
+    {% if article.tags.size > 0 %}<span class="article-hero-card__tag">{{ article.tags.first }}</span>{% endif %}
+    <h1 class="font-heading article-hero-card__title">{{ article.title }}</h1>
+  </div>
+</section>
 
-  {% if article.image %}
-    <div class="article__image">
-      <img src="{{ article.image | image_url: width: 1000 }}" alt="{{ article.image.alt | escape }}" style="width:100%;height:100%;object-fit:cover;">
+{% if article.image %}
+  <div class="article-polaroid-wrap">
+    <div class="article-polaroid">
+      <div class="article-polaroid__img">
+        <img src="{{ article.image | image_url: width: 1000 }}" alt="{{ article.image.alt | escape }}" loading="eager">
+      </div>
     </div>
-  {% endif %}
+  </div>
+{% endif %}
 
-  <div class="article__body">{{ article.content }}</div>
+<div class="article-body-wrap">
+  <div class="article-body">{{ article.content }}</div>
+  <a href="{{ blog.url }}" class="article-back-link">← voltar pro blog</a>
+</div>
 
-  <a href="{{ blog.url }}" class="article__back">← Voltar pro blog</a>
-</article>
+{% assign other_count = 0 %}
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <h2 class="section__heading font-heading">veja também</h2>
+    <div class="blog-polaroid-grid">
+      {% for other in blog.articles limit: 3 %}
+        {% unless other.id == article.id %}
+          {% if other_count < 3 %}
+            <a href="{{ other.url }}">
+              <div class="blog-polaroid">
+                <div class="blog-polaroid__img">
+                  {% if other.tags.size > 0 %}<span class="blog-polaroid__tag">{{ other.tags.first }}</span>{% endif %}
+                  {% if other.image %}
+                    <img src="{{ other.image | image_url: width: 500 }}" alt="{{ other.image.alt | escape }}" loading="lazy">
+                  {% else %}
+                    <div class="rite-placeholder">Imagem do post<br>em produção</div>
+                  {% endif %}
+                </div>
+                <p class="blog-polaroid__title">{{ other.title }}</p>
+                <p class="blog-polaroid__excerpt">{{ other.excerpt_or_content | strip_html | truncate: 80 }}</p>
+              </div>
+            </a>
+            {% assign other_count = other_count | plus: 1 %}
+          {% endif %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
 {% schema %}
 { "name": "Artigo", "settings": [] }
