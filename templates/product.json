@@ -39,7 +39,7 @@
             "hide_arrows_mobile": false,
             "arrows_position": "sides",
             "max_width": 1100,
-            "corner_styling": "soft",
+            "corner_styling": "round",
             "header_text_color": "#2e2f1b",
             "text_color": "#2e2f1b",
             "card_color": "#faf5e2",
