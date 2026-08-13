@@ -46,7 +46,7 @@
             "stars_color": "#FFC600",
             "arrows_color": "#2E2F1B",
             "transition_speed": 5,
-            "header_text": "Customers are saying",
+            "header_text": "feedback de quem já experimentou ✨",
             "show_average_rating": true,
             "rating_display": "show_nothing"
           }
