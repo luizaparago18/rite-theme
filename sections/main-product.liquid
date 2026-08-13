@@ -60,11 +60,12 @@
     </div>
   </div>
 
-  {% if section.blocks.size > 0 %}
+  {% assign ugc_blocks = section.blocks | where: 'type', 'lifestyle_media' %}
+  {% if ugc_blocks.size > 0 %}
     <div class="container" style="margin-top: var(--space-6);">
       <h2 class="section__heading font-heading">veja na prática</h2>
       <div class="community-grid">
-        {% for block in section.blocks %}
+        {% for block in ugc_blocks %}
           <div class="community-item">
             <div class="community-item__media">
               {% if block.settings.video != blank %}
@@ -88,8 +89,13 @@
     <div class="pdp__reviews-anchor">
       <h2 class="section__heading font-heading">avaliações</h2>
       <div id="judgeme_product_reviews" data-id="{{ product.id }}">
-        {% comment %} Widget do Judge.me se conecta automaticamente aqui via app embed {% endcomment %}
+        {% comment %} Fallback: caso o app use o método antigo de injeção via JS {% endcomment %}
       </div>
+      {% for block in section.blocks %}
+        {% if block.type == '@app' %}
+          {% render block %}
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -107,7 +113,8 @@
         { "type": "video", "id": "video", "label": "Vídeo (opcional)" },
         { "type": "text", "id": "handle", "label": "@ do criador (opcional)" }
       ]
-    }
+    },
+    { "type": "@app" }
   ]
 }
 {% endschema %}
