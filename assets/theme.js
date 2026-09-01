@@ -18,4 +18,48 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
+
+  // ---------- Carrossel do Hero ----------
+  var carousels = document.querySelectorAll('[data-hero-carousel]');
+  carousels.forEach(function (carousel) {
+    var slides = carousel.querySelectorAll('[data-hero-slide]');
+    var dots = carousel.querySelectorAll('[data-hero-dot]');
+    var prevBtn = carousel.querySelector('[data-hero-prev]');
+    var nextBtn = carousel.querySelector('[data-hero-next]');
+    if (slides.length < 2) return;
+
+    var current = 0;
+    var autoplayDelay = parseInt(carousel.getAttribute('data-hero-autoplay'), 10) || 0;
+    var timer = null;
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function goTo(index) {
+      slides[current].classList.remove('is-active');
+      if (dots[current]) dots[current].classList.remove('is-active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('is-active');
+      if (dots[current]) dots[current].classList.add('is-active');
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function startAutoplay() {
+      if (!autoplayDelay || reducedMotion) return;
+      stopAutoplay();
+      timer = setInterval(next, autoplayDelay);
+    }
+    function stopAutoplay() { if (timer) clearInterval(timer); }
+
+    if (nextBtn) nextBtn.addEventListener('click', function () { next(); startAutoplay(); });
+    if (prevBtn) prevBtn.addEventListener('click', function () { prev(); startAutoplay(); });
+    dots.forEach(function (dot, i) {
+      dot.addEventListener('click', function () { goTo(i); startAutoplay(); });
+    });
+
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+
+    startAutoplay();
+  });
 });
