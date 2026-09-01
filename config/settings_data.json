@@ -27,14 +27,44 @@
       },
       "hero-banner": {
         "type": "hero-banner",
-        "settings": {
-          "eyebrow": "bem-vindo à rite 💛",
-          "heading": "beleza e cuidado que acompanham o seu ritmo",
-          "subheading": "Tratamento, proteção e praticidade em fórmulas que fazem mais, para você precisar de menos.",
-          "button_label": "conheça a rite",
-          "button_url": "",
-          "image": "shopify://shop_images/header-rite.png"
-        }
+        "blocks": {
+          "slide_AkPrga": {
+            "type": "slide",
+            "settings": {
+              "eyebrow": "SEU RITUAL DIÁRIO",
+              "heading": "Com 3 produtos, você tá pronta.",
+              "subheading": "Proteção, tratamento e praticidade num só ritual. Todo dia, sem excesso.",
+              "button_label": "Quero começar",
+              "button_url": ""
+            }
+          },
+          "slide_yUVLzi": {
+            "type": "slide",
+            "settings": {
+              "eyebrow": "SEU RITUAL DIÁRIO",
+              "heading": "Com 3 produtos, você tá pronta.",
+              "subheading": "Proteção, tratamento e praticidade num só ritual. Todo dia, sem excesso.",
+              "button_label": "Quero começar",
+              "button_url": ""
+            }
+          },
+          "slide_jpXhmi": {
+            "type": "slide",
+            "settings": {
+              "eyebrow": "SEU RITUAL DIÁRIO",
+              "heading": "Com 3 produtos, você tá pronta.",
+              "subheading": "Proteção, tratamento e praticidade num só ritual. Todo dia, sem excesso.",
+              "button_label": "Quero começar",
+              "button_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "slide_AkPrga",
+          "slide_yUVLzi",
+          "slide_jpXhmi"
+        ],
+        "settings": {}
       },
       "press-bar": {
         "type": "press-bar",
