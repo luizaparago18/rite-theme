@@ -9,31 +9,25 @@
 <section class="section" style="padding-top: 72px;">
   <div class="container">
     <h2 class="section__heading font-heading">a primeira chega para cuidar de dentro para fora.</h2>
-    <div class="club-benefits">
-      <div class="club-benefit">
-        <div class="club-benefit__icon" style="background:var(--color-yellow); border-color:var(--color-yellow);">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9z" stroke="var(--color-black)" stroke-width="1.5" stroke-linejoin="round"/></svg>
+
+    <div class="split-banner">
+      <div class="split-banner__text" style="text-align:center; align-items:center;">
+        <div class="club-benefit__icon" style="background:var(--color-yellow); border-color:var(--color-yellow); margin:0 auto 14px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9z" stroke="var(--color-black)" stroke-width="1.5" stroke-linejoin="round"/></svg>
         </div>
-        <p class="club-benefit__title">beleza, de dentro para fora</p>
-        <p class="club-benefit__text">Uma fórmula pensada para cabelo, pele e unhas. A primeira Rite Beauty Gummy, chegando muito em breve.</p>
+        <h3 class="font-heading split-banner__heading">rite beauty gummies</h3>
+        <p class="split-banner__body">Uma fórmula pensada para cabelo, pele e unhas — de dentro para fora, no formato que a gente gosta: simples, gostoso e fácil de incorporar à rotina.</p>
       </div>
-      <div class="club-benefit">
-        <div class="club-benefit__icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="6" cy="12" r="1.5" fill="currentColor"/><circle cx="18" cy="12" r="1.5" fill="currentColor"/></svg>
-        </div>
-        <p class="club-benefit__title">em breve</p>
-        <p class="club-benefit__text">Mais novidades do jeito Rite estão a caminho. Um passo de cada vez.</p>
-      </div>
-      <div class="club-benefit">
-        <div class="club-benefit__icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="6" cy="12" r="1.5" fill="currentColor"/><circle cx="18" cy="12" r="1.5" fill="currentColor"/></svg>
-        </div>
-        <p class="club-benefit__title">em breve</p>
-        <p class="club-benefit__text">Mais novidades do jeito Rite estão a caminho. Um passo de cada vez.</p>
+      <div class="split-banner__media">
+        {% if section.settings.beauty_image %}
+          <img src="{{ section.settings.beauty_image | image_url: width: 900 }}" alt="" loading="lazy">
+        {% else %}
+          <div class="rite-placeholder">Imagem da gummy de beleza<br>em produção</div>
+        {% endif %}
       </div>
     </div>
 
-    <p style="text-align:center; font-size:13px; color:var(--color-gray); max-width:480px; margin:var(--space-4) auto 0;">Tudo isso no formato que a gente gosta: simples, gostoso e fácil de incorporar à rotina.</p>
+    <p style="text-align:center; font-size:13px; color:var(--color-gray); max-width:480px; margin:var(--space-4) auto 0;">Mais novidades do jeito Rite estão a caminho. Um passo de cada vez.</p>
   </div>
 </section>
 
@@ -53,5 +47,10 @@
 </section>
 
 {% schema %}
-{ "name": "Gummies (em breve)", "settings": [] }
+{
+  "name": "Gummies (em breve)",
+  "settings": [
+    { "type": "image_picker", "id": "beauty_image", "label": "Imagem da gummy de beleza" }
+  ]
+}
 {% endschema %}
