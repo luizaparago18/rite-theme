@@ -60,6 +60,22 @@ document.addEventListener('DOMContentLoaded', function () {
     carousel.addEventListener('mouseenter', stopAutoplay);
     carousel.addEventListener('mouseleave', startAutoplay);
 
+    // Arrastar com o dedo (swipe) — principal forma de navegar no celular, já que as setas ficam ocultas ali
+    var touchStartX = 0;
+    var touchEndX = 0;
+    carousel.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].screenX;
+      stopAutoplay();
+    }, { passive: true });
+    carousel.addEventListener('touchend', function (e) {
+      touchEndX = e.changedTouches[0].screenX;
+      var delta = touchEndX - touchStartX;
+      if (Math.abs(delta) > 40) {
+        if (delta < 0) { next(); } else { prev(); }
+      }
+      startAutoplay();
+    }, { passive: true });
+
     startAutoplay();
   });
 });
