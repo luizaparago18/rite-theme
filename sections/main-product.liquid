@@ -2,7 +2,7 @@
   <div class="container pdp__grid">
     <div>
       <div class="pdp__gallery-main" data-pdp-gallery>
-        {% for media in product.media limit: 15 %}
+        {% for media in product.media %}
           <div class="pdp__gallery-slide{% if forloop.first %} is-active{% endif %}" data-pdp-slide>
             {% case media.media_type %}
               {% when 'video' %}
@@ -29,7 +29,7 @@
       </div>
       {% if product.media.size > 1 %}
         <div class="pdp__thumbs" data-pdp-thumbs>
-          {% for media in product.media limit: 15 %}
+          {% for media in product.media %}
             <button class="pdp__thumb{% if forloop.first %} is-active{% endif %}" data-pdp-thumb type="button">
               {% if media.media_type == 'video' %}
                 <img src="{{ media.preview_image | image_url: width: 150 }}" alt="" loading="lazy">
