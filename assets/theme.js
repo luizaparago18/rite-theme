@@ -78,4 +78,51 @@ document.addEventListener('DOMContentLoaded', function () {
 
     startAutoplay();
   });
+
+  // ---------- Galeria de produto (fotos + vídeos) ----------
+  var galleries = document.querySelectorAll('[data-pdp-gallery]');
+  galleries.forEach(function (gallery) {
+    var slides = gallery.querySelectorAll('[data-pdp-slide]');
+    var prevBtn = gallery.querySelector('[data-pdp-prev]');
+    var nextBtn = gallery.querySelector('[data-pdp-next]');
+    var counter = gallery.querySelector('[data-pdp-counter]');
+    var thumbsWrap = gallery.parentElement.querySelector('[data-pdp-thumbs]');
+    var thumbs = thumbsWrap ? thumbsWrap.querySelectorAll('[data-pdp-thumb]') : [];
+    if (slides.length < 2) return;
+
+    var current = 0;
+
+    function goTo(index) {
+      var video = slides[current].querySelector('video');
+      if (video) video.pause();
+
+      slides[current].classList.remove('is-active');
+      if (thumbs[current]) thumbs[current].classList.remove('is-active');
+
+      current = (index + slides.length) % slides.length;
+
+      slides[current].classList.add('is-active');
+      if (thumbs[current]) thumbs[current].classList.add('is-active');
+      if (counter) counter.textContent = (current + 1) + ' / ' + slides.length;
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    if (nextBtn) nextBtn.addEventListener('click', next);
+    if (prevBtn) prevBtn.addEventListener('click', prev);
+    thumbs.forEach(function (thumb, i) {
+      thumb.addEventListener('click', function () { goTo(i); });
+    });
+
+    // Arrastar com o dedo, útil quando tem muitas mídias (até 15)
+    var touchStartX = 0;
+    gallery.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    gallery.addEventListener('touchend', function (e) {
+      var delta = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(delta) > 40) { delta < 0 ? next() : prev(); }
+    }, { passive: true });
+  });
 });
