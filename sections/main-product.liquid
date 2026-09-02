@@ -1,18 +1,42 @@
 <section class="pdp">
   <div class="container pdp__grid">
     <div>
-      <div class="pdp__gallery-main" id="pdp-main-image">
-        {% if product.featured_image %}
-          <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | escape }}" id="pdp-main-img-tag" loading="eager">
+      <div class="pdp__gallery-main" data-pdp-gallery>
+        {% for media in product.media limit: 15 %}
+          <div class="pdp__gallery-slide{% if forloop.first %} is-active{% endif %}" data-pdp-slide>
+            {% case media.media_type %}
+              {% when 'video' %}
+                <video controls playsinline preload="metadata" poster="{{ media.preview_image | image_url: width: 800 }}">
+                  <source src="{{ media.sources[1].url | default: media.sources[0].url }}" type="video/mp4">
+                </video>
+              {% else %}
+                <img src="{{ media | image_url: width: 800 }}" alt="{{ media.alt | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+            {% endcase %}
+          </div>
         {% else %}
           <div class="rite-placeholder">Foto do produto<br>em produção</div>
+        {% endfor %}
+
+        {% if product.media.size > 1 %}
+          <button class="pdp__gallery-arrow pdp__gallery-arrow--prev" data-pdp-prev aria-label="Mídia anterior">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="pdp__gallery-arrow pdp__gallery-arrow--next" data-pdp-next aria-label="Próxima mídia">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <span class="pdp__gallery-counter" data-pdp-counter>1 / {{ product.media.size }}</span>
         {% endif %}
       </div>
-      {% if product.images.size > 1 %}
-        <div class="pdp__thumbs">
-          {% for image in product.images limit: 6 %}
-            <button class="pdp__thumb" onclick="document.getElementById('pdp-main-img-tag').src='{{ image | image_url: width: 800 }}'" type="button">
-              <img src="{{ image | image_url: width: 150 }}" alt="{{ image.alt | escape }}" loading="lazy">
+      {% if product.media.size > 1 %}
+        <div class="pdp__thumbs" data-pdp-thumbs>
+          {% for media in product.media limit: 15 %}
+            <button class="pdp__thumb{% if forloop.first %} is-active{% endif %}" data-pdp-thumb type="button">
+              {% if media.media_type == 'video' %}
+                <img src="{{ media.preview_image | image_url: width: 150 }}" alt="" loading="lazy">
+                <span class="pdp__thumb-play" aria-hidden="true">▶</span>
+              {% else %}
+                <img src="{{ media | image_url: width: 150 }}" alt="{{ media.alt | escape }}" loading="lazy">
+              {% endif %}
             </button>
           {% endfor %}
         </div>
