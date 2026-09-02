@@ -367,7 +367,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .pdp { padding: var(--space-5) 0; }
 .pdp__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); align-items: start; }
 @media (max-width: 900px) { .pdp__grid { grid-template-columns: 1fr; gap: var(--space-3); } }
-.pdp__gallery-main { position: relative; background: var(--color-cream); border-radius: var(--radius-lg); aspect-ratio: 1; overflow: hidden; margin-bottom: var(--space-2); }
+.pdp__gallery-main { position: relative; background: var(--color-cream); border-radius: var(--radius-lg); width: 100%; aspect-ratio: 1; max-height: 600px; overflow: hidden; margin-bottom: var(--space-2); }
 .pdp__gallery-slide {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   opacity: 0; visibility: hidden; z-index: 0; transition: opacity .3s ease;
