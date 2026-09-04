@@ -42,11 +42,12 @@
           "slide_yUVLzi": {
             "type": "slide",
             "settings": {
-              "eyebrow": "SEU RITUAL DIÁRIO",
-              "heading": "Com 3 produtos, você tá pronta.",
-              "subheading": "Proteção, tratamento e praticidade num só ritual. Todo dia, sem excesso.",
-              "button_label": "Quero começar",
-              "button_url": ""
+              "eyebrow": "praticidade em 1º lugar",
+              "heading": "3 produtos e você tá pronta!",
+              "subheading": "Aqui os produtos são pensados para acompanhar o seu ritmo. ✨",
+              "button_label": "comprar meu kit",
+              "button_url": "shopify://collections/favoritos",
+              "image": "shopify://shop_images/banner-hero-2.png"
             }
           },
           "slide_jpXhmi": {
