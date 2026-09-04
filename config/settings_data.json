@@ -31,11 +31,12 @@
           "slide_AkPrga": {
             "type": "slide",
             "settings": {
-              "eyebrow": "SEU RITUAL DIÁRIO",
-              "heading": "Com 3 produtos, você tá pronta.",
-              "subheading": "Proteção, tratamento e praticidade num só ritual. Todo dia, sem excesso.",
-              "button_label": "Quero começar",
-              "button_url": ""
+              "eyebrow": "BEM-VINDO À RITE 💛",
+              "heading": "beleza e cuidado que acompanham o seu ritmo",
+              "subheading": "Proteção, tratamento e praticidade num só ritual.",
+              "button_label": "conheça a rite",
+              "button_url": "shopify://collections/all",
+              "image": "shopify://shop_images/banner-hero-main.jpg"
             }
           },
           "slide_yUVLzi": {
