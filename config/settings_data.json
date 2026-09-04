@@ -30,10 +30,11 @@
         "blocks": {
           "slide_FDFnpU": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "eyebrow": "CUIDADO PARA TODO MUNDO 💛",
-              "heading": "cada um tem seu jeito de se cuidar e a rite contempla todos",
-              "subheading": "produtos práticos para acompanhar você, seja qual for a sua rotina",
+              "heading": "monte uma rotina de autocuidado do seu jeito",
+              "subheading": "beleza e cuidado pensados para diferentes rotinas, para acompanhar o seu ritmo",
               "button_label": "conheça nossos produtos",
               "button_url": "shopify://collections/all"
             }
