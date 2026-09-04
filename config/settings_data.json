@@ -28,6 +28,16 @@
       "hero-banner": {
         "type": "hero-banner",
         "blocks": {
+          "slide_FDFnpU": {
+            "type": "slide",
+            "settings": {
+              "eyebrow": "CUIDADO PARA TODO MUNDO 💛",
+              "heading": "produtos práticos para acompanhar você, seja qual for a sua rotina",
+              "subheading": "Proteção, tratamento e praticidade num só ritual. Todo dia, sem excesso.",
+              "button_label": "Quero começar",
+              "button_url": ""
+            }
+          },
           "slide_AkPrga": {
             "type": "slide",
             "settings": {
@@ -52,6 +62,7 @@
           },
           "slide_CM8kQg": {
             "type": "slide",
+            "disabled": true,
             "settings": {
               "eyebrow": "semana do autocuidado ✨",
               "heading": "cuide de você, do seu jeito",
@@ -62,6 +73,7 @@
           }
         },
         "block_order": [
+          "slide_FDFnpU",
           "slide_AkPrga",
           "slide_yUVLzi",
           "slide_CM8kQg"
