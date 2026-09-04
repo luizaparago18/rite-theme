@@ -49,11 +49,22 @@
               "button_url": "shopify://collections/all",
               "image": "shopify://shop_images/banner-hero-2.png"
             }
+          },
+          "slide_CM8kQg": {
+            "type": "slide",
+            "settings": {
+              "eyebrow": "semana do autocuidado ✨",
+              "heading": "cuide de você, do seu jeito",
+              "subheading": "aproveite os descontos e monte a sua rotina perfeita de autocuidado",
+              "button_label": "acesse os descontos",
+              "button_url": ""
+            }
           }
         },
         "block_order": [
           "slide_AkPrga",
-          "slide_yUVLzi"
+          "slide_yUVLzi",
+          "slide_CM8kQg"
         ],
         "settings": {}
       },
