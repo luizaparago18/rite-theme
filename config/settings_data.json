@@ -39,16 +39,6 @@
               "image": "shopify://shop_images/banner-hero-main.jpg"
             }
           },
-          "slide_i9iLje": {
-            "type": "slide",
-            "settings": {
-              "eyebrow": "SEU RITUAL DIÁRIO",
-              "heading": "Com 3 produtos, você tá pronta.",
-              "subheading": "Proteção, tratamento e praticidade num só ritual. Todo dia, sem excesso.",
-              "button_label": "Quero começar",
-              "button_url": ""
-            }
-          },
           "slide_yUVLzi": {
             "type": "slide",
             "settings": {
@@ -59,23 +49,11 @@
               "button_url": "shopify://collections/favoritos",
               "image": "shopify://shop_images/banner-hero-2.png"
             }
-          },
-          "slide_jpXhmi": {
-            "type": "slide",
-            "settings": {
-              "eyebrow": "SEU RITUAL DIÁRIO",
-              "heading": "Com 3 produtos, você tá pronta.",
-              "subheading": "Proteção, tratamento e praticidade num só ritual. Todo dia, sem excesso.",
-              "button_label": "Quero começar",
-              "button_url": ""
-            }
           }
         },
         "block_order": [
           "slide_AkPrga",
-          "slide_i9iLje",
-          "slide_yUVLzi",
-          "slide_jpXhmi"
+          "slide_yUVLzi"
         ],
         "settings": {}
       },
