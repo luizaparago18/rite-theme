@@ -31,50 +31,42 @@
           "slide_FDFnpU": {
             "type": "slide",
             "settings": {
-              "eyebrow": "CUIDADO PARA TODO MUNDO 💛",
-              "heading": "monte uma rotina de autocuidado do seu jeito",
-              "subheading": "beleza e cuidado pensados para diferentes rotinas, para acompanhar o seu ritmo",
-              "button_label": "conheça nossos produtos",
-              "button_url": "shopify://collections/all",
-              "image": "shopify://shop_images/banner-hero-header-3__2K_202609061745_jpg.jpg"
+              "image": "shopify://shop_images/teste-dek-banner.png",
+              "mobile_image": "shopify://shop_images/teste-mob-banner.png",
+              "link": ""
+            }
+          },
+          "slide_xNgaLU": {
+            "type": "slide",
+            "settings": {
+              "link": ""
             }
           },
           "slide_AkPrga": {
             "type": "slide",
             "settings": {
-              "eyebrow": "BEM-VINDO À RITE 💛",
-              "heading": "beleza e cuidado que acompanham o seu ritmo",
-              "subheading": "Proteção, tratamento e praticidade num só ritual.",
-              "button_label": "conheça a rite",
-              "button_url": "shopify://collections/all",
-              "image": "shopify://shop_images/banner-hero-main.jpg"
+              "image": "shopify://shop_images/banner-hero-main.jpg",
+              "link": ""
             }
           },
           "slide_yUVLzi": {
             "type": "slide",
             "settings": {
-              "eyebrow": "praticidade em 1º lugar! ✨",
-              "heading": "tudo que você precisa em apenas 3 produtos",
-              "subheading": "sua rotina muito mais simples.",
-              "button_label": "monte o seu kit",
-              "button_url": "shopify://collections/all",
-              "image": "shopify://shop_images/banner-hero-2.png"
+              "image": "shopify://shop_images/banner-hero-2.png",
+              "link": ""
             }
           },
           "slide_CM8kQg": {
             "type": "slide",
             "disabled": true,
             "settings": {
-              "eyebrow": "semana do autocuidado ✨",
-              "heading": "cuide de você, do seu jeito",
-              "subheading": "aproveite esse momento para montar a sua rotina perfeita de autocuidado",
-              "button_label": "aproveite a semana de autocuidado rite",
-              "button_url": ""
+              "link": ""
             }
           }
         },
         "block_order": [
           "slide_FDFnpU",
+          "slide_xNgaLU",
           "slide_AkPrga",
           "slide_yUVLzi",
           "slide_CM8kQg"
