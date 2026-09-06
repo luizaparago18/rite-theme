@@ -30,13 +30,13 @@
         "blocks": {
           "slide_FDFnpU": {
             "type": "slide",
-            "disabled": true,
             "settings": {
               "eyebrow": "CUIDADO PARA TODO MUNDO 💛",
               "heading": "monte uma rotina de autocuidado do seu jeito",
               "subheading": "beleza e cuidado pensados para diferentes rotinas, para acompanhar o seu ritmo",
               "button_label": "conheça nossos produtos",
-              "button_url": "shopify://collections/all"
+              "button_url": "shopify://collections/all",
+              "image": "shopify://shop_images/banner-hero-header-3__2K_202609061745_jpg.jpg"
             }
           },
           "slide_AkPrga": {
