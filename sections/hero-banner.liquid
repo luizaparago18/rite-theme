@@ -1,21 +1,14 @@
 <section class="hero hero--carousel" data-hero-carousel {% if section.blocks.size > 1 %}data-hero-autoplay="6000"{% endif %}>
   <div class="hero__slides">
     {% for block in section.blocks %}
-      {% assign is_ready_banner = block.settings.banner_style == 'ready' %}
-      <div class="hero__slide{% if forloop.first %} is-active{% endif %}{% if is_ready_banner %} hero__slide--ready{% endif %}" data-hero-slide {{ block.shopify_attributes }}>
+      <div class="hero__slide is-image-only{% if forloop.first %} is-active{% endif %}" data-hero-slide {{ block.shopify_attributes }}>
 
-        {% if block.settings.video != blank %}
-          <video class="hero__media" autoplay muted loop playsinline poster="{{ block.settings.image | image_url: width: 1600 }}">
-            <source src="{{ block.settings.video.sources[1].url | default: block.settings.video.sources[0].url }}" type="video/mp4">
-          </video>
-
-        {% elsif is_ready_banner %}
-          {% comment %} Banner já com texto embutido: mostra a imagem inteira, sem cortar, e troca pra versão específica no celular se ela existir {% endcomment %}
-          <picture>
-            {% if block.settings.mobile_image %}
-              <source media="(max-width: 700px)" srcset="{{ block.settings.mobile_image | image_url: width: 900 }}">
-            {% endif %}
-            <img class="hero__media hero__media--contain"
+        <picture>
+          {% if block.settings.mobile_image %}
+            <source media="(max-width: 700px)" srcset="{{ block.settings.mobile_image | image_url: width: 900 }} 900w, {{ block.settings.mobile_image | image_url: width: 1400 }} 1400w">
+          {% endif %}
+          {% if block.settings.image %}
+            <img class="hero__media"
                  src="{{ block.settings.image | image_url: width: 1600 }}"
                  srcset="{{ block.settings.image | image_url: width: 750 }} 750w,
                          {{ block.settings.image | image_url: width: 1100 }} 1100w,
@@ -24,35 +17,14 @@
                  sizes="100vw"
                  alt="{{ block.settings.image.alt | escape }}"
                  loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
-          </picture>
-
-        {% elsif block.settings.image %}
-          <img class="hero__media"
-               src="{{ block.settings.image | image_url: width: 1600 }}"
-               srcset="{{ block.settings.image | image_url: width: 750 }} 750w,
-                       {{ block.settings.image | image_url: width: 1100 }} 1100w,
-                       {{ block.settings.image | image_url: width: 1600 }} 1600w,
-                       {{ block.settings.image | image_url: width: 2000 }} 2000w"
-               sizes="100vw"
-               alt="{{ block.settings.image.alt | escape }}"
-               loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
-        {% endif %}
-
-        {% unless is_ready_banner %}
-          <div class="hero__overlay"></div>
-          <div class="hero__content">
-            {% if block.settings.eyebrow != blank %}<p class="hero__eyebrow">{{ block.settings.eyebrow }}</p>{% endif %}
-            <h1 class="hero__heading font-heading">{{ block.settings.heading | default: 'Com 3 produtos, você tá pronta.' }}</h1>
-            {% if block.settings.subheading != blank %}<p class="hero__subheading">{{ block.settings.subheading }}</p>{% endif %}
-            {% if block.settings.button_label != blank %}
-              <a href="{{ block.settings.button_url | default: '/collections/all' }}" class="btn btn--accent">{{ block.settings.button_label }}</a>
-            {% endif %}
-          </div>
-        {% else %}
-          {% if block.settings.button_label != blank %}
-            <a href="{{ block.settings.button_url | default: '/collections/all' }}" class="hero__ready-link" aria-label="{{ block.settings.button_label }}"></a>
+          {% else %}
+            <div class="rite-placeholder" style="width:100%; height:100%;">Imagem do banner<br>em produção</div>
           {% endif %}
-        {% endunless %}
+        </picture>
+
+        {% if block.settings.link != blank %}
+          <a href="{{ block.settings.link }}" class="hero__ready-link" aria-label="Ver mais"></a>
+        {% endif %}
       </div>
     {% endfor %}
   </div>
@@ -81,24 +53,9 @@
       "type": "slide",
       "name": "Banner",
       "settings": [
-        {
-          "type": "select",
-          "id": "banner_style",
-          "label": "Tipo de banner",
-          "options": [
-            { "value": "text_overlay", "label": "Escrever texto por cima da imagem" },
-            { "value": "ready", "label": "Imagem já pronta (com texto embutido)" }
-          ],
-          "default": "text_overlay"
-        },
-        { "type": "image_picker", "id": "image", "label": "Imagem (desktop)" },
-        { "type": "image_picker", "id": "mobile_image", "label": "Imagem específica para celular (opcional, recomendado se o banner tiver texto embutido)", "info": "Use só se marcou 'Imagem já pronta' acima. Se não preencher, a imagem de desktop será usada nos dois." },
-        { "type": "video", "id": "video", "label": "Vídeo de fundo (opcional — substitui as imagens, funciona só no modo 'texto por cima')" },
-        { "type": "text", "id": "eyebrow", "label": "Texto pequeno (eyebrow) — só no modo 'texto por cima'", "default": "SEU RITUAL DIÁRIO" },
-        { "type": "text", "id": "heading", "label": "Título — só no modo 'texto por cima'", "default": "Com 3 produtos, você tá pronta." },
-        { "type": "textarea", "id": "subheading", "label": "Subtítulo — só no modo 'texto por cima'", "default": "Proteção, tratamento e praticidade num só ritual. Todo dia, sem excesso." },
-        { "type": "text", "id": "button_label", "label": "Texto do botão (nos dois modos)", "default": "Quero começar" },
-        { "type": "url", "id": "button_url", "label": "Link do botão" }
+        { "type": "image_picker", "id": "image", "label": "Imagem — desktop (2000 x 750px)" },
+        { "type": "image_picker", "id": "mobile_image", "label": "Imagem — celular (1000 x 1250px)" },
+        { "type": "url", "id": "link", "label": "Link do banner (pra onde a pessoa vai ao clicar)" }
       ]
     }
   ],
