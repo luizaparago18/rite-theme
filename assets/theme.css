@@ -692,3 +692,12 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .gummies-final-card .newsletter__form { max-width: 380px; }
 .gummies-final-card .newsletter__form input { border-color: rgba(255,255,255,0.3); }
 
+
+/* ---------- Ajuste do título do widget de avaliações (Judge.me) ---------- */
+.jdgm-rev-widg__title {
+  font-size: clamp(20px, 3vw, 26px) !important;
+  line-height: 1.15 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+}
