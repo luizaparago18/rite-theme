@@ -28,48 +28,35 @@
       "hero-banner": {
         "type": "hero-banner",
         "blocks": {
-          "slide_FDFnpU": {
-            "type": "slide",
-            "settings": {
-              "image": "shopify://shop_images/teste-dek-banner.png",
-              "mobile_image": "shopify://shop_images/teste-mob-banner.png",
-              "link": ""
-            }
-          },
           "slide_xNgaLU": {
             "type": "slide",
             "settings": {
-              "link": ""
+              "image": "shopify://shop_images/banne_1_desktop.png",
+              "mobile_image": "shopify://shop_images/banne_1_mobile.png",
+              "link": "shopify://collections/all"
             }
           },
           "slide_AkPrga": {
             "type": "slide",
             "settings": {
-              "image": "shopify://shop_images/banner-hero-main.jpg",
-              "link": ""
+              "image": "shopify://shop_images/banne_2_desktop.png",
+              "mobile_image": "shopify://shop_images/banne_2_mobile.png",
+              "link": "shopify://collections/favoritos"
             }
           },
           "slide_yUVLzi": {
             "type": "slide",
             "settings": {
-              "image": "shopify://shop_images/banner-hero-2.png",
-              "link": ""
-            }
-          },
-          "slide_CM8kQg": {
-            "type": "slide",
-            "disabled": true,
-            "settings": {
-              "link": ""
+              "image": "shopify://shop_images/banne_3_desktop.png",
+              "mobile_image": "shopify://shop_images/banne_3_mobile.png",
+              "link": "shopify://collections/all"
             }
           }
         },
         "block_order": [
-          "slide_FDFnpU",
           "slide_xNgaLU",
           "slide_AkPrga",
-          "slide_yUVLzi",
-          "slide_CM8kQg"
+          "slide_yUVLzi"
         ],
         "settings": {}
       },
