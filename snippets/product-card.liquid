@@ -26,5 +26,5 @@
     {% endif %}
   </p>
 
-  <a href="{{ product.url | default: '#' }}" class="btn btn--primary btn--full" style="text-transform:lowercase;">adicionar ao carrinho</a>
+  <a href="{{ product.url | default: '#' }}" class="btn btn--primary btn--full" style="text-transform:lowercase;">{% if compact %}adicionar{% else %}adicionar ao carrinho{% endif %}</a>
 </div>
