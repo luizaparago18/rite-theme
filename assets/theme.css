@@ -314,40 +314,40 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 /* ---------- Vídeos de cliente testando o produto (PDP) ---------- */
 .pdp-ugc-block {
   background: var(--color-cream); border-radius: var(--radius-lg);
-  padding: var(--space-4) var(--space-3);
+  padding: var(--space-3);
 }
-.pdp-ugc-block .section__heading { text-align: center; margin-bottom: var(--space-3); }
+.pdp-ugc-block__heading {
+  font-size: 20px; text-align: center; margin-bottom: 4px; color: var(--color-black); line-height: 1.2;
+}
+.pdp-ugc-block__subheading {
+  font-family: var(--font-body); font-size: 13px; text-align: center; color: var(--color-gray);
+  max-width: 420px; margin: 0 auto var(--space-3); line-height: 1.5;
+}
 
 .pdp-video-grid {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3);
-  max-width: 780px; margin: 0 auto;
+  display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch; padding-bottom: 4px;
+  max-width: 560px; margin: 0 auto;
 }
+.pdp-video-item { flex: 0 0 108px; scroll-snap-align: start; }
 .pdp-video-item__media {
-  position: relative; aspect-ratio: 9/16; border-radius: var(--radius-lg);
-  background: var(--color-cream); overflow: hidden;
+  position: relative; aspect-ratio: 9/16; border-radius: var(--radius-md);
+  background: var(--color-white); overflow: hidden;
 }
 .pdp-video-item__media video, .pdp-video-item__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.pdp-video-item__media video { background: var(--color-cream); }
+.pdp-video-item__media video { background: var(--color-white); }
 .pdp-video-item__play {
-  position: absolute; bottom: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%;
+  position: absolute; bottom: 8px; right: 8px; width: 22px; height: 22px; border-radius: 50%;
   background: rgba(255,255,255,0.85); color: var(--color-black);
   display: flex; align-items: center; justify-content: center;
 }
-.pdp-video-item__handle { display: block; margin-top: 8px; font-size: 12px; font-weight: 600; text-align: center; }
+.pdp-video-item__play svg { width: 12px; height: 12px; }
+.pdp-video-item__handle { display: block; margin-top: 6px; font-size: 11px; font-weight: 600; text-align: center; }
 
 @media (max-width: 700px) {
-  .pdp-video-grid {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: 62%;
-    gap: var(--space-2);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 4px;
-    max-width: 100%;
-    -webkit-overflow-scrolling: touch;
-  }
-  .pdp-video-item { scroll-snap-align: start; }
+  .pdp-ugc-block__heading { font-size: 18px; }
+  .pdp-ugc-block__subheading { font-size: 12px; padding: 0 8px; }
+  .pdp-video-item { flex: 0 0 92px; }
 }
 .rite-placeholder { width: 100%; height: 100%; background: repeating-linear-gradient(45deg, rgba(45,42,38,0.06), rgba(45,42,38,0.06) 10px, transparent 10px, transparent 20px); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--color-gray); text-align: center; padding: 16px; box-sizing: border-box; }
 
