@@ -339,6 +339,9 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 }
 .pdp-video-item__media video, .pdp-video-item__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .pdp-video-item__media video { background: var(--color-white); }
+.pdp-video-item__media video:fullscreen { object-fit: contain; background: #000; }
+.pdp-video-item__media video:-webkit-full-screen { object-fit: contain; background: #000; }
+.pdp-video-item__media video::backdrop { background: #000; }
 .pdp-video-item__play {
   position: absolute; bottom: 8px; right: 8px; width: 26px; height: 26px; border-radius: 50%;
   background: rgba(255,255,255,0.85); color: var(--color-black);
