@@ -175,7 +175,7 @@
             "settings": {
               "image": "shopify://shop_images/gummies-categoria-1.png",
               "label": "SUPLEMENTOS",
-              "link": "shopify://collections/suplementos"
+              "link": "shopify://pages/gummies"
             }
           }
         },
@@ -197,7 +197,7 @@
               "tag": "Rotina",
               "title": "Título do post",
               "excerpt": "Resumo curto do post vai aqui.",
-              "link": ""
+              "link": "shopify://blogs/blog-da-rite/stick-3-em-1-o-produto-que-facilita-sua-rotina-de-beleza"
             }
           },
           "placeholder_post_qQaxP4": {
@@ -206,7 +206,7 @@
               "tag": "Rotina",
               "title": "Título do post",
               "excerpt": "Resumo curto do post vai aqui.",
-              "link": ""
+              "link": "shopify://blogs/blog-da-rite/cuidado-diario-do-rosto-com-protetor-solar-em-bastao-tratamento-que-comeca-na-protecao"
             }
           },
           "placeholder_post_GTfR9a": {
@@ -215,7 +215,7 @@
               "tag": "Rotina",
               "title": "Título do post",
               "excerpt": "Resumo curto do post vai aqui.",
-              "link": ""
+              "link": "shopify://blogs/blog-da-rite/detox-capilar-essencial-purifique-seus-fios-e-restaure-o-equilibrio-natural-com-rite"
             }
           }
         },
