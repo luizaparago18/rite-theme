@@ -94,7 +94,7 @@
           {% for video_file in ugc_videos %}
             {% assign video_src = video_file.sources[0].url | default: video_file.url %}
             <div class="pdp-video-item">
-              <div class="pdp-video-item__media">
+              <div class="pdp-video-item__media" data-pdp-ugc-video>
                 <video autoplay muted loop playsinline preload="metadata">
                   <source src="{{ video_src }}" type="video/mp4">
                 </video>
