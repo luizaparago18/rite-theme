@@ -46,7 +46,7 @@
             "stars_color": "#ffc600",
             "arrows_color": "#2e2f1b",
             "transition_speed": 5,
-            "header_text": "opiniões de quem já experimentou ✨",
+            "header_text": "o que dizem por aí ✨",
             "show_average_rating": true,
             "rating_display": "show_nothing"
           }
