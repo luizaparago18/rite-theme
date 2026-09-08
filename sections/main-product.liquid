@@ -88,12 +88,11 @@
   {% if ugc_videos.size > 0 %}
     <div class="container" style="margin-top: var(--space-6);">
       <div class="pdp-ugc-block">
-        <h2 class="section__heading font-heading">veja na pele, na rotina e na prática</h2>
+        <h2 class="pdp-ugc-block__heading font-heading">rite na prática 💛</h2>
+        <p class="pdp-ugc-block__subheading">veja como nossos produtos funcionam na pele, no cabelo e na rotina</p>
         <div class="pdp-video-grid">
           {% for video_file in ugc_videos %}
             {% assign video_src = video_file.sources[0].url | default: video_file.url %}
-            <!-- DEBUG video_file: {{ video_file | json }} -->
-            <!-- DEBUG video_src: {{ video_src }} -->
             <div class="pdp-video-item">
               <div class="pdp-video-item__media">
                 <video autoplay muted loop playsinline preload="metadata">
