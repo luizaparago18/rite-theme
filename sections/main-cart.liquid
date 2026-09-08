@@ -6,7 +6,7 @@
     </div>
 
     <div class="container">
-      {% form 'cart' %}
+      {% form 'cart', cart %}
         <div class="cart-page__grid">
           <div class="cart-items-card">
             {% for item in cart.items %}
