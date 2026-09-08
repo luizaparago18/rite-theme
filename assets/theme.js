@@ -125,4 +125,35 @@ document.addEventListener('DOMContentLoaded', function () {
       if (Math.abs(delta) > 40) { delta < 0 ? next() : prev(); }
     }, { passive: true });
   });
+
+  // ---------- Vídeos "veja na prática" — clique expande em tela cheia ----------
+  var ugcVideoWraps = document.querySelectorAll('[data-pdp-ugc-video]');
+  ugcVideoWraps.forEach(function (wrap) {
+    var video = wrap.querySelector('video');
+    if (!video) return;
+
+    wrap.addEventListener('click', function () {
+      video.muted = false;
+      video.controls = true;
+      if (video.requestFullscreen) { video.requestFullscreen(); }
+      else if (video.webkitEnterFullscreen) { video.webkitEnterFullscreen(); } // iOS Safari
+      else if (video.webkitRequestFullscreen) { video.webkitRequestFullscreen(); }
+    });
+
+    function restoreThumbnailState() {
+      var isFullscreen = document.fullscreenElement === video || document.webkitFullscreenElement === video;
+      if (!isFullscreen) {
+        video.muted = true;
+        video.controls = false;
+        video.play();
+      }
+    }
+    document.addEventListener('fullscreenchange', restoreThumbnailState);
+    document.addEventListener('webkitfullscreenchange', restoreThumbnailState);
+    video.addEventListener('webkitendfullscreen', function () {
+      video.muted = true;
+      video.controls = false;
+      video.play();
+    });
+  });
 });
