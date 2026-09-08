@@ -90,20 +90,30 @@
       <div class="pdp-ugc-block">
         <h2 class="pdp-ugc-block__heading font-heading">rite na prática 💛</h2>
         <p class="pdp-ugc-block__subheading">veja como nossos produtos funcionam na pele, no cabelo e na rotina</p>
-        <div class="pdp-video-grid">
-          {% for video_file in ugc_videos %}
-            {% assign video_src = video_file.sources[0].url | default: video_file.url %}
-            <div class="pdp-video-item">
-              <div class="pdp-video-item__media" data-pdp-ugc-video>
-                <video autoplay muted loop playsinline preload="metadata">
-                  <source src="{{ video_src }}" type="video/mp4">
-                </video>
-                <span class="pdp-video-item__play" aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                </span>
+        <div class="pdp-ugc-carousel" data-pdp-ugc-carousel>
+          <div class="pdp-video-grid" data-pdp-ugc-track>
+            {% for video_file in ugc_videos %}
+              {% assign video_src = video_file.sources[0].url | default: video_file.url %}
+              <div class="pdp-video-item">
+                <div class="pdp-video-item__media" data-pdp-ugc-video>
+                  <video autoplay muted loop playsinline preload="metadata">
+                    <source src="{{ video_src }}" type="video/mp4">
+                  </video>
+                  <span class="pdp-video-item__play" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  </span>
+                </div>
               </div>
-            </div>
-          {% endfor %}
+            {% endfor %}
+          </div>
+          {% if ugc_videos.size > 3 %}
+            <button class="pdp-ugc-arrow pdp-ugc-arrow--prev" data-pdp-ugc-prev aria-label="Vídeos anteriores">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="pdp-ugc-arrow pdp-ugc-arrow--next" data-pdp-ugc-next aria-label="Mais vídeos">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          {% endif %}
         </div>
       </div>
     </div>
