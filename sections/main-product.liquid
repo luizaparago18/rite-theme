@@ -91,10 +91,13 @@
         <h2 class="section__heading font-heading">veja na pele, na rotina e na prática</h2>
         <div class="pdp-video-grid">
           {% for video_file in ugc_videos %}
+            {% assign video_src = video_file.sources[0].url | default: video_file.url %}
+            <!-- DEBUG video_file: {{ video_file | json }} -->
+            <!-- DEBUG video_src: {{ video_src }} -->
             <div class="pdp-video-item">
               <div class="pdp-video-item__media">
                 <video autoplay muted loop playsinline preload="metadata">
-                  <source src="{{ video_file.url }}" type="video/mp4">
+                  <source src="{{ video_src }}" type="video/mp4">
                 </video>
                 <span class="pdp-video-item__play" aria-hidden="true">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
