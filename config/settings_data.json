@@ -32,15 +32,15 @@
             "type": "slide",
             "settings": {
               "image": "shopify://shop_images/banne_1_desktop.png",
-              "mobile_image": "shopify://shop_images/banne_1_mobile.png",
+              "mobile_image": "shopify://shop_images/banne_1_mobile_e153daa1-3606-4d6d-b12c-738a2c285bd4.png",
               "link": "shopify://collections/all"
             }
           },
           "slide_AkPrga": {
             "type": "slide",
             "settings": {
-              "image": "shopify://shop_images/banne_2_desktop.png",
-              "mobile_image": "shopify://shop_images/banne_2_mobile.png",
+              "image": "shopify://shop_images/banne_2_desktop_0260f8a8-9e82-47b6-95d8-190fa863da19.png",
+              "mobile_image": "shopify://shop_images/banne_2_mobile_3bac0fd6-b5b9-42e1-aff2-158fb48e1de5.png",
               "link": "shopify://collections/favoritos"
             }
           },
