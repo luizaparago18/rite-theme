@@ -40,7 +40,7 @@
           "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "show_sample_reviews": true,
-            "reviews_selection": "all",
+            "reviews_selection": "product_reviews",
             "products": [],
             "filter_pinned": false,
             "filter_featured": false,
@@ -58,7 +58,7 @@
             "show_product_name": false,
             "hide_arrows_mobile": false,
             "arrows_position": "sides",
-            "max_width": 1000,
+            "max_width": 1100,
             "corner_styling": "round",
             "header_text_color": "#2e2f1b",
             "text_color": "#2e2f1b",
