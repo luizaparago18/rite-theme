@@ -127,6 +127,30 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // ---------- Vídeos "veja na prática" — clique expande em tela cheia ----------
+  // ---------- Vídeos "veja na prática" — setas de navegação ----------
+  var ugcCarousels = document.querySelectorAll('[data-pdp-ugc-carousel]');
+  ugcCarousels.forEach(function (carousel) {
+    var track = carousel.querySelector('[data-pdp-ugc-track]');
+    var prevBtn = carousel.querySelector('[data-pdp-ugc-prev]');
+    var nextBtn = carousel.querySelector('[data-pdp-ugc-next]');
+    if (!track) return;
+
+    function scrollByItems() {
+      var item = track.querySelector('.pdp-video-item');
+      if (!item) return 300;
+      var style = getComputedStyle(track);
+      var gap = parseFloat(style.gap) || 10;
+      return item.offsetWidth + gap;
+    }
+
+    if (nextBtn) nextBtn.addEventListener('click', function () {
+      track.scrollBy({ left: scrollByItems() * 2, behavior: 'smooth' });
+    });
+    if (prevBtn) prevBtn.addEventListener('click', function () {
+      track.scrollBy({ left: -scrollByItems() * 2, behavior: 'smooth' });
+    });
+  });
+
   var ugcVideoWraps = document.querySelectorAll('[data-pdp-ugc-video]');
   ugcVideoWraps.forEach(function (wrap) {
     var video = wrap.querySelector('video');
