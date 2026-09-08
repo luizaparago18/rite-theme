@@ -87,20 +87,22 @@
   {% assign ugc_videos = product.metafields.custom.ugc_videos.value %}
   {% if ugc_videos.size > 0 %}
     <div class="container" style="margin-top: var(--space-6);">
-      <h2 class="section__heading font-heading">veja na prática</h2>
-      <div class="pdp-video-grid">
-        {% for video_file in ugc_videos %}
-          <div class="pdp-video-item">
-            <div class="pdp-video-item__media">
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="{{ video_file.url }}" type="video/mp4">
-              </video>
-              <span class="pdp-video-item__play" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-              </span>
+      <div class="pdp-ugc-block">
+        <h2 class="section__heading font-heading">veja na pele, na rotina e na prática</h2>
+        <div class="pdp-video-grid">
+          {% for video_file in ugc_videos %}
+            <div class="pdp-video-item">
+              <div class="pdp-video-item__media">
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="{{ video_file.url }}" type="video/mp4">
+                </video>
+                <span class="pdp-video-item__play" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </span>
+              </div>
             </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   {% endif %}
