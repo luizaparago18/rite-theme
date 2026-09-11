@@ -455,11 +455,11 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .pdp__variant-group { margin-bottom: var(--space-2); }
 .pdp__variant-label { font-size: 13px; font-weight: 600; margin-bottom: 6px; display: block; }
 .pdp__variant-select { width: 100%; padding: 12px 14px; border-radius: var(--radius-sm); border: 1.5px solid rgba(45,42,38,0.2); background: var(--color-white); font-family: var(--font-body); font-size: 14px; }
-.pdp__purchase-options { display: flex; gap: 8px; margin-bottom: var(--space-2); }
+.pdp__purchase-options { display: flex; gap: 6px; margin-bottom: var(--space-2); }
 .pdp__purchase-option {
   flex: 1; display: flex; align-items: center; justify-content: center; text-align: center;
-  gap: 6px; font-size: 12px; line-height: 1.3; cursor: pointer;
-  padding: 10px 8px; border: 1.5px solid rgba(45,42,38,0.18); border-radius: var(--radius-button);
+  gap: 4px; font-size: 10.5px; line-height: 1.25; cursor: pointer;
+  padding: 6px 6px; border: 1.5px solid rgba(45,42,38,0.18); border-radius: var(--radius-sm);
   transition: border-color .15s ease, background .15s ease, color .15s ease;
 }
 .pdp__purchase-option input { position: absolute; opacity: 0; pointer-events: none; }
