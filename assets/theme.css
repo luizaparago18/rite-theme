@@ -436,7 +436,6 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .pdp__price { font-size: 18px; font-weight: 600; margin-bottom: var(--space-3); padding-bottom: var(--space-3); border-bottom: 1px solid rgba(45,42,38,0.1); }
 .pdp__price s { color: var(--color-gray); margin-right: 8px; font-weight: 400; }
 .pdp__purchase-card { background: var(--color-cream); border-radius: var(--radius-lg); padding: var(--space-3); margin-top: var(--space-3); }
-.pdp__slogan { font-family: var(--font-heading); font-size: 15px; color: var(--color-gray); margin-top: 10px; line-height: 1.4; }
 .pdp__description { font-size: 14px; line-height: 1.65; color: var(--color-black); margin-bottom: var(--space-3); }
 .pdp__description p { margin-bottom: 14px; }
 .pdp__description h1, .pdp__description h2, .pdp__description h3, .pdp__description h4 {
@@ -467,27 +466,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .pdp__purchase-option:has(input:checked) {
   border-color: var(--color-black); background: var(--color-black); color: var(--color-white);
 }
-.pdp__add-row { display: flex; gap: 8px; align-items: stretch; }
-.pdp__add-row .btn { flex: 1; }
-.pdp__qty-stepper {
-  display: flex; align-items: center; flex-shrink: 0;
-  border: 1.5px solid rgba(45,42,38,0.2); border-radius: var(--radius-button);
-  background: var(--color-white); overflow: hidden;
-}
-.pdp__qty-btn {
-  width: 34px; align-self: stretch; border: none; background: none;
-  font-size: 16px; font-weight: 600; color: var(--color-black); cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .15s ease;
-}
-.pdp__qty-btn:hover { background: rgba(45,42,38,0.08); }
-.pdp__qty-input {
-  width: 34px; padding: 12px 0; border: none; background: none; text-align: center;
-  font-family: var(--font-body); font-size: 15px; color: var(--color-black);
-  -moz-appearance: textfield;
-}
-.pdp__qty-input::-webkit-outer-spin-button,
-.pdp__qty-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.pdp__qty-row { display: flex; gap: 12px; margin-bottom: var(--space-2); }
+.pdp__qty-input { width: 80px; padding: 12px; border-radius: var(--radius-sm); border: 1.5px solid rgba(45,42,38,0.2); background: var(--color-white); font-family: var(--font-body); }
 .pdp__diff-list { list-style: none; margin: var(--space-3) 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .pdp__diff-list li { display: flex; gap: 10px; font-size: 14px; align-items: flex-start; }
 .pdp__diff-list li::before { content: "●"; color: var(--color-yellow); flex-shrink: 0; }
