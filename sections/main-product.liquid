@@ -55,6 +55,12 @@
         {% if product.compare_at_price > product.price %}<s>{{ product.compare_at_price | money }}</s>{{ product.price | money }}{% else %}{{ product.price | money | default: 'R$ 00,00' }}{% endif %}
       </p>
 
+      {%- comment -%} SLOGAN — frase curta de cada produto, entre o preço e o box de cor/compra {%- endcomment -%}
+      {%- capture slogan -%}{{ product.metafields.custom.slogan.value }}{%- endcapture -%}
+      {%- if slogan != blank -%}
+        <p class="pdp__slogan">{{ slogan }}</p>
+      {%- endif -%}
+
       {%- comment -%} 3. VARIANTE + BOTÃO DE COMPRAR, logo após o preço (movido de baixo da descrição pra cá) {%- endcomment -%}
       <div class="pdp__purchase-card">
         {% form 'product', product %}
@@ -117,13 +123,38 @@
             </div>
           {% endif %}
 
-          <div class="pdp__qty-row"><input type="number" class="pdp__qty-input" name="quantity" value="1" min="1"></div>
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-          <button type="submit" class="btn btn--primary btn--full" style="text-transform:lowercase;" {% unless product.available %}disabled{% endunless %}>
-            {% if product.available %}adicionar ao carrinho{% else %}esgotado{% endif %}
-          </button>
+          <div class="pdp__add-row">
+            <div class="pdp__qty-stepper" data-qty-stepper>
+              <button type="button" class="pdp__qty-btn" data-qty-decrease aria-label="Diminuir quantidade">–</button>
+              <input type="number" class="pdp__qty-input" name="quantity" value="1" min="1" inputmode="numeric">
+              <button type="button" class="pdp__qty-btn" data-qty-increase aria-label="Aumentar quantidade">+</button>
+            </div>
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <button type="submit" class="btn btn--primary" style="text-transform:lowercase; flex:1;" {% unless product.available %}disabled{% endunless %}>
+              {% if product.available %}adicionar ao carrinho{% else %}esgotado{% endif %}
+            </button>
+          </div>
         {% endform %}
       </div>
+
+      {%- comment -%} Botões de +/- da quantidade. Isolado, não mexe no theme.js. {%- endcomment -%}
+      <script>
+        (function () {
+          document.querySelectorAll('[data-qty-stepper]').forEach(function (stepper) {
+            var input = stepper.querySelector('.pdp__qty-input');
+            var decrease = stepper.querySelector('[data-qty-decrease]');
+            var increase = stepper.querySelector('[data-qty-increase]');
+
+            decrease.addEventListener('click', function () {
+              var min = parseInt(input.min, 10) || 1;
+              input.value = Math.max(min, (parseInt(input.value, 10) || min) - 1);
+            });
+            increase.addEventListener('click', function () {
+              input.value = (parseInt(input.value, 10) || 1) + 1;
+            });
+          });
+        })();
+      </script>
 
       {%- comment -%} Atualiza o texto ao lado do label ("Cor: Bronze Mocha Mousse") quando clica numa bolinha. Isolado, não mexe no theme.js. {%- endcomment -%}
       <script>
