@@ -762,3 +762,37 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 @media (max-width: 700px) {
   .brand-tag { padding: 10px 18px; font-size: 12px; }
 }
+
+/* ==========================================================================
+   PDP — nova hierarquia da coluna de info (título > preço > compra > UGC >
+   accordions), acrescentado para a seção main-product-rite.liquid.
+   Nada acima foi alterado; isto só complementa .pdp / .pdp-ugc-block já
+   existentes.
+   ========================================================================== */
+
+.pdp__info { display: flex; flex-direction: column; gap: var(--space-3); }
+.pdp__info .pdp__title { margin-bottom: 0; }
+.pdp__info .pdp__price { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+.pdp__purchase-card { display: flex; flex-direction: column; gap: var(--space-2); background: none; padding: 0; margin-top: 0; }
+
+.pdp__info .pdp-ugc-block { padding: var(--space-2); }
+
+/* ---------- Accordion nativo da PDP (details/summary, sem JS — mesmo espírito do .club-faq) ---------- */
+.pdp-accordion-list { border-top: 1px solid rgba(45, 42, 38, 0.1); margin-top: var(--space-2); }
+.pdp-accordion { border-bottom: 1px solid rgba(45, 42, 38, 0.1); padding: var(--space-2) 0; }
+.pdp-accordion summary {
+  cursor: pointer; font-weight: 600; font-size: 14px; list-style: none;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.pdp-accordion summary::-webkit-details-marker { display: none; }
+.pdp-accordion summary::after {
+  content: "+"; font-family: var(--font-heading); font-size: 18px; color: var(--color-yellow);
+  -webkit-text-stroke: 1px var(--color-black); flex-shrink: 0; margin-left: var(--space-2);
+}
+.pdp-accordion[open] summary::after { content: "–"; }
+.pdp-accordion .pdp__description { margin-top: 10px; margin-bottom: 0; }
+
+@media (max-width: 900px) {
+  .pdp__info { gap: var(--space-2); }
+}
