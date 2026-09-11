@@ -464,7 +464,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .pdp__purchase-card { background: var(--color-cream); border-radius: var(--radius-lg); padding: var(--space-3); margin-top: var(--space-3); }
 .pdp__slogan {
   font-family: var(--font-body); font-weight: 700; font-size: 16px;
-  color: var(--color-yellow); text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  color: var(--color-yellow);
   margin-top: 10px; line-height: 1.3;
 }
 .pdp__description { font-size: 14px; line-height: 1.65; color: var(--color-black); margin-bottom: var(--space-3); }
@@ -497,6 +497,12 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .pdp__purchase-option:has(input:checked) {
   border-color: var(--color-black); background: var(--color-black); color: var(--color-white);
 }
+.pdp__frequency-select {
+  display: none; width: 100%; margin-bottom: var(--space-2);
+  padding: 10px 12px; border-radius: var(--radius-sm); border: 1.5px solid rgba(45,42,38,0.2);
+  background: var(--color-white); font-family: var(--font-body); font-size: 13px; color: var(--color-black);
+}
+.pdp__purchase-options:has(input[value="subscription"]:checked) + .pdp__frequency-select { display: block; }
 .pdp__add-row { display: flex; gap: 8px; align-items: stretch; }
 .pdp__add-row .btn { flex: 1; }
 .pdp__qty-stepper {
