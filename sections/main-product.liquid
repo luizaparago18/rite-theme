@@ -1,158 +1,146 @@
-<section class="pdp" data-product-id="{{ product.id }}">
-  <div class="container">
-    <div class="pdp__grid">
-
-      {%- comment -%} FOTO / GALERIA — fica onde está, coluna esquerda no desktop {%- endcomment -%}
-      <div class="pdp__media">
-        {%- if product.media.size > 0 -%}
-          <div class="pdp__gallery-main" data-pdp-gallery>
-            {%- for media in product.media -%}
-              <div class="pdp__gallery-slide{% if forloop.first %} is-active{% endif %}" data-pdp-slide>
-                {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
-                  {{ media | media_tag: controls: true }}
-                {%- else -%}
-                  {{ media | image_url: width: 1200 | image_tag:
-                      loading: forloop.first == false,
-                      widths: '400,600,800,1000,1200',
-                      sizes: '(max-width: 900px) 100vw, 50vw',
-                      alt: media.alt | escape
-                  }}
-                {%- endif -%}
-              </div>
-            {%- endfor -%}
-
-            {%- if product.media.size > 1 -%}
-              <button type="button" class="pdp__gallery-arrow pdp__gallery-arrow--prev" data-pdp-prev aria-label="Imagem anterior">‹</button>
-              <button type="button" class="pdp__gallery-arrow pdp__gallery-arrow--next" data-pdp-next aria-label="Próxima imagem">›</button>
-              <span class="pdp__gallery-counter" data-pdp-counter>1 / {{ product.media.size }}</span>
-            {%- endif -%}
+<section class="pdp">
+  <div class="container pdp__grid">
+    <div>
+      <div class="pdp__gallery-main" data-pdp-gallery>
+        {% for media in product.media %}
+          <div class="pdp__gallery-slide{% if forloop.first %} is-active{% endif %}" data-pdp-slide>
+            {% case media.media_type %}
+              {% when 'video' %}
+                <video controls playsinline preload="metadata" poster="{{ media.preview_image | image_url: width: 800 }}">
+                  <source src="{{ media.sources[1].url | default: media.sources[0].url }}" type="video/mp4">
+                </video>
+              {% else %}
+                <img src="{{ media | image_url: width: 800 }}" alt="{{ media.alt | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+            {% endcase %}
           </div>
+        {% else %}
+          <div class="rite-placeholder">Foto do produto<br>em produção</div>
+        {% endfor %}
 
-          {%- if product.media.size > 1 -%}
-            <div class="pdp__thumbs" data-pdp-thumbs>
-              {%- for media in product.media -%}
-                <button
-                  type="button"
-                  class="pdp__thumb{% if forloop.first %} is-active{% endif %}"
-                  data-pdp-thumb
-                  aria-label="Ver mídia {{ forloop.index }}"
-                >
-                  {{ media | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}
-                  {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
-                    <span class="pdp__thumb-play">▶</span>
-                  {%- endif -%}
-                </button>
-              {%- endfor -%}
-            </div>
-          {%- endif -%}
-        {%- else -%}
-          <div class="pdp__gallery-main">
-            <div class="rite-placeholder">Sem imagem</div>
-          </div>
-        {%- endif -%}
+        {% if product.media.size > 1 %}
+          <button class="pdp__gallery-arrow pdp__gallery-arrow--prev" data-pdp-prev aria-label="Mídia anterior">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="pdp__gallery-arrow pdp__gallery-arrow--next" data-pdp-next aria-label="Próxima mídia">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <span class="pdp__gallery-counter" data-pdp-counter>1 / {{ product.media.size }}</span>
+        {% endif %}
       </div>
-
-      {%- comment -%} COLUNA DE INFO: título, preço, compra, UGC, accordions — nessa ordem {%- endcomment -%}
-      <div class="pdp__info">
-
-        {%- comment -%} 2. TÍTULO {%- endcomment -%}
-        <h1 class="pdp__title">{{ product.title }}</h1>
-
-        {%- comment -%} 3. PREÇO {%- endcomment -%}
-        <div class="pdp__price">
-          {%- if product.compare_at_price > product.price -%}
-            <s>{{ product.compare_at_price | money }}</s>
-          {%- endif -%}
-          {{ product.price | money }}
+      {% if product.media.size > 1 %}
+        <div class="pdp__thumbs" data-pdp-thumbs>
+          {% for media in product.media %}
+            <button class="pdp__thumb{% if forloop.first %} is-active{% endif %}" data-pdp-thumb type="button">
+              {% if media.media_type == 'video' %}
+                <img src="{{ media.preview_image | image_url: width: 150 }}" alt="" loading="lazy">
+                <span class="pdp__thumb-play" aria-hidden="true">▶</span>
+              {% else %}
+                <img src="{{ media | image_url: width: 150 }}" alt="{{ media.alt | escape }}" loading="lazy">
+              {% endif %}
+            </button>
+          {% endfor %}
         </div>
+      {% endif %}
+    </div>
 
-        {%- comment -%} 4. VARIANTE + BOTÃO DE COMPRAR, logo após o preço {%- endcomment -%}
-        {%- form 'product', product, class: 'pdp__purchase-card', data-rite-product-form: true -%}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
+    <div>
+      {% if product.vendor != blank %}<p class="pdp__vendor">{{ product.vendor }}</p>{% endif %}
 
-          {%- if product.has_only_default_variant == false -%}
-            {%- for option in product.options_with_values -%}
+      {%- comment -%} 1. TÍTULO {%- endcomment -%}
+      <h1 class="pdp__title font-heading">{{ product.title | default: 'Nome do produto' }}</h1>
+      {% if product.metafields.custom.subtitulo != blank %}<p style="color:var(--color-gray); margin-bottom:12px;">{{ product.metafields.custom.subtitulo }}</p>{% endif %}
+
+      {%- comment -%} 2. PREÇO {%- endcomment -%}
+      <p class="pdp__price">
+        {% if product.compare_at_price > product.price %}<s>{{ product.compare_at_price | money }}</s>{{ product.price | money }}{% else %}{{ product.price | money | default: 'R$ 00,00' }}{% endif %}
+      </p>
+
+      {%- comment -%} 3. VARIANTE + BOTÃO DE COMPRAR, logo após o preço (movido de baixo da descrição pra cá) {%- endcomment -%}
+      <div class="pdp__purchase-card">
+        {% form 'product', product %}
+          {% if product.has_only_default_variant == false %}
+            {% for option in product.options_with_values %}
               <div class="pdp__variant-group">
-                <label class="pdp__variant-label" for="rite-option-{{ option.position }}">{{ option.name }}</label>
-                <select
-                  class="pdp__variant-select"
-                  id="rite-option-{{ option.position }}"
-                  data-option-index="{{ option.position | minus: 1 }}"
-                >
-                  {%- for value in option.values -%}
-                    <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>
-                      {{ value }}
-                    </option>
-                  {%- endfor -%}
+                <label class="pdp__variant-label">{{ option.name }}</label>
+                <select class="pdp__variant-select" name="options[{{ option.name | escape }}]">
+                  {% for value in option.values %}<option value="{{ value | escape }}">{{ value }}</option>{% endfor %}
                 </select>
               </div>
-            {%- endfor -%}
-          {%- endif -%}
+            {% endfor %}
+          {% endif %}
 
-          <button
-            type="submit"
-            name="add"
-            class="btn btn--primary btn--full"
-            {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
-          >
-            <span data-buy-button-text>
-              {%- if product.selected_or_first_available_variant.available -%}
-                Adicionar ao carrinho
-              {%- else -%}
-                Esgotado
-              {%- endif -%}
-            </span>
-          </button>
-        {%- endform -%}
-
-        {%- comment -%} 5. VÍDEOS UGC — mesmo padrão autoplay-mudo + fullscreen no clique que o resto do site já usa {%- endcomment -%}
-        {%- assign ugc_videos = product.metafields.custom.ugc_videos.value -%}
-        {%- if ugc_videos != blank -%}
-          <div class="pdp-ugc-block">
-            <p class="pdp-ugc-block__heading" style="font-size: 18px;">O que estão dizendo</p>
-            <div class="pdp-ugc-carousel" data-pdp-ugc-carousel>
-              <div class="pdp-video-grid" data-pdp-ugc-track>
-                {%- for video in ugc_videos -%}
-                  <div class="pdp-video-item">
-                    <div class="pdp-video-item__media" data-pdp-ugc-video>
-                      <video
-                        src="{{ video | file_url }}"
-                        muted
-                        autoplay
-                        loop
-                        playsinline
-                        preload="metadata"
-                      ></video>
-                      <span class="pdp-video-item__play">▶</span>
-                    </div>
-                  </div>
-                {%- endfor -%}
-              </div>
-              <button type="button" class="pdp-ugc-arrow pdp-ugc-arrow--prev" data-pdp-ugc-prev aria-label="Vídeo anterior">‹</button>
-              <button type="button" class="pdp-ugc-arrow pdp-ugc-arrow--next" data-pdp-ugc-next aria-label="Próximo vídeo">›</button>
+          {% if product.selling_plan_groups.size > 0 %}
+            <div class="pdp__purchase-options">
+              <label class="pdp__purchase-option"><input type="radio" name="purchase_option" value="one_time" checked> Comprar uma vez — {{ product.price | money }}</label>
+              <label class="pdp__purchase-option"><input type="radio" name="purchase_option" value="subscription"> Assinar (Rite em Ciclo) — economize na recompra</label>
             </div>
-          </div>
-        {%- endif -%}
+          {% endif %}
 
-        {%- comment -%} 6. ACCORDIONS nativos (details/summary), no mesmo padrão do .club-faq — sem JS {%- endcomment -%}
+          <div class="pdp__qty-row"><input type="number" class="pdp__qty-input" name="quantity" value="1" min="1"></div>
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <button type="submit" class="btn btn--primary btn--full" style="text-transform:lowercase;" {% unless product.available %}disabled{% endunless %}>
+            {% if product.available %}adicionar ao carrinho{% else %}esgotado{% endif %}
+          </button>
+        {% endform %}
+      </div>
+
+      {%- comment -%} 4. VÍDEOS UGC — movido de baixo do grid pra dentro da coluna, entre a compra e os accordions {%- endcomment -%}
+      {% assign ugc_videos = product.metafields.custom.videos_ugc.value %}
+      {% if ugc_videos.size > 0 %}
+        <div class="pdp-ugc-block" style="margin-top: var(--space-3);">
+          <h2 class="pdp-ugc-block__heading font-heading">rite na prática 💛</h2>
+          <p class="pdp-ugc-block__subheading">veja como nossos produtos funcionam na pele, no cabelo e na rotina</p>
+          <div class="pdp-ugc-carousel" data-pdp-ugc-carousel>
+            <div class="pdp-video-grid" data-pdp-ugc-track>
+              {% for video_file in ugc_videos %}
+                {% assign video_src = video_file.sources[0].url | default: video_file.url %}
+                <div class="pdp-video-item">
+                  <div class="pdp-video-item__media" data-pdp-ugc-video>
+                    <video autoplay muted loop playsinline preload="metadata">
+                      <source src="{{ video_src }}" type="video/mp4">
+                    </video>
+                    <span class="pdp-video-item__play" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </span>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            {% if ugc_videos.size > 3 %}
+              <button class="pdp-ugc-arrow pdp-ugc-arrow--prev" data-pdp-ugc-prev aria-label="Vídeos anteriores">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="pdp-ugc-arrow pdp-ugc-arrow--next" data-pdp-ugc-next aria-label="Mais vídeos">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {%- comment -%}
+        5. ACCORDIONS nativos (details/summary, sem JS): Diferenciais / Como usar / Ingredientes.
+        Se nenhum dos 3 metafields estiver preenchido ainda (produto não migrado), cai no
+        fallback antigo e mostra a descrição corrida, pra não ficar com espaço em branco.
+      {%- endcomment -%}
+      {%- capture diferenciais -%}{{ product.metafields.custom.diferenciais.value }}{%- endcapture -%}
+      {%- capture como_usar -%}{{ product.metafields.custom.como_usar.value }}{%- endcapture -%}
+      {%- capture ingredientes -%}{{ product.metafields.custom.ingredientes.value }}{%- endcapture -%}
+
+      {%- if diferenciais != blank or como_usar != blank or ingredientes != blank -%}
         <div class="pdp-accordion-list">
-          {%- capture diferenciais -%}{{ product.metafields.custom.diferenciais.value }}{%- endcapture -%}
           {%- if diferenciais != blank -%}
             <details class="pdp-accordion">
               <summary>Diferenciais</summary>
               <div class="pdp__description">{{ diferenciais }}</div>
             </details>
           {%- endif -%}
-
-          {%- capture como_usar -%}{{ product.metafields.custom.como_usar.value }}{%- endcapture -%}
           {%- if como_usar != blank -%}
             <details class="pdp-accordion">
               <summary>Como usar</summary>
               <div class="pdp__description">{{ como_usar }}</div>
             </details>
           {%- endif -%}
-
-          {%- capture ingredientes -%}{{ product.metafields.custom.ingredientes.value }}{%- endcapture -%}
           {%- if ingredientes != blank -%}
             <details class="pdp-accordion">
               <summary>Ingredientes</summary>
@@ -160,25 +148,35 @@
             </details>
           {%- endif -%}
         </div>
+      {%- else -%}
+        <div class="pdp__description">{{ product.description | default: 'Descrição do produto entra aqui, seguindo o Guia de Voz da Rite.' }}</div>
+      {%- endif -%}
+    </div>
+  </div>
 
+  <div class="container">
+    <div class="pdp__reviews-anchor">
+      <div id="judgeme_product_reviews" data-id="{{ product.id }}">
+        {% comment %} Fallback: caso o app use o método antigo de injeção via JS {% endcomment %}
       </div>
+      {% for block in section.blocks %}
+        {% if block.type == '@app' %}
+          {% render block %}
+        {% endif %}
+      {% endfor %}
     </div>
   </div>
 </section>
 
-{%- comment -%} Dados de variante pro JS de seleção (acrescentado ao final do theme.js) {%- endcomment -%}
-<script>
-  window.riteProductVariants = {{ product.variants | json }};
-</script>
-
 {% schema %}
 {
-  "name": "PDP Rite",
+  "name": "Produto",
   "settings": [],
+  "blocks": [
+    { "type": "@app" }
+  ],
   "presets": [
-    {
-      "name": "PDP Rite"
-    }
+    { "name": "Produto" }
   ]
 }
 {% endschema %}
