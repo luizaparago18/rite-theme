@@ -455,8 +455,17 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .pdp__variant-group { margin-bottom: var(--space-2); }
 .pdp__variant-label { font-size: 13px; font-weight: 600; margin-bottom: 6px; display: block; }
 .pdp__variant-select { width: 100%; padding: 12px 14px; border-radius: var(--radius-sm); border: 1.5px solid rgba(45,42,38,0.2); background: var(--color-white); font-family: var(--font-body); font-size: 14px; }
-.pdp__purchase-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: var(--space-2); background: var(--color-white); border-radius: var(--radius-md); padding: var(--space-2); }
-.pdp__purchase-option { display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer; }
+.pdp__purchase-options { display: flex; gap: 8px; margin-bottom: var(--space-2); }
+.pdp__purchase-option {
+  flex: 1; display: flex; align-items: center; justify-content: center; text-align: center;
+  gap: 6px; font-size: 12px; line-height: 1.3; cursor: pointer;
+  padding: 10px 8px; border: 1.5px solid rgba(45,42,38,0.18); border-radius: var(--radius-button);
+  transition: border-color .15s ease, background .15s ease, color .15s ease;
+}
+.pdp__purchase-option input { position: absolute; opacity: 0; pointer-events: none; }
+.pdp__purchase-option:has(input:checked) {
+  border-color: var(--color-black); background: var(--color-black); color: var(--color-white);
+}
 .pdp__qty-row { display: flex; gap: 12px; margin-bottom: var(--space-2); }
 .pdp__qty-input { width: 80px; padding: 12px; border-radius: var(--radius-sm); border: 1.5px solid rgba(45,42,38,0.2); background: var(--color-white); font-family: var(--font-body); }
 .pdp__diff-list { list-style: none; margin: var(--space-3) 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
