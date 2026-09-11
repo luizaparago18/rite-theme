@@ -317,7 +317,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   padding: var(--space-3);
 }
 .pdp-ugc-block__heading {
-  font-size: 28px; text-align: center; margin-bottom: 6px; color: var(--color-black); line-height: 1.2;
+  font-size: 15px; text-align: left; margin-bottom: 10px; color: var(--color-black); line-height: 1.2;
+  font-family: var(--font-body); font-weight: 600; text-transform: lowercase;
 }
 .pdp-ugc-block__subheading {
   font-family: var(--font-body); font-size: 15px; text-align: center; color: var(--color-gray);
@@ -325,14 +326,14 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 8px;
 }
 
-.pdp-ugc-carousel { position: relative; max-width: 900px; margin: 0 auto; }
+.pdp-ugc-carousel { position: relative; max-width: 900px; margin: 0; }
 
 .pdp-video-grid {
-  display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x proximity;
+  display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch; padding-bottom: 4px;
   touch-action: pan-x;
 }
-.pdp-video-item { flex: 0 0 140px; scroll-snap-align: start; }
+.pdp-video-item { flex: 0 0 92px; scroll-snap-align: start; }
 .pdp-video-item__media {
   position: relative; aspect-ratio: 9/16; border-radius: var(--radius-md);
   background: var(--color-white); overflow: hidden; cursor: pointer;
@@ -364,9 +365,9 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .pdp-ugc-arrow--next { right: -14px; }
 
 @media (max-width: 700px) {
-  .pdp-ugc-block__heading { font-size: 22px; }
+  .pdp-ugc-block__heading { font-size: 14px; }
   .pdp-ugc-block__subheading { font-size: 13px; white-space: normal; overflow: visible; text-overflow: clip; }
-  .pdp-video-item { flex: 0 0 112px; }
+  .pdp-video-item { flex: 0 0 80px; }
   .pdp-ugc-arrow { width: 38px; height: 38px; }
   .pdp-ugc-arrow--prev { left: -10px; }
   .pdp-ugc-arrow--next { right: -10px; }
