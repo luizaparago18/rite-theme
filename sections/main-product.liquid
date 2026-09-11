@@ -106,8 +106,14 @@
 
           {% if product.selling_plan_groups.size > 0 %}
             <div class="pdp__purchase-options">
-              <label class="pdp__purchase-option"><input type="radio" name="purchase_option" value="one_time" checked> Comprar uma vez — {{ product.price | money }}</label>
-              <label class="pdp__purchase-option"><input type="radio" name="purchase_option" value="subscription"> Assinar (Rite em Ciclo) — economize na recompra</label>
+              <label class="pdp__purchase-option">
+                <input type="radio" name="purchase_option" value="one_time" checked>
+                <span>uma vez<br><strong>{{ product.price | money }}</strong></span>
+              </label>
+              <label class="pdp__purchase-option">
+                <input type="radio" name="purchase_option" value="subscription">
+                <span>assinar<br><strong>economize</strong></span>
+              </label>
             </div>
           {% endif %}
 
