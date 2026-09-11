@@ -217,6 +217,16 @@
         </div>
       {% endif %}
 
+      {%- comment -%} DESTAQUES — ícones/emoji + texto curto, entre os vídeos UGC e os accordions {%- endcomment -%}
+      {%- assign destaques = product.metafields.custom.destaques.value -%}
+      {%- if destaques.size > 0 -%}
+        <ul class="pdp__highlights">
+          {%- for item in destaques -%}
+            <li class="pdp__highlights-item">{{ item }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
       {%- comment -%}
         5. ACCORDIONS nativos (details/summary, sem JS): Diferenciais / Como usar / Ingredientes.
         Se nenhum dos 3 metafields estiver preenchido ainda (produto não migrado), cai no
@@ -300,3 +310,4 @@
   ]
 }
 {% endschema %}
+
