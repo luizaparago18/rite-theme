@@ -60,11 +60,46 @@
         {% form 'product', product %}
           {% if product.has_only_default_variant == false %}
             {% for option in product.options_with_values %}
+              {%- comment -%} detecta se essa opção tem swatch de cor configurado (Shopify > Configurações > Metafields > Cor) {%- endcomment -%}
+              {%- assign has_swatch = false -%}
+              {%- for value in option.values -%}
+                {%- if value.swatch.color != blank or value.swatch.image != blank -%}
+                  {%- assign has_swatch = true -%}
+                {%- endif -%}
+              {%- endfor -%}
+
               <div class="pdp__variant-group">
-                <label class="pdp__variant-label">{{ option.name }}</label>
-                <select class="pdp__variant-select" name="options[{{ option.name | escape }}]">
-                  {% for value in option.values %}<option value="{{ value | escape }}">{{ value }}</option>{% endfor %}
-                </select>
+                <label class="pdp__variant-label">
+                  {{ option.name }}{% if has_swatch %}: <span data-swatch-selected-label>{{ option.selected_value }}</span>{% endif %}
+                </label>
+
+                {% if has_swatch %}
+                  <div class="pdp__swatch-group" data-swatch-group>
+                    {% for value in option.values %}
+                      <label
+                        class="pdp__swatch{% if option.selected_value == value %} is-selected{% endif %}"
+                        style="--swatch-color: {{ value.swatch.color | default: '#e5e1da' }};"
+                        title="{{ value | escape }}"
+                      >
+                        <input
+                          type="radio"
+                          name="options[{{ option.name | escape }}]"
+                          value="{{ value | escape }}"
+                          data-swatch-input
+                          {% if option.selected_value == value %}checked{% endif %}
+                        >
+                        <span
+                          class="pdp__swatch-circle"
+                          {% if value.swatch.image %}style="background-image:url({{ value.swatch.image | image_url: width: 60 }});"{% endif %}
+                        ></span>
+                      </label>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  <select class="pdp__variant-select" name="options[{{ option.name | escape }}]">
+                    {% for value in option.values %}<option value="{{ value | escape }}">{{ value }}</option>{% endfor %}
+                  </select>
+                {% endif %}
               </div>
             {% endfor %}
           {% endif %}
@@ -83,6 +118,23 @@
           </button>
         {% endform %}
       </div>
+
+      {%- comment -%} Atualiza o texto ao lado do label ("Cor: Bronze Mocha Mousse") quando clica numa bolinha. Isolado, não mexe no theme.js. {%- endcomment -%}
+      <script>
+        (function () {
+          document.querySelectorAll('[data-swatch-group]').forEach(function (group) {
+            var label = group.closest('.pdp__variant-group').querySelector('[data-swatch-selected-label]');
+            group.querySelectorAll('[data-swatch-input]').forEach(function (input) {
+              input.addEventListener('change', function () {
+                group.querySelectorAll('.pdp__swatch').forEach(function (swatch) {
+                  swatch.classList.toggle('is-selected', swatch.contains(input) && input.checked);
+                });
+                if (label) label.textContent = input.value;
+              });
+            });
+          });
+        })();
+      </script>
 
       {%- comment -%} 4. VÍDEOS UGC — movido de baixo do grid pra dentro da coluna, entre a compra e os accordions {%- endcomment -%}
       {% assign ugc_videos = product.metafields.custom.videos_ugc.value %}
