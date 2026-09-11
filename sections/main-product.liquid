@@ -217,12 +217,42 @@
         </div>
       {% endif %}
 
-      {%- comment -%} DESTAQUES — ícones/emoji + texto curto, entre os vídeos UGC e os accordions {%- endcomment -%}
+      {%- comment -%}
+        DESTAQUES — ícone SVG (colorível via CSS) + texto curto, entre os vídeos UGC e os accordions.
+        Formato esperado em cada item do metafield: "tipo:Texto", ex: "gota:Ácido Hialurônico".
+        Tipos disponíveis: gota, sol, escudo, folha, coracao. Sem ":" ou tipo desconhecido -> ícone de check.
+      {%- endcomment -%}
       {%- assign destaques = product.metafields.custom.destaques.value -%}
       {%- if destaques.size > 0 -%}
         <ul class="pdp__highlights">
           {%- for item in destaques -%}
-            <li class="pdp__highlights-item">{{ item }}</li>
+            {%- assign parts = item | split: ':' -%}
+            {%- if parts.size > 1 -%}
+              {%- assign icon_key = parts[0] | strip | downcase -%}
+              {%- assign label = item | remove_first: parts[0] | remove_first: ':' | strip -%}
+            {%- else -%}
+              {%- assign icon_key = 'check' -%}
+              {%- assign label = item | strip -%}
+            {%- endif -%}
+            <li class="pdp__highlights-item">
+              <span class="pdp__highlights-icon" aria-hidden="true">
+                {%- case icon_key -%}
+                  {%- when 'gota' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2s7 7.5 7 12a7 7 0 0 1-14 0c0-4.5 7-12 7-12z"/></svg>
+                  {%- when 'sol' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.4 1.4M17.6 17.6L19 19M19 5l-1.4 1.4M6.4 17.6L5 19"/></svg>
+                  {%- when 'escudo' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/></svg>
+                  {%- when 'folha' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12c0-5 4-9 9-9h5v5c0 5-4 9-9 9H5v-5z"/><path d="M5 19c4-4 9-9 14-14"/></svg>
+                  {%- when 'coracao' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.5-9.5-9C.5 7 3 3 7 3c2 0 4 1.2 5 3 1-1.8 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg>
+                  {%- else -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12l5 5L20 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {%- endcase -%}
+              </span>
+              <span>{{ label }}</span>
+            </li>
           {%- endfor -%}
         </ul>
       {%- endif -%}
