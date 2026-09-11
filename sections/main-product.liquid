@@ -1,46 +1,57 @@
 <section class="pdp">
   <div class="container pdp__grid">
     <div>
-      <div class="pdp__gallery-main" data-pdp-gallery>
-        {% for media in product.media %}
-          <div class="pdp__gallery-slide{% if forloop.first %} is-active{% endif %}" data-pdp-slide>
-            {% case media.media_type %}
-              {% when 'video' %}
-                <video controls playsinline preload="metadata" poster="{{ media.preview_image | image_url: width: 800 }}">
-                  <source src="{{ media.sources[1].url | default: media.sources[0].url }}" type="video/mp4">
-                </video>
-              {% else %}
-                <img src="{{ media | image_url: width: 800 }}" alt="{{ media.alt | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
-            {% endcase %}
-          </div>
-        {% else %}
-          <div class="rite-placeholder">Foto do produto<br>em produção</div>
-        {% endfor %}
-
+      <div class="pdp__gallery-layout" data-gallery-layout>
         {% if product.media.size > 1 %}
-          <button class="pdp__gallery-arrow pdp__gallery-arrow--prev" data-pdp-prev aria-label="Mídia anterior">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="pdp__gallery-arrow pdp__gallery-arrow--next" data-pdp-next aria-label="Próxima mídia">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <span class="pdp__gallery-counter" data-pdp-counter>1 / {{ product.media.size }}</span>
-        {% endif %}
-      </div>
-      {% if product.media.size > 1 %}
-        <div class="pdp__thumbs" data-pdp-thumbs>
-          {% for media in product.media %}
-            <button class="pdp__thumb{% if forloop.first %} is-active{% endif %}" data-pdp-thumb type="button">
-              {% if media.media_type == 'video' %}
-                <img src="{{ media.preview_image | image_url: width: 150 }}" alt="" loading="lazy">
-                <span class="pdp__thumb-play" aria-hidden="true">▶</span>
-              {% else %}
-                <img src="{{ media | image_url: width: 150 }}" alt="{{ media.alt | escape }}" loading="lazy">
-              {% endif %}
+          <div class="pdp__thumbs-col" data-thumbs-col>
+            <button type="button" class="pdp__thumbs-nav pdp__thumbs-nav--up" data-thumbs-up aria-label="Miniaturas anteriores">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 15l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
+            <div class="pdp__thumbs" data-pdp-thumbs>
+              {% for media in product.media %}
+                <button class="pdp__thumb{% if forloop.first %} is-active{% endif %}" data-pdp-thumb type="button">
+                  {% if media.media_type == 'video' %}
+                    <img src="{{ media.preview_image | image_url: width: 150 }}" alt="" loading="lazy">
+                    <span class="pdp__thumb-play" aria-hidden="true">▶</span>
+                  {% else %}
+                    <img src="{{ media | image_url: width: 150 }}" alt="{{ media.alt | escape }}" loading="lazy">
+                  {% endif %}
+                </button>
+              {% endfor %}
+            </div>
+            <button type="button" class="pdp__thumbs-nav pdp__thumbs-nav--down" data-thumbs-down aria-label="Mais miniaturas">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        {% endif %}
+
+        <div class="pdp__gallery-main" data-pdp-gallery>
+          {% for media in product.media %}
+            <div class="pdp__gallery-slide{% if forloop.first %} is-active{% endif %}" data-pdp-slide>
+              {% case media.media_type %}
+                {% when 'video' %}
+                  <video controls playsinline preload="metadata" poster="{{ media.preview_image | image_url: width: 800 }}">
+                    <source src="{{ media.sources[1].url | default: media.sources[0].url }}" type="video/mp4">
+                  </video>
+                {% else %}
+                  <img src="{{ media | image_url: width: 800 }}" alt="{{ media.alt | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+              {% endcase %}
+            </div>
+          {% else %}
+            <div class="rite-placeholder">Foto do produto<br>em produção</div>
           {% endfor %}
+
+          {% if product.media.size > 1 %}
+            <button class="pdp__gallery-arrow pdp__gallery-arrow--prev" data-pdp-prev aria-label="Mídia anterior">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="pdp__gallery-arrow pdp__gallery-arrow--next" data-pdp-next aria-label="Próxima mídia">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <span class="pdp__gallery-counter" data-pdp-counter>1 / {{ product.media.size }}</span>
+          {% endif %}
         </div>
-      {% endif %}
+      </div>
     </div>
 
     <div>
@@ -241,6 +252,27 @@
       {%- endif -%}
     </div>
   </div>
+
+  {%- comment -%} Setas pra cima/baixo da coluna de miniaturas no desktop. Isolado, não mexe no theme.js. {%- endcomment -%}
+  <script>
+    (function () {
+      document.querySelectorAll('[data-thumbs-col]').forEach(function (col) {
+        var track = col.querySelector('[data-pdp-thumbs]');
+        var upBtn = col.querySelector('[data-thumbs-up]');
+        var downBtn = col.querySelector('[data-thumbs-down]');
+        if (!track) return;
+
+        function scrollByAmount(direction) {
+          var thumb = track.querySelector('.pdp__thumb');
+          var amount = thumb ? thumb.getBoundingClientRect().height + 8 : 64;
+          track.scrollBy({ top: amount * 2 * direction, behavior: 'smooth' });
+        }
+
+        if (upBtn) upBtn.addEventListener('click', function () { scrollByAmount(-1); });
+        if (downBtn) downBtn.addEventListener('click', function () { scrollByAmount(1); });
+      });
+    })();
+  </script>
 
   <div class="container">
     <div class="pdp__reviews-anchor">
