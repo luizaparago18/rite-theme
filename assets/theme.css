@@ -420,9 +420,9 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   background: rgba(45,42,38,0.7); color: var(--color-white); font-size: 11px; font-weight: 500;
   padding: 4px 10px; border-radius: 999px;
 }
-.pdp__gallery-layout { display: flex; flex-direction: row; align-items: stretch; gap: var(--space-2); }
+.pdp__gallery-layout { display: flex; flex-direction: row; align-items: flex-start; gap: var(--space-2); }
 .pdp__gallery-main { order: 2; flex: 1; min-width: 0; }
-.pdp__thumbs-col { order: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; flex-shrink: 0; min-height: 0; }
+.pdp__thumbs-col { order: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; flex-shrink: 0; min-height: 0; overflow: hidden; }
 
 .pdp__thumbs-nav {
   display: flex; align-items: center; justify-content: center; width: 48px; height: 18px;
