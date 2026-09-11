@@ -1,0 +1,109 @@
+{% comment %}
+  ============================================================
+  main-page-contact.liquid
+
+  Seção da página "Fale com a gente", usando o formulário de
+  contato NATIVO do Shopify ({% form 'contact' %}) — o Shopify
+  já envia a mensagem pro e-mail da loja sozinho, sem precisar
+  de app nenhum.
+
+  Como usar:
+  1. Salve este arquivo em sections/main-page-contact.liquid
+  2. Salve o outro arquivo (template) em templates/page.contact.json
+  3. No admin: Páginas > Adicionar página > dê um título (ex:
+     "Contato") > no campo "Modelo de tema" à direita, escolha
+     "contact" > Salvar.
+  4. Adicione essa página no menu do rodapé (Loja Online >
+     Navegação).
+  ============================================================
+{% endcomment %}
+
+<section class="contact-page">
+  <div class="container contact-page__container">
+    <h1 class="contact-page__title font-heading">{{ page.title | default: 'Fale com a gente' }}</h1>
+    <p class="contact-page__subtitle">Alguma dúvida, sugestão ou feedback? Manda pra gente que a nossa equipe responde o quanto antes.</p>
+
+    {%- form 'contact', id: 'ContactForm', class: 'contact-page__form' -%}
+      {%- if form.posted_successfully? -%}
+        <div class="contact-page__notice contact-page__notice--success">
+          Mensagem enviada! Vamos te responder em breve.
+        </div>
+      {%- endif -%}
+
+      {%- if form.errors -%}
+        <div class="contact-page__notice contact-page__notice--error">
+          <ul>
+            {%- for field in form.errors -%}
+              <li>
+                {%- if field == 'form' -%}
+                  {{ form.errors.messages[field] }}
+                {%- else -%}
+                  {{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      <div class="contact-page__row">
+        <div class="contact-page__field">
+          <label for="ContactFormName">Nome</label>
+          <input
+            type="text"
+            id="ContactFormName"
+            name="contact[Nome]"
+            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+            autocomplete="name"
+            required
+          >
+        </div>
+        <div class="contact-page__field">
+          <label for="ContactFormEmail">E-mail</label>
+          <input
+            type="email"
+            id="ContactFormEmail"
+            name="contact[email]"
+            spellcheck="false"
+            autocapitalize="off"
+            autocomplete="email"
+            value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+            required
+          >
+        </div>
+      </div>
+
+      <div class="contact-page__field">
+        <label for="ContactFormPhone">Telefone <span class="contact-page__optional">(opcional)</span></label>
+        <input
+          type="tel"
+          id="ContactFormPhone"
+          name="contact[Telefone]"
+          autocomplete="tel"
+          value="{{ form.phone }}"
+        >
+      </div>
+
+      <div class="contact-page__field">
+        <label for="ContactFormMessage">Mensagem</label>
+        <textarea id="ContactFormMessage" name="contact[body]" rows="6" required>{{ form.body }}</textarea>
+      </div>
+
+      <button type="submit" class="btn btn--primary" style="text-transform:lowercase;">
+        enviar mensagem
+      </button>
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Página de contato",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Página de contato"
+    }
+  ]
+}
+{% endschema %}
