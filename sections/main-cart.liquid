@@ -25,7 +25,15 @@
                     <input type="number" class="cart-item__qty-input" name="updates[{{ forloop.index0 }}]" value="{{ item.quantity }}" min="0">
                   </div>
                 </div>
-                <button type="submit" name="remove" class="cart-item__remove" formaction="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0">remover</button>
+                {%- comment -%}
+                  IMPORTANTE: este link fica FORA do formulário de quantidades (updates[]).
+                  Antes era um <button formaction="..."> dentro do mesmo <form> dos campos
+                  de quantidade em lote — isso fazia o navegador enviar todos os updates[]
+                  junto com o remove, causando um conflito de índice (0-based vs 1-based)
+                  que o Shopify resolvia errado, gerando "Cart Error: Cannot find variant".
+                  Um <a> isolado evita esse problema por completo.
+                {%- endcomment -%}
+                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="cart-item__remove">remover</a>
               </div>
             {% endfor %}
           </div>
