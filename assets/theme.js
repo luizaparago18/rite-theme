@@ -181,3 +181,50 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+// ---------- Seleção de variante da PDP (novo layout: título > preço > compra > UGC > accordions) ----------
+// Depende de window.riteProductVariants, definido inline pela seção main-product-rite.liquid
+// com {{ product.variants | json }}. Não interfere em nada do bloco acima.
+document.addEventListener('DOMContentLoaded', function () {
+  var forms = document.querySelectorAll('[data-rite-product-form]');
+
+  forms.forEach(function (form) {
+    var selects = form.querySelectorAll('[data-option-index]');
+    if (!selects.length) return;
+
+    var variantIdInput = form.querySelector('[data-variant-id]');
+    var buyButton = form.querySelector('[name="add"]');
+    var buyButtonText = form.querySelector('[data-buy-button-text]');
+    var productVariants = window.riteProductVariants || [];
+
+    function getSelectedOptions() {
+      var options = [];
+      selects.forEach(function (select) {
+        var index = parseInt(select.getAttribute('data-option-index'), 10);
+        options[index] = select.value;
+      });
+      return options;
+    }
+
+    function findMatchingVariant(selectedOptions) {
+      return productVariants.find(function (variant) {
+        return variant.options.every(function (value, i) {
+          return value === selectedOptions[i];
+        });
+      });
+    }
+
+    selects.forEach(function (select) {
+      select.addEventListener('change', function () {
+        var match = findMatchingVariant(getSelectedOptions());
+        if (!match) return;
+
+        if (variantIdInput) variantIdInput.value = match.id;
+        if (buyButton) buyButton.disabled = !match.available;
+        if (buyButtonText) {
+          buyButtonText.textContent = match.available ? 'Adicionar ao carrinho' : 'Esgotado';
+        }
+      });
+    });
+  });
+});
