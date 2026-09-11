@@ -356,14 +356,29 @@
     </div>
   </div>
 
-  {%- comment -%} Setas pra cima/baixo da coluna de miniaturas no desktop. Isolado, não mexe no theme.js. {%- endcomment -%}
+  {%- comment -%} Setas pra cima/baixo da coluna de miniaturas no desktop, e trava a altura da coluna no tamanho real da foto principal (a foto nunca é esticada/alterada). Isolado, não mexe no theme.js. {%- endcomment -%}
   <script>
     (function () {
       document.querySelectorAll('[data-thumbs-col]').forEach(function (col) {
         var track = col.querySelector('[data-pdp-thumbs]');
         var upBtn = col.querySelector('[data-thumbs-up]');
         var downBtn = col.querySelector('[data-thumbs-down]');
+        var layout = col.closest('.pdp__gallery-layout');
+        var mainImage = layout ? layout.querySelector('.pdp__gallery-main') : null;
         if (!track) return;
+
+        function matchHeightToMainImage() {
+          if (!mainImage) return;
+          var mainHeight = mainImage.getBoundingClientRect().height;
+          if (!mainHeight) return;
+
+          var navsHeight = 0;
+          if (upBtn) navsHeight += upBtn.getBoundingClientRect().height + 6;
+          if (downBtn) navsHeight += downBtn.getBoundingClientRect().height + 6;
+
+          col.style.maxHeight = mainHeight + 'px';
+          track.style.maxHeight = Math.max(mainHeight - navsHeight, 0) + 'px';
+        }
 
         function scrollByAmount(direction) {
           var thumb = track.querySelector('.pdp__thumb');
@@ -373,6 +388,10 @@
 
         if (upBtn) upBtn.addEventListener('click', function () { scrollByAmount(-1); });
         if (downBtn) downBtn.addEventListener('click', function () { scrollByAmount(1); });
+
+        matchHeightToMainImage();
+        window.addEventListener('resize', matchHeightToMainImage);
+        window.addEventListener('load', matchHeightToMainImage);
       });
     })();
   </script>
