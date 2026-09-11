@@ -122,16 +122,27 @@
           {% endif %}
 
           {% if product.selling_plan_groups.size > 0 %}
-            <div class="pdp__purchase-options">
+            {%- assign selling_plan_group = product.selling_plan_groups.first -%}
+            <div class="pdp__purchase-options" data-purchase-options>
               <label class="pdp__purchase-option">
-                <input type="radio" name="purchase_option" value="one_time" checked>
+                <input type="radio" name="purchase_option" value="one_time" checked data-purchase-radio>
                 <span>uma vez</span>
               </label>
               <label class="pdp__purchase-option">
-                <input type="radio" name="purchase_option" value="subscription">
-                <span>assinar<br><strong>até 20% off</strong></span>
+                <input type="radio" name="purchase_option" value="subscription" data-purchase-radio>
+                <span>assinar</span>
               </label>
             </div>
+            <select class="pdp__frequency-select" data-frequency-select>
+              {%- for plan in selling_plan_group.selling_plans -%}
+                {%- assign adj = plan.price_adjustments.first -%}
+                <option value="{{ plan.id }}">
+                  {{ plan.name }}{% if adj.value_type == 'percentage' %} — {{ adj.value | round }}% off{% endif %}
+                </option>
+              {%- endfor -%}
+            </select>
+            {%- comment -%} Só é enviado como assinatura quando o campo tem name="selling_plan"; no "uma vez" o name some. {%- endcomment -%}
+            <input type="hidden" data-selling-plan-input>
           {% endif %}
 
           <div class="pdp__add-row">
@@ -180,6 +191,42 @@
                 if (label) label.textContent = input.value;
               });
             });
+          });
+        })();
+      </script>
+
+      {%- comment -%} Liga o seletor de frequência + o radio "assinar" ao campo real selling_plan do formulário. Isolado, não mexe no theme.js nem no JS de variante acima. {%- endcomment -%}
+      <script>
+        (function () {
+          document.querySelectorAll('[data-selling-plan-input]').forEach(function (hiddenInput) {
+            var form = hiddenInput.closest('form');
+            if (!form) return;
+            var radios = form.querySelectorAll('[data-purchase-radio]');
+            var select = form.querySelector('[data-frequency-select]');
+
+            function sync() {
+              var subscribeChecked = form.querySelector('[data-purchase-radio][value="subscription"]:checked');
+              if (subscribeChecked && select) {
+                hiddenInput.value = select.value;
+                hiddenInput.name = 'selling_plan';
+              } else {
+                hiddenInput.removeAttribute('name');
+              }
+            }
+
+            radios.forEach(function (radio) {
+              radio.addEventListener('change', sync);
+            });
+
+            if (select) {
+              select.addEventListener('change', function () {
+                var subscribeRadio = form.querySelector('[data-purchase-radio][value="subscription"]');
+                if (subscribeRadio) subscribeRadio.checked = true;
+                sync();
+              });
+            }
+
+            sync();
           });
         })();
       </script>
