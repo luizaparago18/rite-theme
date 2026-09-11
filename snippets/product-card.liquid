@@ -2,11 +2,20 @@
   Snippet: product-card
   Uso: {% render 'product-card', product: product, badge: 'Mais vendido' %}
   Para versão menor: {% render 'product-card', product: product, compact: true %}
+
+  A badge "esgotado" aparece SOZINHA quando product.available == false (produto
+  com rastreamento de estoque zerado e sem "continuar vendendo"). Ela tem
+  prioridade sobre o badge manual (ex: "Mais vendido"), já que esgotado é mais
+  relevante pra decisão de compra.
 {% endcomment %}
 
-<div class="product-card{% if compact %} product-card--compact{% endif %}">
+<div class="product-card{% if compact %} product-card--compact{% endif %}{% unless product.available %} product-card--soldout{% endunless %}">
   <div class="product-card__image-wrap">
-    {% if badge %}<span class="product-card__badge{% if badge_accent %} product-card__badge--accent{% endif %}">{{ badge }}</span>{% endif %}
+    {% if product.available == false %}
+      <span class="product-card__badge product-card__badge--soldout">esgotado</span>
+    {% elsif badge %}
+      <span class="product-card__badge{% if badge_accent %} product-card__badge--accent{% endif %}">{{ badge }}</span>
+    {% endif %}
 
     {% if product.featured_image %}
       <img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="500" height="{{ product.featured_image.height }}">
@@ -26,5 +35,9 @@
     {% endif %}
   </p>
 
-  <a href="{{ product.url | default: '#' }}" class="btn btn--primary btn--full" style="text-transform:lowercase;">{% if compact %}adicionar{% else %}adicionar ao carrinho{% endif %}</a>
+  {% if product.available %}
+    <a href="{{ product.url | default: '#' }}" class="btn btn--primary btn--full" style="text-transform:lowercase;">{% if compact %}adicionar{% else %}adicionar ao carrinho{% endif %}</a>
+  {% else %}
+    <a href="{{ product.url | default: '#' }}" class="btn btn--primary btn--full" style="text-transform:lowercase; opacity:.5;" aria-disabled="true">esgotado</a>
+  {% endif %}
 </div>
