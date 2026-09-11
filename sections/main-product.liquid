@@ -271,19 +271,19 @@
           {%- if diferenciais != blank -%}
             <details class="pdp-accordion">
               <summary>Diferenciais</summary>
-              <div class="pdp__description">{{ diferenciais }}</div>
+              <div class="pdp__description">{{ product.metafields.custom.diferenciais | metafield_tag }}</div>
             </details>
           {%- endif -%}
           {%- if como_usar != blank -%}
             <details class="pdp-accordion">
               <summary>Como usar</summary>
-              <div class="pdp__description">{{ como_usar }}</div>
+              <div class="pdp__description">{{ product.metafields.custom.como_usar | metafield_tag }}</div>
             </details>
           {%- endif -%}
           {%- if ingredientes != blank -%}
             <details class="pdp-accordion">
               <summary>Ingredientes</summary>
-              <div class="pdp__description">{{ ingredientes }}</div>
+              <div class="pdp__description">{{ product.metafields.custom.ingredientes | metafield_tag }}</div>
             </details>
           {%- endif -%}
         </div>
