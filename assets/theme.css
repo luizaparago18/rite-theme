@@ -809,8 +809,28 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 }
 .gummies-final-card__heading { font-size: clamp(24px, 3.6vw, 34px); margin-bottom: 12px; color: var(--color-white); }
 .gummies-final-card__body { font-size: 14px; opacity: 0.85; max-width: 420px; margin: 0 auto var(--space-3); line-height: 1.6; }
-.gummies-final-card .newsletter__form { max-width: 380px; }
-.gummies-final-card .newsletter__form input { border-color: rgba(255,255,255,0.3); }
+
+.gummies-final-card__form {
+  display: flex; flex-wrap: wrap; gap: 10px; max-width: 420px; margin: var(--space-2) auto 0; box-sizing: border-box;
+}
+.gummies-final-card__form input {
+  flex: 1 1 220px; min-width: 0; padding: 13px 16px; border-radius: var(--radius-button);
+  border: 1.5px solid rgba(255,255,255,0.3); background: transparent; color: var(--color-white);
+  font-family: var(--font-body); font-size: 14px; box-sizing: border-box;
+}
+.gummies-final-card__form input::placeholder { color: rgba(255,255,255,0.6); }
+.gummies-final-card__btn {
+  flex: 1 1 220px; min-width: 0; white-space: normal; padding: 13px 20px; border-radius: var(--radius-button);
+  background: var(--color-yellow); color: var(--color-black); border: 1.5px solid var(--color-yellow);
+  font-family: var(--font-body); font-size: 13px; font-weight: 600; text-transform: lowercase;
+  cursor: pointer; box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .gummies-final-card__form { flex-direction: column; }
+  .gummies-final-card__form input,
+  .gummies-final-card__btn { flex-basis: auto; width: 100%; }
+}
 
 
 /* ---------- Ajuste do título do widget de avaliações (Judge.me) ---------- */
