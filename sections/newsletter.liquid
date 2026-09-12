@@ -6,14 +6,45 @@
     <div class="newsletter__content">
       <h2 class="newsletter__heading font-heading">{{ section.settings.heading | default: 'Fique por dentro' }}</h2>
       <p class="newsletter__subheading">{{ section.settings.subheading | default: 'Novidades, lançamentos e desconto de boas-vindas direto no seu e-mail.' }}</p>
-      {% form 'customer', class: 'newsletter__form' %}
-        <input type="hidden" name="contact[tags]" value="newsletter">
-        <input type="email" name="contact[email]" placeholder="Digite seu e-mail" required aria-label="E-mail">
-        <button type="submit" aria-label="Inscrever">→</button>
-      {% endform %}
+      {% if form.posted_successfully? %}
+        <div class="newsletter__success">
+          <p class="newsletter__success-text">Prontinho! Seu cupom de boas-vindas:</p>
+          <button type="button" class="newsletter__coupon" data-copy-coupon data-coupon-value="RITExWELCOME">
+            <span data-coupon-label>RITExWELCOME</span>
+            <span class="newsletter__coupon-action" data-coupon-action>copiar</span>
+          </button>
+          <p class="newsletter__success-note">10% off na primeira compra. Cole esse código na sacola.</p>
+        </div>
+      {% else %}
+        {% form 'customer', class: 'newsletter__form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input type="email" name="contact[email]" placeholder="Digite seu e-mail" required aria-label="E-mail">
+          <button type="submit" aria-label="Inscrever">→</button>
+        {% endform %}
+      {% endif %}
     </div>
   </div>
 </section>
+
+{%- comment -%} Botão de copiar o cupom. Isolado, não mexe no theme.js. {%- endcomment -%}
+<script>
+  (function () {
+    document.querySelectorAll('[data-copy-coupon]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var code = btn.getAttribute('data-coupon-value');
+        var action = btn.querySelector('[data-coupon-action]');
+
+        navigator.clipboard.writeText(code).then(function () {
+          if (action) {
+            var original = action.textContent;
+            action.textContent = 'copiado!';
+            setTimeout(function () { action.textContent = original; }, 2000);
+          }
+        });
+      });
+    });
+  })();
+</script>
 
 {% schema %}
 {
