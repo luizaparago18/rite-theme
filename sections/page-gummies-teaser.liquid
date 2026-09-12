@@ -36,10 +36,10 @@
       <h2 class="font-heading gummies-final-card__heading">em breve, no seu ritmo.</h2>
       <p class="gummies-final-card__body">As Rite Beauty Gummies estão chegando. Deixe seu e-mail para saber primeiro quando a nova linha estiver disponível.</p>
 
-      {% form 'customer', class: 'newsletter__form' %}
+      {% form 'customer', class: 'gummies-final-card__form' %}
         <input type="hidden" name="contact[tags]" value="gummies-waitlist">
         <input type="email" name="contact[email]" placeholder="digite seu e-mail" required aria-label="E-mail">
-        <button type="submit" style="text-transform:lowercase; white-space:nowrap; width:auto; padding:0 20px; border-radius:var(--radius-button); background:var(--color-yellow); color:var(--color-black); border-color:var(--color-yellow); font-size:12px; font-weight:500;">quero saber primeiro</button>
+        <button type="submit" class="gummies-final-card__btn">quero saber primeiro</button>
       {% endform %}
     </div>
   </div>
