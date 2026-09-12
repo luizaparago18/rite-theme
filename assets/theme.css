@@ -287,14 +287,37 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .blog-card__excerpt { font-size: 13px; color: var(--color-gray); }
 
 /* ---------- Newsletter ---------- */
-.newsletter { position: relative; overflow: hidden; background: var(--color-yellow); border-radius: var(--radius-lg); margin: 0 var(--space-3); padding: var(--space-5) var(--space-3); text-align: center; }
+.newsletter { position: relative; overflow: hidden; background: var(--color-yellow); border-radius: var(--radius-lg); margin: 0 var(--space-3); padding: var(--space-5) var(--space-3); text-align: center; box-sizing: border-box; }
 .newsletter__bg-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; z-index: 1; }
 .newsletter__content { position: relative; z-index: 2; }
 .newsletter__heading { font-size: clamp(22px, 3vw, 28px); margin-bottom: 14px; }
 .newsletter__subheading { font-size: 13px; opacity: 0.9; max-width: 420px; margin: 0 auto 24px; }
-.newsletter__form { display: flex; max-width: 400px; margin: var(--space-2) auto 0; gap: 8px; }
-.newsletter__form input { flex: 1; padding: 13px 16px; border-radius: var(--radius-button); border: 1.5px solid var(--color-black); font-family: var(--font-body); font-size: 14px; }
-.newsletter__form button { width: 46px; height: 46px; border-radius: var(--radius-button); border: 1.5px solid var(--color-black); background: var(--color-black); color: var(--color-white); cursor: pointer; flex-shrink: 0; }
+.newsletter__form { display: flex; width: 100%; max-width: 400px; margin: var(--space-2) auto 0; gap: 8px; box-sizing: border-box; }
+.newsletter__form input {
+  flex: 1 1 auto; min-width: 0; width: 0; padding: 13px 16px; border-radius: var(--radius-button);
+  border: 1.5px solid var(--color-black); font-family: var(--font-body); font-size: 14px; box-sizing: border-box;
+}
+.newsletter__form button {
+  width: 46px; height: 46px; border-radius: var(--radius-button); border: 1.5px solid var(--color-black);
+  background: var(--color-black); color: var(--color-white); cursor: pointer; flex: 0 0 46px; box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .newsletter { padding: var(--space-4) var(--space-2); margin: 0 var(--space-2); }
+  .newsletter__form { max-width: 100%; }
+  .newsletter__form input { font-size: 13px; padding: 12px 14px; }
+}
+
+.newsletter__success { max-width: 400px; margin: var(--space-2) auto 0; }
+.newsletter__success-text { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+.newsletter__coupon {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: var(--color-white); border: 1.5px dashed var(--color-black); border-radius: var(--radius-button);
+  padding: 13px 18px; cursor: pointer; font-family: var(--font-body);
+}
+.newsletter__coupon span:first-child { font-weight: 700; font-size: 15px; letter-spacing: 0.03em; }
+.newsletter__coupon-action { font-size: 12px; text-decoration: underline; color: var(--color-gray); flex-shrink: 0; }
+.newsletter__success-note { font-size: 12px; opacity: 0.85; margin-top: 12px; }
 
 /* ---------- Footer completo ---------- */
 .site-footer { padding: var(--space-6) 0 var(--space-3); background: var(--color-cream); }
