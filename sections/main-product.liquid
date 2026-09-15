@@ -103,6 +103,7 @@
                           name="options[{{ option.name | escape }}]"
                           value="{{ value | escape }}"
                           data-swatch-input
+                          data-option-position="{{ option.position }}"
                           {% if option.selected_value == value %}checked{% endif %}
                         >
                         <span
@@ -113,8 +114,8 @@
                     {% endfor %}
                   </div>
                 {% else %}
-                  <select class="pdp__variant-select" name="options[{{ option.name | escape }}]">
-                    {% for value in option.values %}<option value="{{ value | escape }}">{{ value }}</option>{% endfor %}
+                  <select class="pdp__variant-select" name="options[{{ option.name | escape }}]" data-option-position="{{ option.position }}">
+                    {% for value in option.values %}<option value="{{ value | escape }}"{% if option.selected_value == value %} selected{% endif %}>{{ value }}</option>{% endfor %}
                   </select>
                 {% endif %}
               </div>
@@ -151,13 +152,77 @@
               <input type="number" class="pdp__qty-input" name="quantity" value="1" min="1" inputmode="numeric">
               <button type="button" class="pdp__qty-btn" data-qty-increase aria-label="Aumentar quantidade">+</button>
             </div>
-            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-            <button type="submit" class="btn btn--primary" style="text-transform:lowercase; flex:1;" {% unless product.available %}disabled{% endunless %}>
-              {% if product.available %}adicionar ao carrinho{% else %}esgotado{% endif %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id-input>
+            <button type="submit" class="btn btn--primary" style="text-transform:lowercase; flex:1;" data-add-to-cart-btn {% unless product.available %}disabled{% endunless %}>
+              <span data-add-to-cart-text>{% if product.available %}adicionar ao carrinho{% else %}esgotado{% endif %}</span>
             </button>
           </div>
         {% endform %}
       </div>
+
+      {%- comment -%}
+        Dados das variantes pra sincronizar as bolinhas/selects com o campo real "id" do
+        formulário. Sem isso, o Shopify sempre adiciona a variante que carregou por padrão,
+        não importa qual cor/opção a pessoa clique.
+      {%- endcomment -%}
+      <script type="application/json" data-product-variants-json>{{ product.variants | json }}</script>
+      <script>
+        (function () {
+          var card = document.querySelector('.pdp__purchase-card');
+          var variantsScript = document.querySelector('[data-product-variants-json]');
+          if (!card || !variantsScript) return;
+
+          var variants;
+          try {
+            variants = JSON.parse(variantsScript.textContent);
+          } catch (e) {
+            return;
+          }
+
+          var idInput = card.querySelector('[data-variant-id-input]');
+          var addBtn = card.querySelector('[data-add-to-cart-btn]');
+          var addBtnText = card.querySelector('[data-add-to-cart-text]');
+          if (!idInput) return;
+
+          function getSelectedOptions() {
+            var values = [];
+            card.querySelectorAll('[data-option-position]').forEach(function (el) {
+              var pos = parseInt(el.getAttribute('data-option-position'), 10);
+              if (el.type === 'radio') {
+                if (el.checked) values[pos - 1] = el.value;
+              } else {
+                values[pos - 1] = el.value;
+              }
+            });
+            return values;
+          }
+
+          function findMatchingVariant() {
+            var selected = getSelectedOptions();
+            return variants.find(function (variant) {
+              return variant.options.every(function (val, i) {
+                return val === selected[i];
+              });
+            });
+          }
+
+          function syncVariant() {
+            var match = findMatchingVariant();
+            if (!match) return;
+
+            idInput.value = match.id;
+
+            if (addBtn) addBtn.disabled = !match.available;
+            if (addBtnText) addBtnText.textContent = match.available ? 'adicionar ao carrinho' : 'esgotado';
+          }
+
+          card.querySelectorAll('[data-option-position]').forEach(function (el) {
+            el.addEventListener('change', syncVariant);
+          });
+
+          syncVariant();
+        })();
+      </script>
 
       {%- comment -%} Botões de +/- da quantidade. Isolado, não mexe no theme.js. {%- endcomment -%}
       <script>
