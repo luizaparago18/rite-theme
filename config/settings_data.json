@@ -28,6 +28,14 @@
       "hero-banner": {
         "type": "hero-banner",
         "blocks": {
+          "slide_gkaMrK": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify://shop_images/banner_desktop_semana_rite.png",
+              "mobile_image": "shopify://shop_images/banner_mobile_semana_rite.png",
+              "link": "https://ritecosmetics.com/discount/SEMANARITE"
+            }
+          },
           "slide_xNgaLU": {
             "type": "slide",
             "settings": {
@@ -54,6 +62,7 @@
           }
         },
         "block_order": [
+          "slide_gkaMrK",
           "slide_xNgaLU",
           "slide_AkPrga",
           "slide_yUVLzi"
