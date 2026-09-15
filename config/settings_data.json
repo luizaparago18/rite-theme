@@ -33,7 +33,7 @@
             "settings": {
               "image": "shopify://shop_images/banner_desktop_semana_rite.png",
               "mobile_image": "shopify://shop_images/banner_mobile_semana_rite.png",
-              "link": "https://ritecosmetics.com/discount/SEMANARITE"
+              "link": "shopify://collections/all"
             }
           },
           "slide_AkPrga": {
