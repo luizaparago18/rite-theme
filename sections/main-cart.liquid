@@ -53,6 +53,25 @@
               <strong>{{ cart.total_price | money }}</strong>
             </div>
             <p class="cart-summary__note">Frete e descontos calculados no checkout.</p>
+
+            {%- comment -%} Barra de progresso pro brinde: acima de R$229 no pedido, ganha uma necessaire {%- endcomment -%}
+            {%- assign gift_threshold = 22900 -%}
+            {%- if cart.total_price >= gift_threshold -%}
+              <div class="cart-summary__gift cart-summary__gift--unlocked">
+                <span>🎁</span>
+                <span>Você já garantiu sua necessaire de brinde!</span>
+              </div>
+            {%- else -%}
+              {%- assign gift_remaining = gift_threshold | minus: cart.total_price -%}
+              {%- assign gift_percent = cart.total_price | times: 100 | divided_by: gift_threshold -%}
+              <div class="cart-summary__gift">
+                <p class="cart-summary__gift-text">Faltam <strong>{{ gift_remaining | money }}</strong> pra ganhar uma necessaire de brinde 🎁</p>
+                <div class="cart-summary__gift-bar">
+                  <div class="cart-summary__gift-fill" style="width: {{ gift_percent }}%;"></div>
+                </div>
+              </div>
+            {%- endif -%}
+
             <div class="cart-summary__brilhos">
               <span>✨</span>
               <span>essa compra também rende Brilhos pro seu Rite Clube</span>
