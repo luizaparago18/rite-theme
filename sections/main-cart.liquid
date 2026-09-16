@@ -18,7 +18,15 @@
                 </div>
                 <div>
                   <p class="cart-item__title">{{ item.product.title }}</p>
-                  {% if item.variant.title != 'Default Title' %}<p class="cart-item__variant">{{ item.variant.title }}</p>{% endif %}
+                  {% if item.product.has_only_default_variant == false %}
+                    <select class="cart-item__variant-select" data-cart-variant-select data-line="{{ forloop.index }}" data-quantity="{{ item.quantity }}">
+                      {% for variant in item.product.variants %}
+                        <option value="{{ variant.id }}" {% if variant.id == item.variant.id %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>
+                          {{ variant.title }}{% unless variant.available %} (esgotado){% endunless %}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  {% endif %}
                   <div class="cart-item__price-row">
                     <span>{{ item.final_price | money }}</span>
                     <span>×</span>
@@ -64,6 +72,49 @@
     </div>
   {% endif %}
 </section>
+
+{%- comment -%}
+  Troca de variante direto no carrinho. O Shopify não tem um jeito nativo de
+  "trocar a variante de uma linha existente" — o caminho é remover a linha antiga
+  (quantity: 0) e adicionar a nova variante com a mesma quantidade, depois recarregar
+  a página. Isolado, não mexe no theme.js.
+{%- endcomment -%}
+<script>
+  (function () {
+    document.querySelectorAll('[data-cart-variant-select]').forEach(function (select) {
+      var originalValue = select.value;
+
+      select.addEventListener('change', function () {
+        var line = select.getAttribute('data-line');
+        var quantity = select.getAttribute('data-quantity');
+        var newVariantId = select.value;
+
+        select.disabled = true;
+
+        fetch('/cart/change.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ line: parseInt(line, 10), quantity: 0 })
+        })
+          .then(function () {
+            return fetch('/cart/add.js', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: newVariantId, quantity: parseInt(quantity, 10) })
+            });
+          })
+          .then(function () {
+            window.location.reload();
+          })
+          .catch(function () {
+            select.disabled = false;
+            select.value = originalValue;
+            alert('Não conseguimos trocar a variante agora. Tenta de novo em instantes.');
+          });
+      });
+    });
+  })();
+</script>
 
 {% schema %}
 { "name": "Carrinho", "settings": [] }
