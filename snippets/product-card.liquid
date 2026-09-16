@@ -10,34 +10,39 @@
 {% endcomment %}
 
 <div class="product-card{% if compact %} product-card--compact{% endif %}{% unless product.available %} product-card--soldout{% endunless %}">
-  <div class="product-card__image-wrap">
-    {% if product.available == false %}
-      <span class="product-card__badge product-card__badge--soldout">esgotado</span>
-    {% elsif badge %}
-      <span class="product-card__badge{% if badge_accent %} product-card__badge--accent{% endif %}">{{ badge }}</span>
-    {% endif %}
+  <a href="{{ product.url | default: '#' }}" class="product-card__link">
+    <div class="product-card__image-wrap">
+      {% if product.available == false %}
+        <span class="product-card__badge product-card__badge--soldout">esgotado</span>
+      {% elsif badge %}
+        <span class="product-card__badge{% if badge_accent %} product-card__badge--accent{% endif %}">{{ badge }}</span>
+      {% endif %}
 
-    {% if product.featured_image %}
-      <img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="500" height="{{ product.featured_image.height }}">
-    {% else %}
-      <div class="product-card__placeholder">Foto do produto<br>em produção</div>
-    {% endif %}
-  </div>
+      {% if product.featured_image %}
+        <img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="500" height="{{ product.featured_image.height }}">
+      {% else %}
+        <div class="product-card__placeholder">Foto do produto<br>em produção</div>
+      {% endif %}
+    </div>
 
-  <p class="product-card__title">{{ product.title | default: 'Nome do produto' }}</p>
+    <p class="product-card__title">{{ product.title | default: 'Nome do produto' }}</p>
 
-  <p class="product-card__price">
-    {% if product.compare_at_price > product.price %}
-      <s>{{ product.compare_at_price | money }}</s>
-      <span class="price--sale">{{ product.price | money }}</span>
-    {% else %}
-      <span>{{ product.price | money | default: 'R$ 00,00' }}</span>
-    {% endif %}
-  </p>
+    <p class="product-card__price">
+      {% if product.compare_at_price > product.price %}
+        <s>{{ product.compare_at_price | money }}</s>
+        <span class="price--sale">{{ product.price | money }}</span>
+      {% else %}
+        <span>{{ product.price | money | default: 'R$ 00,00' }}</span>
+      {% endif %}
+    </p>
+  </a>
 
   {% if product.available %}
-    <a href="{{ product.url | default: '#' }}" class="btn btn--primary btn--full" style="text-transform:lowercase;">{% if compact %}adicionar{% else %}adicionar ao carrinho{% endif %}</a>
+    {% form 'product', product, class: 'product-card__add-form' %}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button type="submit" class="btn btn--primary btn--full" style="text-transform:lowercase;">{% if compact %}adicionar{% else %}adicionar ao carrinho{% endif %}</button>
+    {% endform %}
   {% else %}
-    <a href="{{ product.url | default: '#' }}" class="btn btn--primary btn--full" style="text-transform:lowercase; opacity:.5;" aria-disabled="true">esgotado</a>
+    <button type="button" class="btn btn--primary btn--full" style="text-transform:lowercase; opacity:.5;" disabled>esgotado</button>
   {% endif %}
 </div>
