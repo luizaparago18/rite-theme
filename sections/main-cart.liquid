@@ -54,8 +54,8 @@
             </div>
             <p class="cart-summary__note">Frete e descontos calculados no checkout.</p>
 
-            {%- comment -%} Barra de progresso pro brinde: acima de R$198 no pedido, ganha uma necessaire {%- endcomment -%}
-            {%- assign gift_threshold = 19800 -%}
+            {%- comment -%} Barra de progresso pro brinde: acima de R$229 no pedido, ganha uma necessaire {%- endcomment -%}
+            {%- assign gift_threshold = 22900 -%}
             {%- if cart.total_price >= gift_threshold -%}
               <div class="cart-summary__gift cart-summary__gift--unlocked">
                 <span>🎁</span>
