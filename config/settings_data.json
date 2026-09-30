@@ -28,6 +28,15 @@
       "hero-banner": {
         "type": "hero-banner",
         "blocks": {
+          "slide_QGpn8M": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "image": "shopify://shop_images/banner_desktop_semana_rite_copia.png",
+              "mobile_image": "shopify://shop_images/banner_mobile_semana_rite_copia.png",
+              "link": "shopify://collections/suplementos"
+            }
+          },
           "slide_xNgaLU": {
             "type": "slide",
             "settings": {
@@ -54,6 +63,7 @@
           }
         },
         "block_order": [
+          "slide_QGpn8M",
           "slide_xNgaLU",
           "slide_AkPrga",
           "slide_yUVLzi"
