@@ -30,7 +30,7 @@
                   <div class="cart-item__price-row">
                     <span>{{ item.final_price | money }}</span>
                     <span>×</span>
-                    <input type="number" class="cart-item__qty-input" name="updates[{{ forloop.index0 }}]" value="{{ item.quantity }}" min="0">
+                    <input type="number" class="cart-item__qty-input" name="updates[{{ forloop.index0 }}]" value="{{ item.quantity }}" min="0" data-cart-qty-input data-line="{{ forloop.index }}">
                   </div>
                 </div>
                 {%- comment -%}
@@ -91,6 +91,42 @@
     </div>
   {% endif %}
 </section>
+
+{%- comment -%}
+  Atualiza o carrinho de verdade quando a quantidade muda. Antes, o input só era
+  lido se a pessoa clicasse em "finalizar compra" (que já manda pro checkout sem
+  mostrar o carrinho atualizado antes) — por isso o valor parecia não mudar.
+  Isolado, não mexe no theme.js.
+{%- endcomment -%}
+<script>
+  (function () {
+    document.querySelectorAll('[data-cart-qty-input]').forEach(function (input) {
+      var lastValue = input.value;
+
+      input.addEventListener('change', function () {
+        var line = input.getAttribute('data-line');
+        var quantity = parseInt(input.value, 10);
+        if (isNaN(quantity) || quantity < 0) quantity = 0;
+
+        input.disabled = true;
+
+        fetch('/cart/change.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ line: parseInt(line, 10), quantity: quantity })
+        })
+          .then(function () {
+            window.location.reload();
+          })
+          .catch(function () {
+            input.disabled = false;
+            input.value = lastValue;
+            alert('Não conseguimos atualizar a quantidade agora. Tenta de novo em instantes.');
+          });
+      });
+    });
+  })();
+</script>
 
 {%- comment -%}
   Troca de variante direto no carrinho. O Shopify não tem um jeito nativo de
