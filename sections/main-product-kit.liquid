@@ -158,7 +158,53 @@
                   {%- endif -%}
                 {%- endfor -%}
               </div>
+            {%- endif -%}
 
+            {%- comment -%}
+              ESCOLHA ENTRE PRODUTOS DIFERENTES (ex: dois óleos, SKUs distintos) —
+              diferente da cor, aqui a pessoa escolhe QUAL produto entra no kit,
+              não uma variante do mesmo produto. Vai como propriedade da linha.
+            {%- endcomment -%}
+            {%- assign kit_choice_products = product.metafields.custom.kit_choice_products.value -%}
+            {%- if kit_choice_products.size > 0 -%}
+              <div class="kit-choice-group">
+                <p class="kit-picker__label">Escolha um dos itens abaixo:</p>
+                <div class="kit-choice-options" data-kit-choice-group>
+                  {%- for choice in kit_choice_products -%}
+                    <label class="kit-choice-option{% if forloop.first %} is-selected{% endif %}">
+                      <input
+                        type="radio"
+                        name="properties[Produto escolhido]"
+                        value="{{ choice.title | escape }}"
+                        data-kit-choice-input
+                        {% if forloop.first %}checked{% endif %}
+                      >
+                      {%- if choice.featured_image -%}
+                        <img src="{{ choice.featured_image | image_url: width: 120 }}" alt="" loading="lazy">
+                      {%- endif -%}
+                      <span>{{ choice.title }}</span>
+                    </label>
+                  {%- endfor -%}
+                </div>
+              </div>
+
+              {%- comment -%} Destaca visualmente o item escolhido. Isolado. {%- endcomment -%}
+              <script>
+                (function () {
+                  document.querySelectorAll('[data-kit-choice-group]').forEach(function (group) {
+                    group.querySelectorAll('[data-kit-choice-input]').forEach(function (input) {
+                      input.addEventListener('change', function () {
+                        group.querySelectorAll('.kit-choice-option').forEach(function (option) {
+                          option.classList.toggle('is-selected', option.contains(input) && input.checked);
+                        });
+                      });
+                    });
+                  });
+                })();
+              </script>
+            {%- endif -%}
+
+            {%- if kit_components.size > 0 -%}
               {%- comment -%} Atualiza o texto ao lado do label quando clica numa bolinha. Isolado. {%- endcomment -%}
               <script>
                 (function () {
