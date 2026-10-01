@@ -30,11 +30,10 @@
         "blocks": {
           "slide_QGpn8M": {
             "type": "slide",
-            "disabled": true,
             "settings": {
-              "image": "shopify://shop_images/banner_desktop_semana_rite_copia.png",
+              "image": "shopify://shop_images/banner_desktop_semana_rite_copia_1.png",
               "mobile_image": "shopify://shop_images/banner_mobile_semana_rite_copia.png",
-              "link": "shopify://collections/suplementos-1"
+              "link": "shopify://products/rite-beauty-gummies-cabelo-pele-e-unhas"
             }
           },
           "slide_xNgaLU": {
