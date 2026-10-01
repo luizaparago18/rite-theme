@@ -213,14 +213,14 @@
             <h2 class="kit-contents__heading font-heading">o que encontro neste kit?</h2>
             <div class="pdp-accordion-list">
               {%- for component in kit_components -%}
-                {%- capture component_blurb -%}{{ component.metafields.custom.slogan.value }}{%- endcapture -%}
+                {%- capture component_diferenciais -%}{{ component.metafields.custom.diferenciais.value }}{%- endcapture -%}
                 <details class="pdp-accordion">
                   <summary>{{ component.title }}</summary>
                   <div class="pdp__description">
-                    {%- if component_blurb != blank -%}
-                      {{ component_blurb }}
+                    {%- if component_diferenciais != blank -%}
+                      {{ component.metafields.custom.diferenciais | metafield_tag }}
                     {%- else -%}
-                      {{ component.description | strip_html | truncate: 220 }}
+                      {{ component.description }}
                     {%- endif -%}
                   </div>
                 </details>
