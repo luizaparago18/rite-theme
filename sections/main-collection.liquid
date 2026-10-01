@@ -27,7 +27,8 @@
   <div style="display:flex; justify-content:center; gap:8px; flex-wrap:wrap;">
     <a href="/collections/pele" class="tag-pill {% if collection.handle == 'pele' %}tag-pill--active{% endif %}">pele</a>
     <a href="/collections/cabelo" class="tag-pill {% if collection.handle == 'cabelo' %}tag-pill--active{% endif %}">cabelo</a>
-    <a href="/collections/suplementos" class="tag-pill">suplementos</a>
+    <a href="/collections/suplementos" class="tag-pill {% if collection.handle == 'suplementos' %}tag-pill--active{% endif %}">suplementos</a>
+    <a href="/collections/kits" class="tag-pill {% if collection.handle == 'kits' %}tag-pill--active{% endif %}">kits</a>
     <a href="{{ routes.all_products_collection_url }}" class="tag-pill {% if collection.handle == 'all' %}tag-pill--active{% endif %}">todos</a>
   </div>
 </div>
@@ -66,3 +67,4 @@
   ]
 }
 {% endschema %}
+
