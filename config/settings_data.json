@@ -184,7 +184,7 @@
             "settings": {
               "image": "shopify://shop_images/gummies-categoria-1.png",
               "label": "SUPLEMENTOS",
-              "link": "shopify://collections/suplementos-1"
+              "link": "shopify://collections/suplementos"
             }
           }
         },
