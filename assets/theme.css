@@ -993,3 +993,15 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   .contact-page__row { flex-direction: column; }
   .contact-page__title { font-size: 26px; }
 }
+
+/* ==========================================================================
+   PÁGINA DE KIT — sections/main-product-kit.liquid
+   Reaproveita .pdp__swatch-*, .pdp-accordion*, .pdp__qty-* já existentes.
+   Aqui só o que é específico da lista de produtos do kit.
+   ========================================================================== */
+
+.kit-picker-list { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-2); }
+.kit-picker__label { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+
+.kit-contents { margin-top: var(--space-3); }
+.kit-contents__heading { font-size: 18px; margin-bottom: 10px; }
