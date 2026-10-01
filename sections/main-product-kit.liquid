@@ -107,10 +107,13 @@
             {%- if kit_components.size > 0 -%}
               <div class="kit-picker-list">
                 {%- for component in kit_components -%}
-                  {%- assign kit_color_option = component.options_with_values | where: "name", "Cor" | first -%}
-                  {%- if kit_color_option == nil -%}
-                    {%- assign kit_color_option = component.options_with_values | where: "name", "cor" | first -%}
-                  {%- endif -%}
+                  {%- assign kit_color_option = nil -%}
+                  {%- for opt in component.options_with_values -%}
+                    {%- assign opt_name_lower = opt.name | downcase | strip -%}
+                    {%- if opt_name_lower == 'cor' -%}
+                      {%- assign kit_color_option = opt -%}
+                    {%- endif -%}
+                  {%- endfor -%}
 
                   {%- if kit_color_option -%}
                     {%- assign has_swatch = false -%}
