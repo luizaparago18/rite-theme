@@ -1,1 +1,260 @@
+{% comment %}
+  ============================================================
+  main-product-kit.liquid
 
+  Modelo de página pra kits pré-montados (vários produtos vendidos
+  juntos por um preço fechado). Diferenças em relação ao main-product.liquid:
+
+  - Sem accordions de Diferenciais / Como usar / Ingredientes
+  - Em vez disso: "o que encontro neste kit?" com uma descrição
+    breve por produto (puxada do metafield custom.slogan de cada
+    produto componente, com fallback pra descrição do produto)
+  - Se um produto componente tiver variante de cor, a pessoa escolhe
+    a cor de CADA produto na mesma página — isso vai junto no pedido
+    como propriedade da linha do carrinho (não cria itens separados,
+    o kit continua sendo UM item com preço fechado)
+  - Sem seção de "outras indicações" no final — só os reviews
+
+  Configuração necessária no produto do kit:
+  - Preço, imagens e título normais do produto
+  - Metafield custom.kit_components → tipo "Lista de referência de produto",
+    com os produtos que compõem o kit, na ordem que devem aparecer
+  - (Opcional) custom.slogan → frase de destaque do kit, mesma lógica do PDP normal
+  - Pra editar o template: no produto do kit, em "Modelo de tema", escolher "kit"
+  ============================================================
+{% endcomment %}
+
+<section class="pdp pdp--kit">
+  <div class="container">
+    <div class="pdp__grid">
+
+      {%- comment -%} GALERIA DO KIT — mesma estrutura/JS da PDP normal, reaproveita o theme.js existente {%- endcomment -%}
+      <div class="pdp__media">
+        <div class="pdp__gallery-layout" data-gallery-layout>
+          {% if product.media.size > 1 %}
+            <div class="pdp__thumbs-col" data-thumbs-col>
+              <button type="button" class="pdp__thumbs-nav pdp__thumbs-nav--up" data-thumbs-up aria-label="Miniaturas anteriores">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 15l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="pdp__thumbs" data-pdp-thumbs>
+                {% for media in product.media %}
+                  <button class="pdp__thumb{% if forloop.first %} is-active{% endif %}" data-pdp-thumb type="button">
+                    {% if media.media_type == 'video' %}
+                      <img src="{{ media.preview_image | image_url: width: 150 }}" alt="" loading="lazy">
+                      <span class="pdp__thumb-play">▶</span>
+                    {% else %}
+                      <img src="{{ media | image_url: width: 150 }}" alt="{{ media.alt | escape }}" loading="lazy">
+                    {% endif %}
+                  </button>
+                {% endfor %}
+              </div>
+              <button type="button" class="pdp__thumbs-nav pdp__thumbs-nav--down" data-thumbs-down aria-label="Mais miniaturas">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          {% endif %}
+
+          <div class="pdp__gallery-main" data-pdp-gallery>
+            {% for media in product.media %}
+              <div class="pdp__gallery-slide{% if forloop.first %} is-active{% endif %}" data-pdp-slide>
+                {% case media.media_type %}
+                  {% when 'video' %}
+                    <video controls playsinline preload="metadata" poster="{{ media.preview_image | image_url: width: 800 }}">
+                      <source src="{{ media.sources[1].url | default: media.sources[0].url }}" type="video/mp4">
+                    </video>
+                  {% else %}
+                    <img src="{{ media | image_url: width: 800 }}" alt="{{ media.alt | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+                {% endcase %}
+              </div>
+            {% else %}
+              <div class="rite-placeholder">Foto do kit<br>em produção</div>
+            {% endfor %}
+
+            {% if product.media.size > 1 %}
+              <button class="pdp__gallery-arrow pdp__gallery-arrow--prev" data-pdp-prev aria-label="Mídia anterior">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="pdp__gallery-arrow pdp__gallery-arrow--next" data-pdp-next aria-label="Próxima mídia">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <span class="pdp__gallery-counter" data-pdp-counter>1 / {{ product.media.size }}</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      {%- comment -%} COLUNA DE INFO {%- endcomment -%}
+      <div class="pdp__info">
+        <h1 class="pdp__title font-heading">{{ product.title }}</h1>
+
+        <div class="pdp__price">
+          {% if product.compare_at_price > product.price %}<s>{{ product.compare_at_price | money }}</s>{% endif %}
+          {{ product.price | money }}
+        </div>
+
+        {%- capture kit_slogan -%}{{ product.metafields.custom.slogan.value }}{%- endcapture -%}
+        {%- if kit_slogan != blank -%}
+          <p class="pdp__slogan">{{ kit_slogan }}</p>
+        {%- endif -%}
+
+        {%- assign kit_components = product.metafields.custom.kit_components.value -%}
+
+        <div class="pdp__purchase-card">
+          {% form 'product', product %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+            {%- comment -%} Seletor de cor por produto do kit — vai como propriedade da linha, não cria item separado {%- endcomment -%}
+            {%- if kit_components.size > 0 -%}
+              <div class="kit-picker-list">
+                {%- for component in kit_components -%}
+                  {%- assign kit_color_option = component.options_with_values | where: "name", "Cor" | first -%}
+                  {%- if kit_color_option == nil -%}
+                    {%- assign kit_color_option = component.options_with_values | where: "name", "cor" | first -%}
+                  {%- endif -%}
+
+                  {%- if kit_color_option -%}
+                    {%- assign has_swatch = false -%}
+                    {%- for value in kit_color_option.values -%}
+                      {%- if value.swatch.color != blank or value.swatch.image != blank -%}
+                        {%- assign has_swatch = true -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+
+                    <div class="kit-picker">
+                      <p class="kit-picker__label">
+                        {{ component.title }}{% if has_swatch %}: <span data-swatch-selected-label>{{ kit_color_option.selected_value }}</span>{% endif %}
+                      </p>
+
+                      {%- if has_swatch -%}
+                        <div class="pdp__swatch-group" data-swatch-group>
+                          {%- for value in kit_color_option.values -%}
+                            <label
+                              class="pdp__swatch{% if kit_color_option.selected_value == value %} is-selected{% endif %}"
+                              style="--swatch-color: {{ value.swatch.color | default: '#e5e1da' }};"
+                              title="{{ value | escape }}"
+                            >
+                              <input
+                                type="radio"
+                                name="properties[Cor - {{ component.title | escape }}]"
+                                value="{{ value | escape }}"
+                                data-swatch-input
+                                {% if kit_color_option.selected_value == value %}checked{% endif %}
+                              >
+                              <span
+                                class="pdp__swatch-circle"
+                                {% if value.swatch.image %}style="background-image:url({{ value.swatch.image | image_url: width: 60 }});"{% endif %}
+                              ></span>
+                            </label>
+                          {%- endfor -%}
+                        </div>
+                      {%- else -%}
+                        <select class="pdp__variant-select" name="properties[Cor - {{ component.title | escape }}]">
+                          {%- for value in kit_color_option.values -%}
+                            <option value="{{ value | escape }}" {% if kit_color_option.selected_value == value %}selected{% endif %}>{{ value }}</option>
+                          {%- endfor -%}
+                        </select>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+
+              {%- comment -%} Atualiza o texto ao lado do label quando clica numa bolinha. Isolado. {%- endcomment -%}
+              <script>
+                (function () {
+                  document.querySelectorAll('[data-swatch-group]').forEach(function (group) {
+                    var label = group.closest('.kit-picker').querySelector('[data-swatch-selected-label]');
+                    group.querySelectorAll('[data-swatch-input]').forEach(function (input) {
+                      input.addEventListener('change', function () {
+                        group.querySelectorAll('.pdp__swatch').forEach(function (swatch) {
+                          swatch.classList.toggle('is-selected', swatch.contains(input) && input.checked);
+                        });
+                        if (label) label.textContent = input.value;
+                      });
+                    });
+                  });
+                })();
+              </script>
+            {%- endif -%}
+
+            <div class="pdp__add-row">
+              <div class="pdp__qty-stepper" data-qty-stepper>
+                <button type="button" class="pdp__qty-btn" data-qty-decrease aria-label="Diminuir quantidade">–</button>
+                <input type="number" class="pdp__qty-input" name="quantity" value="1" min="1" inputmode="numeric">
+                <button type="button" class="pdp__qty-btn" data-qty-increase aria-label="Aumentar quantidade">+</button>
+              </div>
+              <button type="submit" class="btn btn--primary" style="text-transform:lowercase; flex:1;" {% unless product.available %}disabled{% endunless %}>
+                {% if product.available %}adicionar kit ao carrinho{% else %}esgotado{% endif %}
+              </button>
+            </div>
+          {% endform %}
+        </div>
+
+        <script>
+          (function () {
+            document.querySelectorAll('[data-qty-stepper]').forEach(function (stepper) {
+              var input = stepper.querySelector('.pdp__qty-input');
+              var decrease = stepper.querySelector('[data-qty-decrease]');
+              var increase = stepper.querySelector('[data-qty-increase]');
+              decrease.addEventListener('click', function () {
+                var min = parseInt(input.min, 10) || 1;
+                input.value = Math.max(min, (parseInt(input.value, 10) || min) - 1);
+              });
+              increase.addEventListener('click', function () {
+                input.value = (parseInt(input.value, 10) || 1) + 1;
+              });
+            });
+          })();
+        </script>
+
+        {%- comment -%} O QUE ENCONTRO NESTE KIT — descrição breve por produto, em dropdowns separados {%- endcomment -%}
+        {%- if kit_components.size > 0 -%}
+          <div class="kit-contents">
+            <h2 class="kit-contents__heading font-heading">o que encontro neste kit?</h2>
+            <div class="pdp-accordion-list">
+              {%- for component in kit_components -%}
+                {%- capture component_blurb -%}{{ component.metafields.custom.slogan.value }}{%- endcapture -%}
+                <details class="pdp-accordion">
+                  <summary>{{ component.title }}</summary>
+                  <div class="pdp__description">
+                    {%- if component_blurb != blank -%}
+                      {{ component_blurb }}
+                    {%- else -%}
+                      {{ component.description | strip_html | truncate: 220 }}
+                    {%- endif -%}
+                  </div>
+                </details>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Só reviews no final — sem seção de "outras indicações", já que a pessoa já está levando o kit {%- endcomment -%}
+<div class="container">
+  <div class="pdp__reviews-anchor">
+    <div id="judgeme_product_reviews" data-id="{{ product.id }}"></div>
+    {% for block in section.blocks %}
+      {% if block.type == '@app' %}
+        {% render block %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Produto Kit",
+  "settings": [],
+  "blocks": [
+    { "type": "@app" }
+  ],
+  "presets": [
+    { "name": "Produto Kit" }
+  ]
+}
+{% endschema %}
