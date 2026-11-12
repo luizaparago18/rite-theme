@@ -28,6 +28,15 @@
       "hero-banner": {
         "type": "hero-banner",
         "blocks": {
+          "slide_8R4hkb": {
+            "type": "slide",
+            "disabled": true,
+            "settings": {
+              "image": "shopify://shop_images/banner_besktop_black_friday.png",
+              "mobile_image": "shopify://shop_images/banner_mobile_black_friday.png",
+              "link": "shopify://collections/all"
+            }
+          },
           "slide_xNgaLU": {
             "type": "slide",
             "settings": {
@@ -54,6 +63,7 @@
           }
         },
         "block_order": [
+          "slide_8R4hkb",
           "slide_xNgaLU",
           "slide_AkPrga",
           "slide_yUVLzi"
