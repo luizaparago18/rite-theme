@@ -31,8 +31,8 @@
           "slide_8R4hkb": {
             "type": "slide",
             "settings": {
-              "image": "shopify://shop_images/banner_besktop_black_friday.png",
-              "mobile_image": "shopify://shop_images/banner_mobile_black_friday.png",
+              "image": "shopify://shop_images/banner_besktop.png",
+              "mobile_image": "shopify://shop_images/banner_mobile.png",
               "link": "shopify://collections/all"
             }
           },
